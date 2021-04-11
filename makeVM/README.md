@@ -12,7 +12,7 @@ Zunächst muss eine VM in VirtualBox erstellt werden. Konfiguration:
  * Name: HTW-Injectable
  * Betriebssystem: Linux - Ubuntu (64-bit)
  
-In dieser VM muss eine Standard-Installation von Ubuntu 16.04.7 mit dem [64-bit Server-ISO-Image](https://releases.ubuntu.com/16.04.7/ubuntu-16.04.7-server-amd64.iso) durchgeführt werden. Bitte dabei an den entsprechenden Schritten die im Installer Optionen "Continue without update" und "Install OpenSSH server" auswählen.
+In dieser VM muss eine Standard-Installation von Ubuntu 16.04.7 mit dem [64-bit Server-ISO-Image](https://releases.ubuntu.com/16.04.7/ubuntu-16.04.7-server-amd64.iso) durchgeführt werden. Bitte dabei an den entsprechenden Schritten die im Installer Optionen "No automatic updates" und (bei der Softwareselektion) "OpenSSH server" sowie "standard system utilities" auswählen.
 
 Der Standard-user sollte "mario" heißen und das Passwort "Its4321?!" haben.
 
