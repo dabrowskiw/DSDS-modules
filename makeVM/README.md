@@ -18,8 +18,8 @@ Der Standard-user sollte "mario" heißen und das Passwort "Its4321?!" haben.
 
 Danach muss die VM ein Mal hochgefahren werden, danach müssen folgende Einstellungen vorgenommen werden:
 
-* Als mario einloggen, mittels ```sudo -s``` root werden, mittels ```passwd``` das root-Passwort auch auch "Its4321?!" setzen.
-* Die Datei /etc/ssh/ssh_config bearbeiten und am Ende die folgende Zeile einfügen: "PermitRootLogin yes"
+* Als mario einloggen, mittels ```sudo -i passwd root``` das root-Passwort auch auch "Its4321?!" setzen.
+* Die Datei /etc/ssh/sshd_config bearbeiten (z.B. mit ```nano /etc/ssh/sshd_config```) und ```PermitRootLogin prohibit-password``` durch ```PermitRootLogin yes``` ersetzen.
 
 Die VM muss danach wieder runtergefahren werden und es muss ein snapshot mit dem Namen "CleanInstall" erstellt werden. 
 
