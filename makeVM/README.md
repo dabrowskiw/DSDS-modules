@@ -12,7 +12,7 @@ Zunächst muss eine VM in VirtualBox erstellt werden. Konfiguration:
  * Name: HTW-Injectable
  * Betriebssystem: Linux - Ubuntu (64-bit)
  
-In dieser VM muss eine Standard-Installation von Ubuntu 18.04.5 mit dem [64-bit ISO-Image](https://releases.ubuntu.com/18.04.5/ubuntu-18.04.5-desktop-amd64.iso) durchgeführt werden. Bitte dabei die im Installer Option "Minimal installation" auswählen und "Downlaod updates while installing Ubuntu" deaktivieren.
+In dieser VM muss eine Standard-Installation von Ubuntu 18.04.5 mit dem [64-bit Server-ISO-Image](https://releases.ubuntu.com/18.04.5/ubuntu-18.04.5-live-server-amd64.iso) durchgeführt werden. Bitte dabei an den entsprechenden Schritten die im Installer Optionen "Continue without update" und "Install OpenSSH server" auswählen.
 
 Der Standard-user sollte "mario" heißen und das Passwort "Its4321?!" haben.
 
