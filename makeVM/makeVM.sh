@@ -17,6 +17,9 @@ sleep 2
 for module in `cat modules.txt | grep -v "#"`; do
   echo "Running module ${module}..."
   modules/${module}
+  sleep 10 
   vboxmanage controlvm ${VMNAME} acpipowerbutton
+  sleep 10 
+  vboxmanage controlvm ${VMNAME} poweroff
   sleep 2
 done

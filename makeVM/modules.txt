@@ -1,3 +1,3 @@
-#ssh.sh
-#lemp.sh
+ssh.sh
+lemp.sh
 dre.sh
