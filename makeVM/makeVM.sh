@@ -4,8 +4,8 @@ export TMPDIR=temp/
 export RESOURCEDIR=modules/resources/
 export ENVFILE=${TMPDIR}/env.sh
 export VMNAME="HTW-Injectable"
-#export STARTSNAPSHOT="CleanInstall"
-export STARTSNAPSHOT="SSH-LEMP"
+export STARTSNAPSHOT="CleanInstall"
+#export STARTSNAPSHOT="SSH-LEMP"
 
 rm -f ${ENVFILE}
 
