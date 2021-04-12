@@ -26,4 +26,4 @@ Danach muss die VM ein Mal hochgefahren werden, danach müssen folgende Einstell
 
 Die VM muss danach wieder runtergefahren werden (z.B. durch den Befehl ```poweroff``` als root) und es muss ein snapshot mit dem Namen "CleanInstall" erstellt werden. 
 
-Nun müsste nach Start des Skripts "makeVM.sh" eine Installation von SSH, nginx, mysql und der verwundbaren Webapplikation "Diamond Real Estate" stattfinden. Wird die VM gestartet, müsste die Webseite vom host aus unter [http://127.0.0.1:8800/](http://127.0.0.1:8800/) erreichbar sein.
+Nun müsste nach Start des Skripts "makeVM.sh" eine Installation von SSH (dabei wird beim ersten Mal manuell bestätigt werden müssen, dass der fingerprint des Servers stimmt), nginx, mysql und der verwundbaren Webapplikation "Diamond Real Estate" stattfinden. Wird die VM gestartet, müsste die Webseite vom host aus unter [http://127.0.0.1:8800/](http://127.0.0.1:8800/) erreichbar sein.
