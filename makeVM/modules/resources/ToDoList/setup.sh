@@ -1,0 +1,1 @@
+gcc todo.c -m32 -fno-stack-protector -z execstack -o ToDoList && chmod u+s ToDoList
