@@ -3,7 +3,7 @@
 . ${ENVFILE} 2>/dev/null
 
 vboxmanage modifyvm ${VMNAME} --natpf1 "SSH,tcp,,2200,,22"
-vboxmanage startvm "HTW-Injectable" --type headless
+vboxmanage startvm ${VMNAME} --type headless
 echo "Waiting for VM to come up..."
 sleep 8
 
