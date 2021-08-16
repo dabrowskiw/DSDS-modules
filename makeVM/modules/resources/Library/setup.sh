@@ -1,0 +1,1 @@
+gcc main.c -m32 -fno-stack-protector -no-pie -o library && chmod u+s library
