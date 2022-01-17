@@ -1,0 +1,15 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+  phpmyadmin:
+    image: 'phpmyadmin'
+    environment:
+      PMA_HOST: '${DB_HOST}'
+      PMA_PORT: '${DB_PORT}'
+    ports:
+      - '${FORWARD_PHPMYADMIN_PORT:-8080}:80'
+    networks:
+      - sail
+networks:
+  sail:
+    driver: bridge
