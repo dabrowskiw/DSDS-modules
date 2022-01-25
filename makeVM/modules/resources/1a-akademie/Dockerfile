@@ -46,3 +46,4 @@ RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
 
 RUN rm /var/log/apache2/access.log
+COPY access.seed.log /var/log/apache2/access.log

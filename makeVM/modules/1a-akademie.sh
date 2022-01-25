@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+vboxmanage modifyvm ${VMNAME} --natpf1 "1a-akademie,tcp,,8000,,8000"
 vboxmanage startvm ${VMNAME} --type headless
 echo "Waiting for VM to come up..."
 sleep 8
