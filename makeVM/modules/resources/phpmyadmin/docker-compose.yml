@@ -10,6 +10,7 @@ services:
       - '${FORWARD_PHPMYADMIN_PORT:-8080}:80'
     networks:
       - sail
+    restart: unless-stopped
 networks:
   sail:
     driver: bridge
