@@ -9,8 +9,8 @@ services:
     ports:
       - '${FORWARD_PHPMYADMIN_PORT:-8080}:80'
     networks:
-      - sail
+      - phpmyadmin
     restart: unless-stopped
 networks:
-  sail:
-    driver: bridge
+  phpmyadmin:
+    external: true

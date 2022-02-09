@@ -2,6 +2,16 @@
 
 Kursportal für Kurse der 1A Gesundheit Akademie.
 
+## VM Setup
+
+Setze diesen Inhalt in modules.txt ein:
+```
+ssh.sh
+docker.sh
+phpmyadmin.sh
+1a-akademie.sh
+```
+
 ## Entwicklung
 
 1. Installiere Docker (z.B. über [Docker Desktop](https://www.docker.com/products/docker-desktop)) und docker-compose
