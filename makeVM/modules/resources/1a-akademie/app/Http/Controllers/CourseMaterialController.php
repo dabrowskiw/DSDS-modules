@@ -89,7 +89,7 @@ class CourseMaterialController extends Controller
             'file' => 'required',
         ]);
 
-        $filePath = realpath(storage_path() . '/app/' . $request->input('file'));
+        $filePath = realpath(storage_path() . '/app/public/' . $request->input('file'));
         if (!file_exists($filePath)) {
             return "Datei des Materials nicht gefunden";
         }
