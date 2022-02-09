@@ -1,0 +1,78 @@
+html, body {
+    background: white;
+}
+
+span, strong {
+    cursor: default;
+}
+
+.papers {
+    padding: 1em 0.25em;
+}
+
+.papers table {
+    width: 100%;
+    table-layout: auto;
+}
+
+.papers .entry {
+    gap: 2em;
+    color: black;
+    border-bottom: solid 1px rgb(173, 173, 173);
+}
+
+.papers .entry.header {
+    font-weight: bold;
+    border-bottom: solid 1px black;
+}
+
+.papers .entry td {
+    padding: 0.25em 2em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.papers .entry td:first-child {
+    padding: 0.25em;
+}
+
+.papers .entry td:last-child {
+    padding: 0.25em;
+}
+
+.publisher a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.price a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.signin {
+    width: 24rem;
+    box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.username {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logout {
+    color: white;
+    text-decoration: none;
+}
+
+.error {
+    color: red;
+}
+
+.nav-link {
+    white-space: nowrap;
+}

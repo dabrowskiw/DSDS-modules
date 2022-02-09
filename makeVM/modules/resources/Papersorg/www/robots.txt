@@ -1,0 +1,6 @@
+User-agent: *
+
+Allow: /
+Disallow: /api/
+Disallow: /mysqldump/
+Disallow: /db_backup.sh
