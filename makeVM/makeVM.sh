@@ -8,6 +8,8 @@ export STARTSNAPSHOT="CleanInstall"
 #export STARTSNAPSHOT="SSH-LEMP"
 
 rm -f ${ENVFILE}
+# Remove temporary keys by restarting ssh agent
+eval "$(ssh-agent -s)"
 
 vboxmanage controlvm ${VMNAME} poweroff
 vboxmanage snapshot ${VMNAME} restore ${STARTSNAPSHOT}

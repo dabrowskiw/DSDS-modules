@@ -7,4 +7,6 @@ ssh.sh
 # only enable ssh.sh & init_log_poison.sh
 init_log_poison.sh
 
-
+docker.sh
+phpmyadmin.sh
+1a-akademie.sh
