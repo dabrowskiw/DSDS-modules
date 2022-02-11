@@ -1,0 +1,49 @@
+ /*if (isset($_POST['login']) && !empty($_POST['username'])
+        && !empty($_POST['password'])) {
+        $uid = 3; //user id von "tutorialspoint"
+        if ($_POST['username'] == 'tutorialspoint' &&
+            $_POST['password'] == '1234') {
+            $_SESSION['valid'] = true;
+            $_SESSION['timeout'] = time();
+            $_SESSION['username'] = 'tutorialspoint';
+
+            setcookie("uid", $uid, 0, "/");
+            setcookie("session", time()*$uid, 0, "/");
+
+            echo 'You have entered valid use name and password';
+            header('location: verifyLogin.php');
+        }else {
+            $msg = 'Wrong username or password';
+        }
+    }*/
+
+     /* public function verifyCookie():int
+        {
+            $Value = $_COOKIE["HackenInVMs"];
+            $db = getConn();
+            $sql = $db->prepare("SELECT UserID FROM sessions WHERE Zeitstempel = ?");
+            $sql->bind_param("i", $Value);
+            $sql->execute();
+            $result = $sql->get_result();
+            $num_rows = mysqli_num_rows($result);
+            echo "Rows: $num_rows ";
+            $returnedUserID = 0;
+
+            if (mysqli_num_rows($result) > 0) {
+                while ($row=$result->fetch_assoc()){
+                    $UserID = $row['UserID'];
+                    $time = $Value / $UserID;
+
+                    $timeNow = time() + $this->haltbarkeit;
+                    echo "Current Time: $timeNow, Cookie Time: $time ";
+                    if ($time > $timeNow) {
+                        $returnedUserID = -1;
+                    } else {
+                        $returnedUserID = $UserID;
+                    }
+                }
+            } else {
+                $returnedUserID = -2;
+            }
+            return $returnedUserID;
+        }*/
