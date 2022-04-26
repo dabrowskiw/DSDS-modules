@@ -16,7 +16,7 @@ vboxmanage snapshot ${VMNAME} restore ${STARTSNAPSHOT}
 vboxmanage controlvm ${VMNAME} acpipowerbutton
 sleep 2
 
-for module in `cat modules.txt | grep -v "#"`; do
+for module in `cat modules.txt | grep -v "^#"`; do
   echo "Running module ${module}..."
   modules/${module}
   sleep 10 
