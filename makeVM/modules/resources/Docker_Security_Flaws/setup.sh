@@ -15,7 +15,7 @@ echo ""
 docker run hello-world
 
 
-echo "Start docker registry on port 5000"
+echo "Start docker registry on port 5000..."
 echo ""
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
@@ -24,9 +24,9 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 docker ps
 
 
-echo "Copying config for unsecure docker communication"
-echo ""
-scp -r -P 2200 -i temp/rootkey -r modules/resources/Docker_Security_Flaws/config/daemon.js root@127.0.0.1:/etc/docker/
+echo "Setting up config for unsecure docker communication"
+mv /root/config/daemon.js /etc/docker
+
 
 echo "pushing test image to registry"
 echo ""
@@ -45,5 +45,8 @@ curl -X GET http://127.0.0.1:5000/v2/_catalog
 echo ""
 echo "Setup succesfull."
 
+
+sleep 5
+poweroff
 
 
