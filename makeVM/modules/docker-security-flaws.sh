@@ -4,13 +4,5 @@ vboxmanage startvm "${VMNAME}" --type headless
 echo "Waiting for VM to come up..."
 sleep 8
 
-
-ssh -p 2200 -i "${TMPDIR}"/rootkey root@127.0.0.1 "apt-get -y update && apt-get -y install docker.io"
-
-ssh -p 2200 -i "${TMPDIR}"/rootkey root@127.0.0.1 "docker run hello-world"
-
-ssh -p 2200 -i "${TMPDIR}"/rootkey root@127.0.0.1 "docker run -d -p 5000:5000 --restart=always --name registry registry:2"
-
-ssh -p 2200 -i "${TMPDIR}"/rootkey root@127.0.0.1 "docker ps"
-
-
+scp -P 2200 -i temp/rootkey -r modules/resources/Docker_Security_Flaws/setup.sh root@127.0.0.1:/root/
+ssh -p 2200 -i ${TMPDIR}/rootkey root@127.0.0.1 "bash /root/setup.sh"

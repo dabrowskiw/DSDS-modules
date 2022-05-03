@@ -1,12 +1,13 @@
 ssh.sh
+docker-security-flaws.sh
 #lemp.sh
 #dre.sh
 
 
 # log poisoning module 
 # only enable ssh.sh & init_log_poison.sh
-init_log_poison.sh
+#init_log_poison.sh
 
-docker.sh
-phpmyadmin.sh
-1a-akademie.sh
+#docker.sh
+#phpmyadmin.sh
+#1a-akademie.sh
