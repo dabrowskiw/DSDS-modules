@@ -1,25 +1,34 @@
-body{
+body {
     font-family: "Roboto", sans-serif;
-    
+
 }
 
-a{  
+a {
     color: black;
     text-decoration: none;
 }
 
+li {
+    display: inline;
+    margin-right: 50px;
+    float: left;
+}
 
-.container{
+h2 {
+    text-align: center;
+}
+
+.container {
     text-align: center;
     display: grid;
     grid-template-rows: 120px 500px 1fr;
-    grid-template-areas: 
-      "header"
-      "main"
-      "footer";
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
 }
 
-.login{
+.login {
     margin: auto;
 }
 
@@ -27,15 +36,15 @@ header {
     grid-area: header;
     position: fixed;
     left: 0%;
-    top:0%;
+    top: 0%;
     right: 0%;
     height: 120px;
-    background-color: #30ba0a;   
+    background-color: #30ba0a;
 }
 
 main {
     grid-area: main;
-    line-height: 30px; 
+    line-height: 30px;
     padding-top: 40px;
     padding-left: 40px;
     padding-right: 40px;
@@ -43,16 +52,16 @@ main {
     background-color: white;
 }
 
-aside{
+aside {
     grid-area: aside;
 }
 
 footer {
     grid-area: footer;
     text-align: center;
-    position:fixed;
+    position: fixed;
     bottom: 0%;
-    left:0%;
+    left: 0%;
     width: 100%;
     height: 50px;
     background-color: #30ba0a;

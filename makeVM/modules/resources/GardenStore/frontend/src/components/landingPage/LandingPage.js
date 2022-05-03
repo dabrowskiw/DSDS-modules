@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 //import logo from "";
 
 import Header from "../structure/Header"
+import Footer from "../structure/Footer"
 
 const LandingPage = (props) => {
 
@@ -28,6 +29,8 @@ const LandingPage = (props) => {
                     </div>
                 </main>
             </div>
+
+            <Footer />
         </div>
     );//return
 };//function

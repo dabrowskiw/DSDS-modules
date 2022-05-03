@@ -3,6 +3,8 @@ import "../styles.css";
 import {useNavigate} from 'react-router';
 //import logo from "";
 
+import Footer from "../structure/Footer"
+
 const LoginForm = (props) => {
 
   let navigate = useNavigate();
@@ -76,9 +78,7 @@ return (
       </div>
     </div>
     </main>
-        <footer>
-            © 2021
-        </footer>
+        <Footer />
     </div>
   );//return
 };//function
