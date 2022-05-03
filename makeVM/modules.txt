@@ -6,6 +6,9 @@ docker-security-flaws.sh
 
 # log poisoning module 
 # only enable ssh.sh & init_log_poison.sh
+
+#log poisoning module 
+#only enable ssh.sh & init_log_poison.sh
 #init_log_poison.sh
 
 #docker.sh
