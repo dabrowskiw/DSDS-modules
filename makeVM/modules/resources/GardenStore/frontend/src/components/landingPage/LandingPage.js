@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 
 import Header from "../structure/Header"
 import Footer from "../structure/Footer"
+import List from "../product/List"
 
 const LandingPage = (props) => {
 
@@ -29,7 +30,7 @@ const LandingPage = (props) => {
                     </div>
                 </main>
             </div>
-
+            <List/>
             <Footer />
         </div>
     );//return
