@@ -10,12 +10,11 @@ const List = (props) => {
   const BASE_URL = "http://localhost:3000";
 
   let navigate = useNavigate();
-  //const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
 
   const path = window.location.pathname;
-  const [pathChanged, setPathChanged] = useState('');
 
   useEffect(() => {
 
@@ -24,14 +23,6 @@ const List = (props) => {
     // }
 
     let mounted = true;
-
-    if(mounted){
-      if(path==='/map'){
-        setPathChanged(false);
-      }else{
-        setPathChanged(true);
-      }
-    }
 
       setTimeout(() => {
         async function getProducts() {
@@ -63,11 +54,11 @@ const List = (props) => {
     props.onLogout();
   };
 
-  /*   if (error) {
+  if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div className="loading-screen">{t('description.loadtext')}</div>;
-    } else { */
+  } else if (!isLoaded) {
+    return <div className="loading-screen">{t('description.loadtext')}</div>;
+  } else { 
   return (
     <div>
     <React.Fragment>
@@ -92,8 +83,6 @@ const List = (props) => {
 
     </React.Fragment>
     </div>
-  );
-  //}else 
-};
+  );};};
 
 export default List;
