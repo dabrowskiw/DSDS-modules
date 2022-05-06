@@ -1,3 +1,10 @@
+# User Notes
+## Common commands
+### Start json-server
+test: to start json-server woth mock db at localhost:3001 type
+`json-server -p 3001 src/mock_api/product.json`
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
