@@ -8,6 +8,7 @@ import Moment from 'moment';
 const Product = ({
     product_id,
     name,
+    price,
     description,
     img,
     comments,
