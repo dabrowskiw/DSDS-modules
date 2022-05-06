@@ -26,12 +26,13 @@ const LandingPage = (props) => {
                         Welcome at the LandingPage
                     </h3>
                     <div className="" >
-
+                        <List />
                     </div>
                 </main>
             </div>
-            <List/>
-            <Footer />
+            <div>
+                <Footer />
+            </div>
         </div>
     );//return
 };//function

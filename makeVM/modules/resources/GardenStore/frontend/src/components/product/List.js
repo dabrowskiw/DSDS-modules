@@ -72,13 +72,10 @@ const List = (props) => {
       } else { */
     return (
         <React.Fragment>
-            <header>
+            {/* <header>
                 <Header onLogout={logout} />
-            </header>
-            <main>
-                {pathChanged
-                    ?
-                    //for trip-list within editTrip & addTrip
+            </header> */}
+           
                     <div className="trip-container">
                         <div className="trip-list">
                             {!_.isEmpty(products) ? (
@@ -93,22 +90,7 @@ const List = (props) => {
                             )}
                         </div>
                     </div>
-                    :
-                    //to get rid of padding-top within /map
-                    {/* <div>
-         {!_.isEmpty(products) ? (
-            products.map((product) => (
-              <Product
-              key={product.product_id}
-              {...product}
-              />
-            ))
-          ) : (
-            <p className="message">{t('description.notrip')}</p>
-          )}
-          </div> */}
-                }
-            </main>
+            
         </React.Fragment>
     );
     //}else 
