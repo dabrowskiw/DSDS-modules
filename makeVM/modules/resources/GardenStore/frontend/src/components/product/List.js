@@ -14,64 +14,12 @@ const List = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
 
-  const testProduct = [
-    {
-      product_id: "4f2b7664-5ea9-11ec-bf63-0242ac130002",
-      name: "Schüppe",
-      description: "Stabil",
-      img: "",
-      comments: "Budeln in Hawaii",
-      rates: "3",
-      amount: "5"
-    }];
-
-
+  
 
   const path = window.location.pathname;
   const [pathChanged, setPathChanged] = useState('');
 
-  /*   useEffect(() => {
-  
-      if (!props.logged) {
-        navigate("/");
-      }
-  
-      let mounted = true;
-  
-      if(mounted){
-        if(path==='/map'){
-          setPathChanged(false);
-        }else{
-          setPathChanged(true);
-        }
-      }
-  
-        setTimeout(() => {
-          async function getTrips() {
-          fetch(`${BASE_URL}/trips`, {
-            method: "GET",
-            credentials: "include",
-          })
-            .then((res) => res.json())
-            .then(
-              (result) => {
-                if (mounted) {
-                  setIsLoaded(true);
-                  setTrips(result);
-                }
-              },
-              (error) => {
-                if (mounted) {
-                  setIsLoaded(true);
-                  setError(error);
-                }
-              }
-            );
-        }getTrips();
-      }, 2000);
-      return () => (mounted = false); //cleanup function
-    }, [trips, BASE_URL, navigate, path, props.logged]);
-   */
+
 
 
   const logout = () => {
@@ -84,6 +32,7 @@ const List = (props) => {
       return <div className="loading-screen">{t('description.loadtext')}</div>;
     } else { */
   return (
+    <div>
     <React.Fragment>
       {/* <header>
                 <Header onLogout={logout} />
@@ -91,8 +40,6 @@ const List = (props) => {
 
       <div className="trip-container">
         <div className="trip-list">
-          {setProducts(testProduct)},
-          {console.log(products)},
           {!_.isEmpty(products) ? (
             products.map((product) => (
               <Product
@@ -107,6 +54,7 @@ const List = (props) => {
       </div>
 
     </React.Fragment>
+    </div>
   );
   //}else 
 };
