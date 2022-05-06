@@ -7,93 +7,108 @@ import { useNavigate } from "react-router";
 
 const List = (props) => {
 
-    //const BASE_URL = props.baseUrl;
+  //const BASE_URL = props.baseUrl;
 
-    let navigate = useNavigate();
-    //const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [products, setProducts] = useState([]);
+  let navigate = useNavigate();
+  //const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [products, setProducts] = useState([]);
 
-    const path = window.location.pathname;
-    const [pathChanged, setPathChanged] = useState('');
+  const testProduct = [
+    {
+      product_id: "4f2b7664-5ea9-11ec-bf63-0242ac130002",
+      name: "Schüppe",
+      description: "Stabil",
+      img: "",
+      comments: "Budeln in Hawaii",
+      rates: "3",
+      amount: "5"
+    }];
 
-    /*   useEffect(() => {
-    
-        if (!props.logged) {
-          navigate("/");
+
+
+  const path = window.location.pathname;
+  const [pathChanged, setPathChanged] = useState('');
+
+  /*   useEffect(() => {
+  
+      if (!props.logged) {
+        navigate("/");
+      }
+  
+      let mounted = true;
+  
+      if(mounted){
+        if(path==='/map'){
+          setPathChanged(false);
+        }else{
+          setPathChanged(true);
         }
-    
-        let mounted = true;
-    
-        if(mounted){
-          if(path==='/map'){
-            setPathChanged(false);
-          }else{
-            setPathChanged(true);
-          }
-        }
-    
-          setTimeout(() => {
-            async function getTrips() {
-            fetch(`${BASE_URL}/trips`, {
-              method: "GET",
-              credentials: "include",
-            })
-              .then((res) => res.json())
-              .then(
-                (result) => {
-                  if (mounted) {
-                    setIsLoaded(true);
-                    setTrips(result);
-                  }
-                },
-                (error) => {
-                  if (mounted) {
-                    setIsLoaded(true);
-                    setError(error);
-                  }
+      }
+  
+        setTimeout(() => {
+          async function getTrips() {
+          fetch(`${BASE_URL}/trips`, {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((res) => res.json())
+            .then(
+              (result) => {
+                if (mounted) {
+                  setIsLoaded(true);
+                  setTrips(result);
                 }
-              );
-          }getTrips();
-        }, 2000);
-        return () => (mounted = false); //cleanup function
-      }, [trips, BASE_URL, navigate, path, props.logged]);
-     */
+              },
+              (error) => {
+                if (mounted) {
+                  setIsLoaded(true);
+                  setError(error);
+                }
+              }
+            );
+        }getTrips();
+      }, 2000);
+      return () => (mounted = false); //cleanup function
+    }, [trips, BASE_URL, navigate, path, props.logged]);
+   */
 
 
-    const logout = () => {
-        props.onLogout();
-    };
+  const logout = () => {
+    props.onLogout();
+  };
 
-    /*   if (error) {
-        return <div>Error: {error.message}</div>;
-      } else if (!isLoaded) {
-        return <div className="loading-screen">{t('description.loadtext')}</div>;
-      } else { */
-    return (
-        <React.Fragment>
-            {/* <header>
+  /*   if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div className="loading-screen">{t('description.loadtext')}</div>;
+    } else { */
+  return (
+    <React.Fragment>
+      {/* <header>
                 <Header onLogout={logout} />
             </header> */}
-           
-                    <div className="trip-container">
-                        <div className="trip-list">
-                            {!_.isEmpty(products) ? (
-                                products.map((product) => (
-                                    <Product
-                                        key={product.product_id}
-                                        {...product}
-                                    />
-                                ))
-                            ) : (
-                                <p className="message">Empty</p>
-                            )}
-                        </div>
-                    </div>
-            
-        </React.Fragment>
-    );
-    //}else 
+
+      <div className="trip-container">
+        <div className="trip-list">
+          {setProducts(testProduct)},
+          {console.log(products)},
+          {!_.isEmpty(products) ? (
+            products.map((product) => (
+              <Product
+                key={product.product_id}
+                {...product}
+              />
+            ))
+          ) : (
+            <p className="message">Empty</p>
+          )}
+        </div>
+      </div>
+
+    </React.Fragment>
+  );
+  //}else 
 };
 
 export default List;
