@@ -28,7 +28,6 @@ const Product = ({
                     <div>{amount} </div>
                     <div>{rates} </div>
                 </div>
-
             </Card.Body>
         </Card>
     );
