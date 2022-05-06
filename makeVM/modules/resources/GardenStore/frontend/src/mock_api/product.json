@@ -1,0 +1,22 @@
+{
+    "testProduct": [
+    {
+      "product_id": "4f2b7664-5ea9-11ec-bf63-0242ac130002",
+      "name": "Schüppe",
+      "description": "Stabil",
+      "img": "",
+      "comments": "Budeln in Hawaii",
+      "rates": "3",
+      "amount": "5"
+    },
+    {
+        "product_id": "4f2b7564-5ea9-11ec-bf63-0242ac130002",
+        "name": "Düngaa",
+        "description": "GUter",
+        "img": "",
+        "comments": "Budeln in Hawaii",
+        "rates": "3",
+        "amount": "5"
+      }
+    ]
+}
