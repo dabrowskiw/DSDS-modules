@@ -7,20 +7,57 @@ import { useNavigate } from "react-router";
 
 const List = (props) => {
 
-  //const BASE_URL = props.baseUrl;
+  const BASE_URL = "http://localhost:3000";
 
   let navigate = useNavigate();
   //const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
 
-  
-
   const path = window.location.pathname;
   const [pathChanged, setPathChanged] = useState('');
 
+  useEffect(() => {
 
+    // if (!props.logged) {
+    //   navigate("/");
+    // }
 
+    let mounted = true;
+
+    if(mounted){
+      if(path==='/map'){
+        setPathChanged(false);
+      }else{
+        setPathChanged(true);
+      }
+    }
+
+      setTimeout(() => {
+        async function getProducts() {
+        fetch(`${BASE_URL}/products`, {
+          method: "GET",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              if (mounted) {
+                setIsLoaded(true);
+                setProducts(result);
+              }
+            },
+            (error) => {
+              if (mounted) {
+                setIsLoaded(true);
+                setError(error);
+              }
+            }
+          );
+      }getProducts();
+      }, 2000);
+    return () => (mounted = false); //cleanup function
+  }, [products, BASE_URL, navigate, path, props.logged]);
 
   const logout = () => {
     props.onLogout();
