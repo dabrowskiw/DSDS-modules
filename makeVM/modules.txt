@@ -1,7 +1,11 @@
 ssh.sh
-lemp.sh
-dre.sh
+docker-security-flaws.sh
+#lemp.sh
+#dre.sh
 
+
+# log poisoning module 
+# only enable ssh.sh & init_log_poison.sh
 
 #log poisoning module 
 #only enable ssh.sh & init_log_poison.sh
