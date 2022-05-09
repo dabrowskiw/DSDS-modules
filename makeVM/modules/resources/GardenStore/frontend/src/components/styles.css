@@ -19,7 +19,6 @@ h2 {
 }
 
 .container {
-    text-align: center;
     display: grid;
     grid-template-rows: 120px 500px 1fr;
     grid-template-areas:
