@@ -1,11 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import '../styles.css';
-//import image from '../../images/globe.png'
-
 
 const Header = (props) => {
-
     
     const logout = () =>{
         props.onLogout();

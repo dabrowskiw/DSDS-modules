@@ -20,7 +20,6 @@ const LandingPage = (props) => {
     return (
         <div>
             <Header />
-
             <div className="container">
                 <main>
                     <h3>

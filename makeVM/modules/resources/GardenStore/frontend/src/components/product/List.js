@@ -17,7 +17,7 @@ const List = (props) => {
   const path = window.location.pathname;
 
   const showDetails = (paramId) => {
-    console.log(paramId, "test")
+    console.log(paramId)
   };
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const List = (props) => {
               <div className="row justify-content-center mb-3">
                 {!_.isEmpty(products) ? (
                   products.map(
-                    (product, index) => {
+                    (product) => {
                       return (
                         <div key={product.product_id} className="col-md-12 col-xl-10">
                           <div className="card shadow-0 border rounded-3">
@@ -101,7 +101,7 @@ const List = (props) => {
                                   </div>
                                   <div className="d-flex flex-column mt-4">
                                     <button className="btn btn-primary btn-sm" type="button">
-                                      <a to={'/'} onClick={showDetails(product.product_id)} >
+                                      <a to={'/Profile'} onClick={()=>showDetails(product.product_id)} >
                                         Details
                                       </a>
                                     </button>
