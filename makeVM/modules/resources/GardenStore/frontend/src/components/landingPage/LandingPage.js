@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import Header from "../structure/Header"
 import Footer from "../structure/Footer"
 import List from "../product/List"
+import Detail from "../product/Detail"
 
 const LandingPage = (props) => {
 

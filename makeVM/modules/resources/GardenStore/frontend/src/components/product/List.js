@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
-import Product from "./Product";
-import Header from "../structure/Header";
 import "../styles.css";
 import { useNavigate } from "react-router";
 import 'react-bootstrap';
@@ -17,6 +15,11 @@ const List = (props) => {
   const [products, setProducts] = useState([]);
 
   const path = window.location.pathname;
+
+
+  const showDetails = (paramId) => {
+    console.log(paramId, "test")
+  };
 
   useEffect(() => {
 
@@ -80,7 +83,7 @@ const List = (props) => {
                   products.map(
                     (product, index) => {
                       return (
-                        <div className="col-md-12 col-xl-10">
+                        <div key={product.product_id} className="col-md-12 col-xl-10">
                           <div className="card shadow-0 border rounded-3">
                             <div className="card-body">
                               <div className="row">
@@ -96,10 +99,7 @@ const List = (props) => {
                                 </div>
                                 <div className="col-md-6 col-lg-6 col-xl-6">
                                   <h5 className="text-center">{product.name}</h5>
-
-                                  <p className="text-right">{product.rates} Sterne</p>
-
-
+                                  <p className="text-right">Sterne</p>
                                   <p className="mb-4 mb-md-0">
                                     {product.description}
                                   </p>
@@ -112,7 +112,11 @@ const List = (props) => {
                                   </div>
 
                                   <div className="d-flex flex-column mt-4">
-                                    <button className="btn btn-primary btn-sm" type="button">Details</button>
+                                    <button className="btn btn-primary btn-sm" type="button">
+                                      <a to={'/'} onClick={showDetails(product.product_id)} >
+                                        Details
+                                      </a>
+                                    </button>
                                     <button className="btn btn-outline-primary btn-sm mt-2" type="button">
                                       Add to Cart
                                     </button>

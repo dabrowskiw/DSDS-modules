@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
-import Product from "./Product";
-import Header from "../structure/Header";
 import "../styles.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,12 +12,16 @@ const List = (props) => {
   let navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [product, setProduct] = useState([]);
+  const [products, setProduct] = useState([]);
 
   const path = window.location.pathname;
 
-  useEffect(() => {
+  const { id } = useParams(); //gets id from current route
 
+  const productToEdit = products.find((product) => product.product_id === id);
+  console.log(productToEdit);
+
+  useEffect(() => {
     // if (!props.logged) {
     //   navigate("/");
     // }
@@ -29,7 +31,7 @@ const List = (props) => {
     setTimeout(() => {
       async function getProduct() {
         /* TODO ersetze 1 mit entsprechender url */
-        fetch(`${BASE_URL}/products/1`, {
+        fetch(`${BASE_URL}/products/` + id, {
           method: "GET",
           credentials: "include",
         })
@@ -51,11 +53,12 @@ const List = (props) => {
       } getProduct();
     }, 2000);
     return () => (mounted = false); //cleanup function
-  }, [product, BASE_URL, navigate, path, props.logged]);
+  }, [products, BASE_URL, navigate, path, props.logged]);
 
   const logout = () => {
     props.onLogout();
   };
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -65,22 +68,13 @@ const List = (props) => {
     return (
       <div>
         <React.Fragment>
-          {/* <header>
-                <Header onLogout={logout} />
-            </header> */}
-          {/* <tr key={index}>
-                        <td>{product.name}</td>
-                        <td>{product.description}</td>
-                        <td>{product.amount}</td>
-                        <td>{product.rates}</td>
-                      </tr> */}
           <section style={{ backgroundColor: '#eee' }}>
             <div className="container py-5">
               <div className="row justify-content-center mb-3">
-                {!_.isEmpty(product) ? (
-                    /* TODO get only one product without map? */
-                  product.map(
-                    (product, index) => {
+                {!_.isEmpty(products) ? (
+                  /* TODO get only one product without map? */
+                  products.map(
+                    (products, index) => {
                       return (
                         <div className="col-md-12 col-xl-10">
                           <div className="card shadow-0 border rounded-3">
@@ -97,22 +91,17 @@ const List = (props) => {
                                   </div>
                                 </div>
                                 <div className="col-md-6 col-lg-6 col-xl-6">
-                                  <h5 className="text-center">{product.name}</h5>
-
-                                  <p className="text-right">{product.rates} Sterne</p>
-
-
+                                  <h5 className="text-center">{products.name}</h5>
+                                  <p className="text-right">{products.rates} Sterne</p>
                                   <p className="mb-4 mb-md-0">
-                                    {product.description}
+                                    {products.description}
                                   </p>
                                 </div>
                                 <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                   <div className="d-flex flex-row align-items-center mb-1">
-                                    <h4 className="mb-1 me-1">${product.price}</h4>
-
-                                    <h6 className="text-success">{product.amount} in stock</h6>
+                                    <h4 className="mb-1 me-1">${products.price}</h4>
+                                    <h6 className="text-success">{products.amount} in stock</h6>
                                   </div>
-
                                   <div className="d-flex flex-column mt-4">
                                     <button className="btn btn-primary btn-sm" type="button"></button>
                                     <button className="btn btn-outline-primary btn-sm mt-2" type="button">
@@ -124,8 +113,6 @@ const List = (props) => {
                             </div>
                           </div>
                         </div>
-
-
                       )
                     })
                 ) : (
