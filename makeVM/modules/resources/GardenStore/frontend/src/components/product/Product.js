@@ -6,7 +6,7 @@ import Moment from 'moment';
 
 
 const Product = ({
-    product_id,
+    id,
     name,
     price,
     description,

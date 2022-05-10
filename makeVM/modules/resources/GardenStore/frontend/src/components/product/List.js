@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import {NavLink} from 'react-router-dom';
 import _ from "lodash";
 import "../styles.css";
 import { useNavigate } from "react-router";
@@ -15,10 +17,6 @@ const List = (props) => {
   const [products, setProducts] = useState([]);
 
   const path = window.location.pathname;
-
-  const showDetails = (paramId) => {
-    console.log(paramId)
-  };
 
   useEffect(() => {
 
@@ -73,7 +71,7 @@ const List = (props) => {
                   products.map(
                     (product) => {
                       return (
-                        <div key={product.product_id} className="col-md-12 col-xl-10">
+                        <div key={product.id} className="col-md-12 col-xl-10">
                           <div className="card shadow-0 border rounded-3">
                             <div className="card-body">
                               <div className="row">
@@ -100,10 +98,11 @@ const List = (props) => {
                                     <h6 className="text-success">{product.amount} in stock</h6>
                                   </div>
                                   <div className="d-flex flex-column mt-4">
-                                    <button className="btn btn-primary btn-sm" type="button">
-                                      <a to={'/Profile'} onClick={()=>showDetails(product.product_id)} >
-                                        Details
-                                      </a>
+                                    <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/detailPage/${product.id}`)}>
+                                      {/* <NavLink to={'/detailPage/' + product.id} onClick={() => showDetails(product.id)} >
+                                        
+                                      </NavLink> */}
+                                      Details
                                     </button>
                                     <button className="btn btn-outline-primary btn-sm mt-2" type="button">
                                       Add to Cart

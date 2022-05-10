@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LoginForm from "./components/login/LoginForm";
 import LandingPage from "./components/landingPage/LandingPage";
+import DetailPage from "./components/product/Detail";
 
 function App() {
 
@@ -39,6 +40,11 @@ function App() {
           exact
           path="/landingPage"
           element={<LandingPage />}
+        />
+        <Route
+          exact
+          path="/detailPage/:id"
+          element={<DetailPage />}
         />
       </Routes>
     </BrowserRouter>
