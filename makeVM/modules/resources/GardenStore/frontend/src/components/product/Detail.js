@@ -4,6 +4,8 @@ import "../styles.css";
 import { useNavigate, useParams } from "react-router";
 import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from "../structure/Header"
+import Footer from "../structure/Footer"
 
 const Detail = (props) => {
 
@@ -53,19 +55,16 @@ const Detail = (props) => {
     props.onLogout();
   };
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div className="loading-screen">Loading</div>;
-  } else {
-    return (
-      <div>
-        <React.Fragment>
-          <section style={{ backgroundColor: '#eee' }}>
-            <div className="container py-5">
-              <div className="row justify-content-center mb-3">
-                {(!_.isEmpty(products)) ? (
-                  <div className="col-md-12 col-xl-10">
+  return (<div>
+    <Header />
+    <div className="container">
+      <main>
+        {error ? (<div>Error: {error.message}</div>) :
+          (!isLoaded ? (<div className="loading-screen">Loading</div>) :
+            (
+              <div>
+                <React.Fragment>
+                  {(!_.isEmpty(products)) ? (
                     <div className="card shadow-0 border rounded-3">
                       <div className="card-body">
                         <div className="row">
@@ -100,19 +99,19 @@ const Detail = (props) => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <p className="message">Empty</p>
-                )
-                }
+                  ) : (
+                    <p className="message">Empty</p>
+                  )
+                  }
+                </React.Fragment>
               </div>
-            </div>
-          </section>
-
-        </React.Fragment>
-      </div>
-    );
-  };
+            ))}
+      </main>
+    </div>
+    <div>
+      <Footer />
+    </div>
+  </div>
+  );
 };
-
 export default Detail;
