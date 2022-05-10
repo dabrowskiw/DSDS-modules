@@ -16,7 +16,6 @@ const List = (props) => {
 
   const path = window.location.pathname;
 
-
   const showDetails = (paramId) => {
     console.log(paramId, "test")
   };
@@ -67,15 +66,6 @@ const List = (props) => {
     return (
       <div>
         <React.Fragment>
-          {/* <header>
-                <Header onLogout={logout} />
-            </header> */}
-          {/* <tr key={index}>
-                        <td>{product.name}</td>
-                        <td>{product.description}</td>
-                        <td>{product.amount}</td>
-                        <td>{product.rates}</td>
-                      </tr> */}
           <section style={{ backgroundColor: '#eee' }}>
             <div className="container py-5">
               <div className="row justify-content-center mb-3">
@@ -107,10 +97,8 @@ const List = (props) => {
                                 <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                   <div className="d-flex flex-row align-items-center mb-1">
                                     <h4 className="mb-1 me-1">${product.price}</h4>
-
                                     <h6 className="text-success">{product.amount} in stock</h6>
                                   </div>
-
                                   <div className="d-flex flex-column mt-4">
                                     <button className="btn btn-primary btn-sm" type="button">
                                       <a to={'/'} onClick={showDetails(product.product_id)} >
@@ -126,8 +114,6 @@ const List = (props) => {
                             </div>
                           </div>
                         </div>
-
-
                       )
                     })
                 ) : (
@@ -136,7 +122,6 @@ const List = (props) => {
               </div>
             </div>
           </section>
-
         </React.Fragment>
       </div>
     );
