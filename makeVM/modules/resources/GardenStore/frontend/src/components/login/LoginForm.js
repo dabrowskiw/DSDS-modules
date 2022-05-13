@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../styles.css";
-import {useNavigate} from 'react-router';
+import { useNavigate } from 'react-router';
 //import logo from "";
 
 import Footer from "../structure/Footer"
@@ -10,17 +10,28 @@ const LoginForm = (props) => {
   let navigate = useNavigate();
   //connect Frontend to Backend
   //const BASE_URL = "https://travelsitebackend.herokuapp.com";
-  
+
 
   const BASE_URL = props.baseUrl;
   const [enteredMail, setEnteredMail] = useState("");
   const [enteredPass, setEnteredPass] = useState("");
+  const [errorMessages, setErrorMessages] = useState({});
 
   const mailChangeHandler = (event) => {
     setEnteredMail(event.target.value);
   };
   const passChangeHandler = (event) => {
     setEnteredPass(event.target.value);
+  };
+
+  // Generate JSX code for error message
+  const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+      <div className="error">{errorMessages.message}</div>
+    );
+
+  const errors = {
+    pass: "invalid password"
   };
 
   const clickHandler = () => {
@@ -40,46 +51,50 @@ const LoginForm = (props) => {
     };
     fetch(`${BASE_URL}/login`, requestOptions)
       .then((response) => response.json())
-        .then((res) => {
-          if (res.status === "200") {
-            props.onTryLogin(true);
-            navigate('/map');
-            return true;
-          } else {
-            props.onTryLogin(false);
-            return false;
-          }
-        });
+      .then((res) => {
+        if (res.status === "200") {
+          props.onTryLogin(true);
+          navigate('/map');
+          return true;
+        } else {
+          setErrorMessages({ name: "pass", message: errors.pass });
+          props.onTryLogin(false);
+          return false;
+        }
+      });
   };
 
-
-return (
+  return (
     <div className="container">
-      <header className="index-header">
-            <div className="header-container-index">
-                {/* <img className="logo" alt="Logo" src={logo}/> */}
-                <h1 className="index-title">Gardeningstore</h1>
-            </div>
-        </header>
-        <main>
-            <h3>
-              Welcome
-            </h3>
-    <div className="login" >
-      <label htmlFor="email">E-Mail</label>
-      <input type="email" id="email" value={enteredMail} onChange={mailChangeHandler} />
-      <br />
-      <label htmlFor="password">Password</label>
-      <input type="password" id="pw" onChange={passChangeHandler} />
-      <div>
-        <button type="submit" className="loginBtn" value={enteredPass} onClick={clickHandler}>
-          Login
-        </button>
-      </div>
+      <header className="after-login">
+        <div className="menu-container">
+          <h2>Gardeningstore</h2>
+        </div>
+      </header>
+      <main>
+        <div className="row justify-content-md-center">
+          <div className="col col-lg-8">
+            <div className="login">
+              <h3 className="title">Sign In</h3>
+              <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                </div>
+              <br></br>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
     </div>
-    </main>
-        <Footer />
-    </div>
+      </main >
+  <Footer />
+    </div >
+
   );//return
 };//function
 
