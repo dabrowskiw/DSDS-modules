@@ -1,22 +1,22 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../styles.css';
 
 const Header = (props) => {
-    
-    const logout = () =>{
+
+    const logout = () => {
         props.onLogout();
     }
     return (
         <header className="after-login">
             <div className="menu-container">
                 {/* <img className="logo" alt='Logo' src={image}/> */}
-                <h2><NavLink to={'/landingPage'}>Gardeningstore</NavLink></h2>
+                <h2><NavLink className="nav-link text-light" to={'/landingPage'}>Gardeningstore</NavLink></h2>
                 <nav className="menu">
-                    <ul>
-                        <li><NavLink to={'/landingPage'} >Home</NavLink></li>
-                        <li><NavLink to={'/profile'} >Profile</NavLink></li>
-                        <li><NavLink to={'/'} onClick={logout} >Logout</NavLink></li>
+                    <ul class="nav">
+                        <li class="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} >Homes</NavLink></li>
+                        <li class="nav-item"><NavLink className="nav-link text-light" to={'/profile'} >Profile</NavLink></li>
+                        <li class="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} >Logout</NavLink></li>
                     </ul>
                 </nav>
             </div>

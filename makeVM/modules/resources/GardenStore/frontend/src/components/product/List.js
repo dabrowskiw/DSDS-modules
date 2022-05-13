@@ -59,13 +59,9 @@ const List = (props) => {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div className="loading-screen">Loading</div>;
+    return <div className="loading-screen">Loading products...</div>;
   } else {
     return (
-      
-        
-          
-            
               <div className="productList row justify-content-center mb-3">
                 {!_.isEmpty(products) ? (
                   products.map(
@@ -113,7 +109,7 @@ const List = (props) => {
                       )
                     })
                 ) : (
-                  <p className="message">Empty</p>
+                  <p className="message">Empty. No Products available.</p>
                 )}
               </div>
            
