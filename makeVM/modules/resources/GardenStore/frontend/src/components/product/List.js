@@ -62,17 +62,17 @@ const List = (props) => {
     return <div className="loading-screen">Loading</div>;
   } else {
     return (
-      <div>
-        <React.Fragment>
-          <section style={{ backgroundColor: '#eee' }}>
-            <div className="container py-5">
-              <div className="row justify-content-center mb-3">
+      
+        
+          
+            
+              <div className="productList row justify-content-center mb-3">
                 {!_.isEmpty(products) ? (
                   products.map(
                     (product) => {
                       return (
-                        <div key={product.id} className="col-md-12 col-xl-10">
-                          <div className="card shadow-0 border rounded-3">
+                        <div key={product.id} className="col-md-10 col-xl-10 mb-3">
+                          <div className="shadow-0 border rounded-3">
                             <div className="card-body">
                               <div className="row">
                                 <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
@@ -85,7 +85,7 @@ const List = (props) => {
                                     </a>
                                   </div>
                                 </div>
-                                <div className="col-md-6 col-lg-6 col-xl-6">
+                                <div className="col-md-3 col-lg-6 col-xl-6">
                                   <h5 className="text-center">{product.name}</h5>
                                   <p className="text-right">Sterne</p>
                                   <p className="mb-4 mb-md-0">
@@ -99,9 +99,6 @@ const List = (props) => {
                                   </div>
                                   <div className="d-flex flex-column mt-4">
                                     <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/detailPage/${product.id}`)}>
-                                      {/* <NavLink to={'/detailPage/' + product.id} onClick={() => showDetails(product.id)} >
-                                        
-                                      </NavLink> */}
                                       Details
                                     </button>
                                     <button className="btn btn-outline-primary btn-sm mt-2" type="button">
@@ -119,10 +116,8 @@ const List = (props) => {
                   <p className="message">Empty</p>
                 )}
               </div>
-            </div>
-          </section>
-        </React.Fragment>
-      </div>
+           
+         
     );
   };
 };

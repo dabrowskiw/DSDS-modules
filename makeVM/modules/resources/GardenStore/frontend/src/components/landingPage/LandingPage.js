@@ -18,21 +18,12 @@ const LandingPage = (props) => {
     const BASE_URL = props.baseUrl;
 
     return (
-        <div>
+        <div className="container">
             <Header />
-            <div className="container">
-                <main>
-                    <h3>
-                        Welcome at the LandingPage
-                    </h3>
-                    <div className="" >
-                        <List />
-                    </div>
-                </main>
-            </div>
-            <div>
-                <Footer />
-            </div>
+            <main>
+                <List />
+            </main>
+            <Footer />
         </div>
     );//return
 };//function
