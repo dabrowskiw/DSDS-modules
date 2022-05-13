@@ -91,7 +91,7 @@ const Detail = (props) => {
                             <h6 className="text-success">{productToFind.amount} in stock</h6>
                           </div>
                           <div className="d-flex flex-column mt-4">
-                            <button className="btn btn-outline-primary btn-sm mt-2" type="button">
+                            <button className="  btn btn-outline-primary btn-sm mt-2" type="button">
                               Add to Cart
                             </button>
                           </div>
@@ -99,7 +99,7 @@ const Detail = (props) => {
                       </div>
                     </div>
                   </div>
-
+                  {/* comment section  */}
                   <div className="col-md-10 col-xl-10 mb-3"></div>
                   <div className="shadow-0 border rounded-3">
                     <div className="card-body">
@@ -119,9 +119,9 @@ const Detail = (props) => {
                         {/* comment input field  */}
                         <form class="form-inline">
                           <div className="col-12 rounded-3 input-group">
-                            <input type="text" className="form-control" id="comment" placeholder="Your Comment:" />
+                            <textarea type="text" className="form-control" id="comment" placeholder="Your Comment" />
                             <div className="col-auto input-group-append">
-                              <button type="submit" className="btn btn-primary">Add</button>
+                              <button type="submit" className="notRelativ btn btn-primary">Add Comment</button>
                             </div>
                           </div>
                         </form>

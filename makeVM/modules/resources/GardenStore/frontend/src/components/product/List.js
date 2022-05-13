@@ -81,14 +81,14 @@ const List = (props) => {
                                     </a>
                                   </div>
                                 </div>
-                                <div className="col-md-3 col-lg-6 col-xl-6">
+                                <div className="col-md-8 col-lg-6 col-xl-6">
                                   <h5 className="text-center">{product.name}</h5>
                                   <p className="text-right">Sterne</p>
-                                  <p className="mb-4 mb-md-0">
+                                  <p className="truncate-overflow mb-4 mb-md-0">
                                     {product.description}
                                   </p>
                                 </div>
-                                <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                <div className="col-md-4 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                   <div className="d-flex flex-row align-items-center mb-1">
                                     <h4 className="mb-1 me-1">${product.price}</h4>
                                     <h6 className="text-success">{product.amount} in stock</h6>

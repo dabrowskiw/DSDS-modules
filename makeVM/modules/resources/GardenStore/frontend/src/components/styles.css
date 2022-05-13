@@ -1,13 +1,29 @@
+html {
+    --lh: 1.4rem;
+    line-height: var(--lh);
+}
+
+
 body {
     font-family: "Roboto", sans-serif;
 }
 
 a {
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
 
 h2 {
     text-align: center;
+}
+
+.truncate-overflow {
+    --max-lines: 3.5;
+    max-height: calc(var(--lh) * var(--max-lines));
+    overflow: hidden;
+}
+
+.notRelativ {
+    position: initial!important;
 }
 
 .container {
@@ -23,7 +39,7 @@ h2 {
     margin-top: -10px;
 }
 
-.productList{
+.productList {
     padding-bottom: 50px;
 }
 
@@ -39,10 +55,8 @@ header {
 
 main {
     grid-area: main;
-    line-height: 30px;
     /* padding-top: 40px; */
-    padding-left: 40px;
-    padding-right: 40px;
+
     padding-bottom: 5px;
     background-color: white;
 }

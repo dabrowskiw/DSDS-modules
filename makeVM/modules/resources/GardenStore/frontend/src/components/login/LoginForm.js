@@ -72,8 +72,8 @@ const LoginForm = (props) => {
         </div>
       </header>
       <main>
-        <div className="row justify-content-md-center">
-          <div className="col col-lg-8">
+        <div className="row justify-content-center">
+          <div className="col-11 col-sm-6 shadow-0 border rounded-3">
             <div className="login">
               <h3 className="title">Sign In</h3>
               <form>
@@ -85,8 +85,7 @@ const LoginForm = (props) => {
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
                 </div>
-              <br></br>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary my-4">Submit</button>
             </form>
           </div>
         </div>
