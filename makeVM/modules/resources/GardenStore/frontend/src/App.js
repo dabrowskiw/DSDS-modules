@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LoginForm from "./components/login/LoginForm";
 import LandingPage from "./components/landingPage/LandingPage";
 import DetailPage from "./components/product/Detail";
+import Profile from "./components/profile/Profile";
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
     setLoggedIn(result);
     // console.log("Login: " + result);
   };
-  const logoutHandler = async () =>{
+  const logoutHandler = async () => {
     setLoggedIn(false);
     const response = await fetch(`${baseUrl}/logout`, {
       method: "POST",
@@ -28,15 +29,15 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-      <Route
+        <Route
           exact
           path="/"
-          element={<LoginForm 
+          element={<LoginForm
             onTryLogin={loginTriedHandler}
-           logged={loggedIn} 
-           baseUrl={baseUrl}/>}
+            logged={loggedIn}
+            baseUrl={baseUrl} />}
         />
-      <Route
+        <Route
           exact
           path="/landingPage"
           element={<LandingPage />}
@@ -45,6 +46,11 @@ function App() {
           exact
           path="/detailPage/:id"
           element={<DetailPage />}
+        />
+        <Route
+          exact
+          path="/profile/:id"
+          element={<Profile />}
         />
       </Routes>
     </BrowserRouter>

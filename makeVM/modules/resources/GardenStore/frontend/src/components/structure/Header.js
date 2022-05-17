@@ -15,7 +15,7 @@ const Header = (props) => {
                 <nav className="menu">
                     <ul className="nav">
                         <li className="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} >Homes</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/profile'} >Profile</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/profile/1'} >Profile</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} >Logout</NavLink></li>
                     </ul>
                 </nav>
