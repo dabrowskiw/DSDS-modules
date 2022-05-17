@@ -15,19 +15,21 @@ const Detail = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
+  const [comments, setComments] = useState([]);
 
   const path = window.location.pathname;
 
   const { id } = useParams(); //gets id from current route
 
-  const productToFind = products.find((product) => product.id === id);
+  const productToFind = products;
+  const commentsToFind = comments.filter((comment) => comment.productId === id);
 
   useEffect(() => {
     let mounted = true;
 
     setTimeout(() => {
       async function getProducts() {
-        fetch(`${BASE_URL}/products/`, {
+        fetch(`${BASE_URL}/products/${id}`, {
           method: "GET",
           credentials: "include",
         })
@@ -47,7 +49,31 @@ const Detail = (props) => {
             }
           );
       } getProducts();
+
+      async function getComments() {
+        fetch(`${BASE_URL}/comments/`, {
+          method: "GET",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              if (mounted) {
+                setIsLoaded(true);
+                setComments(result);
+              }
+            },
+            (error) => {
+              if (mounted) {
+                setIsLoaded(true);
+                setError(error);
+              }
+            }
+          );
+      } getComments();
+
     }, 2000);
+
     return () => (mounted = false); //cleanup function
   }, [products, BASE_URL, navigate, path, props.logged]);
 
@@ -85,7 +111,7 @@ const Detail = (props) => {
                             {productToFind.description}
                           </p>
                         </div>
-                        <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                        <div className="col-md-6 col-lg-3 col-xl-3 border-mb-start-0 border-start">
                           <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">${productToFind.price}</h4>
                             <h6 className="text-success">{productToFind.amount} in stock</h6>
@@ -100,24 +126,27 @@ const Detail = (props) => {
                     </div>
                   </div>
                   {/* comment section  */}
+
                   <div className="col-md-10 col-xl-10 mb-3"></div>
-                  <div className="shadow-0 border rounded-3">
+                  <div className="shadow-0 border bg-light bg-gradient rounded-3">
                     <div className="card-body">
                       <div className="row">
-                        {productToFind.comments.map(
-                          (comment) => {
-                            return (
-                              <div className="shadow-0 border rounded-3 mb-3">
-                                {/* <h5 className="text-center">userName</h5>
-                                <p className="text-right">date</p> */}
-                                <p className="mb-4 mb-md-0">
-                                  {comment}
-                                </p>
-                              </div>
-                            )
-                          })}
+                        {(!_.isEmpty(commentsToFind)) ? (
+                          commentsToFind.map(
+                            (comment) => {
+                              return (
+                                <div className="row bg-white shadow-0 border rounded-3 mb-3">
+                                  <div className="col-9 mb-4 mb-md-0"><p>{comment.text}</p></div>
+                                  <div className="col-3 text-right blockquote-footer">
+                                    <p>{comment.date} by {comment.userName}</p>
+                                    </div></div>
+                              )
+                            })
+                        ) : (<p className="message">Be the first to comment.</p>)
+                        }
+
                         {/* comment input field  */}
-                        <form class="form-inline">
+                        <form className="form-inline">
                           <div className="col-12 rounded-3 input-group">
                             <textarea type="text" className="form-control" id="comment" placeholder="Your Comment" />
                             <div className="col-auto input-group-append">

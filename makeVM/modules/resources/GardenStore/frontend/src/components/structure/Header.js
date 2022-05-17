@@ -13,10 +13,10 @@ const Header = (props) => {
                 {/* <img className="logo" alt='Logo' src={image}/> */}
                 <h2><NavLink className="nav-link text-light" to={'/landingPage'}>Gardeningstore</NavLink></h2>
                 <nav className="menu">
-                    <ul class="nav">
-                        <li class="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} >Homes</NavLink></li>
-                        <li class="nav-item"><NavLink className="nav-link text-light" to={'/profile'} >Profile</NavLink></li>
-                        <li class="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} >Logout</NavLink></li>
+                    <ul className="nav">
+                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} >Homes</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/profile'} >Profile</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} >Logout</NavLink></li>
                     </ul>
                 </nav>
             </div>

@@ -2,7 +2,7 @@
 ## Common commands
 ### Start json-server
 test: to start json-server woth mock db at localhost:3001 type
-`json-server -p 3001 src/mock_api/product.json`
+`json-server -p 3001 src/mock_api/mock-db.json`
 
 
 # Getting Started with Create React App
