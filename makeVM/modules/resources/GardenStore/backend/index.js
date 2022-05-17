@@ -2,7 +2,6 @@
 // import * as OpenApiValidator from "express-openapi-validator";       // use after cookie was stolen to validate api - prevention option
 // import { HttpError } from "express-openapi-validator/dist/framework/types";   
 
-const { resolveAny } = require("dns");
 const express = require("express");
 const pool = require("./db/database");
 require('dotenv').config();
@@ -24,7 +23,7 @@ app.use(
 });
 
 /**
- * Request Routes
+ * Products endpoints
  */
 app.get("/products/:id", async (req,res) =>{
   try {
@@ -36,16 +35,36 @@ app.get("/products/:id", async (req,res) =>{
   }
 });
 
-app.post("/comments", async (req,res) => {
+/**
+ * Comments endpoints
+ */
+app.get("/comments/:id", async (req,res) => {
   try {
-    const {product_id, comment_id, author, text, rating} = req.body;
-    const sqlQuery = 'INSERT INTO comments (product_id, comment_id, author, text, rating) VALUES (?,?,?,?,?)';
-    const result = await pool.query(sqlQuery, [product_id, comment_id, author, text, rating]);
-    res.status(200).json(result);
+    const sqlQuery = 'SELECT comment_id, author, text, rating, created_at, product_id FROM comments WHERE product_id=?';
+    const rows = await pool.query(sqlQuery, req.params.id);
+    res.status(200).send(rows);
   } catch (error) {
     res.status(400).send(error.message);
   }
 })
+
+app.post("/comments", async (req,res) => {
+  try {
+    const {product_id, author, text, rating} = req.body;
+    const sqlQuery = 'INSERT INTO comments (product_id, author, text, rating) VALUES (?,?,?,?)';
+    const result = await pool.query(sqlQuery, [product_id, author, text, rating]);
+    console.log(result);
+    res.status(200);   // TODO: request result throws error that big int can't be parsed 
+    return res.json({message: "comment created successfully"})
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+})
+
+//TODO: implement more endpoints a)login   b)delete comments  c) edit profile?? 
+
+//optional: hash password of user
+
 
 /** Start listening */
 app.listen(port, () => {
