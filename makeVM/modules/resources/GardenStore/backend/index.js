@@ -1,17 +1,10 @@
-import express, { NextFunction, Request, Response } from "express";
-// import * as OpenApiValidator from "express-openapi-validator";       // use after cookie was stolen to validate api
-import { HttpError } from "express-openapi-validator/dist/framework/types";
-import cors from "cors";
+// import express, { NextFunction, Request, Response } from "express";
+// import * as OpenApiValidator from "express-openapi-validator";       // use after cookie was stolen to validate api - prevention option
+// import { HttpError } from "express-openapi-validator/dist/framework/types";   
 
+const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
-
-app.use(
-    cors({
-      origin: true,
-    //   credentials: true,     // important when starting to implement credentials
-    })
-  );
 
 // app.use(cookieParser());         // https://www.npmjs.com/package/cookie-parser
 app.use(express.json());
@@ -24,4 +17,16 @@ app.use(
       message: err.message,
       errors: err.errors,
     });
+});
+
+/**
+ * Request Routes
+ */
+app.get("/products", async (req,res) =>{
+
+});
+
+/** Start listening */
+app.listen(port, () => {
+  console.log(`Listening at http://localhost:${port}`);
 });
