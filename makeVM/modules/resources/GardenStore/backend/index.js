@@ -3,7 +3,7 @@
 // import { HttpError } from "express-openapi-validator/dist/framework/types";   
 
 const express = require("express");
-const pool = require("./helpers/database");
+const pool = require("./db/database");
 require('dotenv').config();
 
 const app = express();
@@ -26,7 +26,6 @@ app.use(
  * Request Routes
  */
 app.get("/products/:id", async (req,res) =>{
-
   try {
     const sqlQuery = 'SELECT product_id, name, price, description FROM products WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
@@ -35,6 +34,15 @@ app.get("/products/:id", async (req,res) =>{
     res.status(400).send(error.message);
   }
 });
+
+app.post("/comments", async (req,res) => {
+  try {
+    const {}
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+})
+
 
 /** Start listening */
 app.listen(port, () => {
