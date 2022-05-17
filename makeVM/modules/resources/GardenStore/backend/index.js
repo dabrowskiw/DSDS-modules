@@ -40,7 +40,7 @@ app.get("/products/:id", async (req,res) =>{
  */
 app.get("/comments/:id", async (req,res) => {
   try {
-    const sqlQuery = 'SELECT comment_id, author, text, rating, created_at, product_id FROM comments WHERE product_id=?';
+    const sqlQuery = 'SELECT comm_id, author, text, rating, created_at, product_id FROM comments WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
     res.status(200).send(rows);
   } catch (error) {
@@ -55,7 +55,7 @@ app.post("/comments", async (req,res) => {
     const result = await pool.query(sqlQuery, [product_id, author, text, rating]);
     console.log(result);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
-    return res.json({message: "comment created successfully"})
+    return res.json({message: "comment created successfully"});
   } catch (error) {
     res.status(400).send(error.message);
   }
