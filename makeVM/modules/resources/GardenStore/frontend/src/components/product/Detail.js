@@ -91,10 +91,10 @@ const Detail = (props) => {
               <>
                 <div className="productList row justify-content-center mb-3">
                   <div className="col-md-10 col-xl-10 mb-3"></div>
-                  <div className="shadow-0 border rounded-3">
+                  <div className="shadow-0 border rounded-3 bg-light bg-gradient">
                     <div className="card-body">
                       <div className="row">
-                        <div className="col-lg-6  mb-4 mb-lg-0">
+                        <div className="col-lg-6  ">
                           <div className="bg-image hover-zoom ripple rounded ripple-surface">
                             <img src="http://oh-eweedy.bplaced.net/Bilder/funaSmall.JPG" className="w-100" />
                             <a href="#!">
@@ -127,17 +127,19 @@ const Detail = (props) => {
                   </div>
                   {/* comment section  */}
 
-                  <div className="col-md-10 col-xl-10 mb-3"></div>
-                  <div className="shadow-0 border bg-light bg-gradient rounded-3">
+
+                  <div className="shadow-0 border bg-light bg-gradient rounded-3 mt-3">
                     <div className="card-body">
-                      <div className="row">
+                      <div className="row justify-content-center">
                         {(!_.isEmpty(commentsToFind)) ? (
                           commentsToFind.map(
                             (comment) => {
                               return (
-                                <div className="row bg-white shadow-0 border rounded-3 mb-3">
-                                  <div className="col-9 mb-4 mb-md-0"><p>{comment.text}</p></div>
-                                  <div className="col-3 text-right blockquote-footer">
+                                <div className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
+                                  <div className="col-9 ">
+                                    <p>{comment.text}</p>
+                                    </div>
+                                  <div className="col-3 mb-0 text-right blockquote-footer">
                                     <p>{comment.date} by {comment.userName}</p>
                                     </div></div>
                               )

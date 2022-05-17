@@ -68,7 +68,7 @@ const List = (props) => {
                     (product) => {
                       return (
                         <div key={product.id} className="col-md-10 col-xl-10 mb-3">
-                          <div className="shadow-0 border rounded-3">
+                          <div className="shadow-0 border rounded-3 bg-light bg-gradient">
                             <div className="card-body">
                               <div className="row">
                                 <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
