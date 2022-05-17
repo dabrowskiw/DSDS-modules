@@ -3,7 +3,6 @@ CREATE TABLE sys.user (
 	password varchar(100) NOT NULL,
 	iban varchar(100) NULL,
 	address varchar(100) NULL,
-	created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
 	email varchar(100) NOT NULL,
 	CONSTRAINT user_pk PRIMARY KEY (email)
 )
@@ -12,19 +11,15 @@ DEFAULT CHARSET=utf8mb3
 COLLATE=utf8mb3_general_ci;
 
 CREATE TABLE sys.comments (
+	comment_id varchar(100) NULL,
 	author varchar(100) NOT NULL,
 	`text` varchar(300) NOT NULL,
-	email varchar(100) NULL,
 	rating INT NULL,
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
 	product_id varchar(100) NOT NULL,
-	CONSTRAINT comments_pk PRIMARY KEY (author),
+	CONSTRAINT comments_pk PRIMARY KEY (comment_id),
 	CONSTRAINT comments_FK FOREIGN KEY (product_id) REFERENCES sys.products(product_id)
 )
-ALTER TABLE sys.comments ADD comment_id varchar(100) NULL;
-ALTER TABLE sys.comments DROP PRIMARY KEY;
-ALTER TABLE sys.comments ADD CONSTRAINT comments_pk PRIMARY KEY (comment_id);
-
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb3
 COLLATE=utf8mb3_general_ci;
