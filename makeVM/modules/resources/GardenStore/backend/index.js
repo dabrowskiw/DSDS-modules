@@ -61,7 +61,7 @@ app.post("/comments", async (req,res) => {
   }
 })
 
-//TODO: implement more endpoints a)login   b)delete comments  c) edit profile?? 
+//TODO: implement more endpoints a)login with cookie   b)delete comments  c) edit profile?? 
 
 //optional: hash password of user
 
