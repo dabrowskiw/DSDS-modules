@@ -4,7 +4,7 @@
       "id": "1",
       "userName": "tUser1",
       "email": "tmail1@provider.de",
-      "password": "nopassword",
+      "password": "$2a$04$GrCw69OArihybO67wQgrzu5Q1d1KTqTPB1cv1AgOPOq7nnIAQAJgS",
       "iban": "1234",
       "address": "Strasse 5 12344 Ort",
       "created_at": "2021-01-21 11:49:01"

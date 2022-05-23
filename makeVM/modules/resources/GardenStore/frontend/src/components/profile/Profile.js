@@ -8,18 +8,15 @@ import Footer from "../structure/Footer"
 
 const Profile = (props) => {
 
-    /* {
-        userName,
-        email,
-        password,
-        iban,
-        address,
-        created_at
-    } */
-
     const BASE_URL = "http://localhost:3001";
 
     let navigate = useNavigate();
+    
+    //if logged in
+    if (!props.loggedIn) {
+        //navigate("/");
+      }
+
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [profile, setProfile] = useState([]);

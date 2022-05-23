@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles.css";
 import { useNavigate } from 'react-router';
+import bcrypt from 'bcryptjs'
 //import logo from "";
 
 import Footer from "../structure/Footer"
@@ -9,7 +10,7 @@ const LoginForm = (props) => {
 
   let navigate = useNavigate();
   //connect Frontend to Backend
-  //const BASE_URL = "https://travelsitebackend.herokuapp.com";
+  //const BASE_URL = "https";
 
 
   const BASE_URL = props.baseUrl;
@@ -36,10 +37,11 @@ const LoginForm = (props) => {
 
   const clickHandler = () => {
     var mail = enteredMail;
-    var password = enteredPass;
+    var hashedPassword = bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
+    console.log(hashedPassword)
     var tableData = {
       email: mail,
-      password: password,
+      password: hashedPassword,
     };
 
     const requestOptions = {
@@ -47,6 +49,7 @@ const LoginForm = (props) => {
       mode: "cors",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
+      //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
     fetch(`${BASE_URL}/login`, requestOptions)
@@ -54,7 +57,7 @@ const LoginForm = (props) => {
       .then((res) => {
         if (res.status === "200") {
           props.onTryLogin(true);
-          navigate('/map');
+          navigate('/landingPage');
           return true;
         } else {
           setErrorMessages({ name: "pass", message: errors.pass });
@@ -85,13 +88,13 @@ const LoginForm = (props) => {
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                 </div>
-              <button type="submit" className="btn btn-primary my-4">Submit</button>
-            </form>
+                <button type="submit" className="btn btn-primary my-4">Submit</button>
+              </form>
+            </div>
           </div>
         </div>
-    </div>
       </main >
-  <Footer />
+      <Footer />
     </div >
 
   );//return

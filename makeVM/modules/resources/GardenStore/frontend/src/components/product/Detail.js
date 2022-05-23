@@ -17,6 +17,9 @@ const Detail = (props) => {
   const [products, setProducts] = useState([]);
   const [comments, setComments] = useState([]);
 
+
+
+
   const path = window.location.pathname;
 
   const { id } = useParams(); //gets id from current route
@@ -138,28 +141,41 @@ const Detail = (props) => {
                                 <div className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
                                   <div className="col-9 ">
                                     <p>{comment.text}</p>
-                                    </div>
+                                  </div>
                                   <div className="col-3 mb-0 text-right blockquote-footer">
                                     <p>{comment.date} by {comment.userName}</p>
-                                    </div></div>
+                                  </div></div>
                               )
                             })
                         ) : (<p className="message">Be the first to comment.</p>)
                         }
 
                         {/* comment input field  */}
-                        <form className="form-inline">
-                          <div className="col-12 rounded-3 input-group">
-                            <textarea type="text" className="form-control" id="comment" placeholder="Your Comment" />
-                            <div className="col-auto input-group-append">
-                              <button type="submit" className="notRelativ btn btn-primary">Add Comment</button>
+                        {props.loggedIn ?
+                          <form className="form-inline">
+                            <div className="col-12 rounded-3 input-group">
+                              <textarea type="text" className="form-control" id="comment" placeholder="Your Comment" />
+                              <div className="col-auto input-group-append">
+                                <button type="submit" className="notRelativ btn btn-primary">Add Comment</button>
+                              </div>
                             </div>
-                          </div>
-                        </form>
+                          </form>
+                          :
+                          <form className="form-inline">
+                            <div className="col-12 rounded-3 input-group">
+                              <textarea type="text" className="form-control" id="comment" placeholder="Please log in to leave a comment!" />
+                              <div className="col-auto input-group-append">
+                                <button type="button" className="notRelativ btn btn-secondary">Add Comment</button>
+                              </div>
+                            </div>
+                          </form>
+                          
+                        }
                       </div>
                     </div>
-
                   </div>
+
+
                 </div>
               </>
             ) : (

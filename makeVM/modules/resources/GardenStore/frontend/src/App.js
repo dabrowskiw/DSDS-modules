@@ -10,6 +10,7 @@ import Profile from "./components/profile/Profile";
 function App() {
 
   const baseUrl = "";
+  // const baseUrl = "http://localhost:5000";
 
   const [loggedIn, setLoggedIn] = useState(false);
   const loginTriedHandler = (result) => {
@@ -46,11 +47,13 @@ function App() {
           exact
           path="/detailPage/:id"
           element={<DetailPage />}
+          logged={loggedIn}
         />
         <Route
           exact
           path="/profile/:id"
           element={<Profile />}
+          logged={loggedIn}
         />
       </Routes>
     </BrowserRouter>
