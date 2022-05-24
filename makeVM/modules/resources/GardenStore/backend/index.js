@@ -1,7 +1,3 @@
-// import express, { NextFunction, Request, Response } from "express";
-// import * as OpenApiValidator from "express-openapi-validator";       // use after cookie was stolen to validate api - prevention option
-// import { HttpError } from "express-openapi-validator/dist/framework/types";   
-
 const express = require("express");
 const pool = require("./Database/database");
 const crypto = require("crypto");
@@ -12,9 +8,7 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// app.use(cookieParser());         // https://www.npmjs.com/package/cookie-parser
 app.use(express.json());
-
 // middleware to check for errors and display them
 app.use(
   (err, req, res, next) => {
@@ -45,7 +39,6 @@ app.get("/comments/:id", async (req,res) => {
   try {
     const sqlQuery = 'SELECT comm_id, author, text, rating, created_at, product_id FROM comments WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
-    // console.log(rows[0].author);
     res.status(200).send(rows);
   } catch (error) {
     res.status(400).send(error.message);
@@ -65,7 +58,7 @@ app.post("/comments", async (req,res) => {
   }
 })
 /**
- * Login endpoint
+ * Login & logout endpoints
  */
 
 app.post("/login", async (req,res) =>{
@@ -94,6 +87,12 @@ async function login(email, password){
   return undefined;
 }
 
+app.post("/logout", async (req,res) => {
+  res.clearCookie('sessionCookie');
+  res.status(200);
+  return res.json({message: "Successfully logged out."});
+})
+
 // check salted & hashedPW with bcrypt
 async function checkPw(email, password){
   try {
@@ -106,7 +105,7 @@ async function checkPw(email, password){
 }
 
 /**
- * Users endpoint
+ * Users endpoints
  */
 
 // creates user with salted password hash and adds it to db
@@ -125,10 +124,11 @@ app.post("/users", async (req,res) => {
   }
 })
 
-//TODO: implement more endpoints a)login with cookie   b)delete comments  c) edit profile?? 
+app.get("/users", async (req, res) => {
+  
+})
 
 //optional: hash password of user
-
 
 /** Start listening */
 app.listen(port, () => {
