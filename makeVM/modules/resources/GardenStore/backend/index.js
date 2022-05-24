@@ -112,10 +112,11 @@ async function checkPw(email, password){
 app.post("/users", async (req,res) => {
   try {
     const {username, plainpassword, iban, address, email} = req.body;
+    const user_id = crypto.randomUUID();
     const salt = await bcrypt.genSalt();
     const password = await bcrypt.hash(plainpassword, salt);
-    const sqlQuery = 'INSERT INTO users (username, password, iban, address, email) VALUES (?,?,?,?,?)';
-    const result = await pool.query(sqlQuery, [username, password, iban, address, email]);
+    const sqlQuery = 'INSERT INTO users (username, password, iban, address, email, user_id) VALUES (?,?,?,?,?,?)';
+    const result = await pool.query(sqlQuery, [username, password, iban, address, email, user_id]);
     console.log(result);
     res.status(200);  
     return res.json({message: "user created successfully"});
@@ -124,11 +125,17 @@ app.post("/users", async (req,res) => {
   }
 })
 
-app.get("/users", async (req, res) => {
-  
+app.get("/users/:id", async (req, res) => {
+  try {
+    const sqlQuery = 'SELECT username, password, iban, address, email, user_id FROM users WHERE user_id=?';
+    const rows = await pool.query(sqlQuery, req.params.id);
+    res.status(200).send(rows);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 })
 
-//optional: hash password of user
+//TODO: save sessionCookie to db and check with login
 
 /** Start listening */
 app.listen(port, () => {
