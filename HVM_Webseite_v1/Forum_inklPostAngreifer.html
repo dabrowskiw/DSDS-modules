@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="headline"><h1>Wilkommen in unserem Forum</h1></div>
+    <br>
+    <div class="forIndex">In unserem Forum können sie gerne über das Leben & Schaffen der Persönlichkeiten diskutieren.
+        Um allerdings Zugriff auf weitere Informationen und interne Diskussionen zu bekommen, müssen sie eine
+        Mitgliedschaft unseres Museums besitzen und als Mitglied eingeloggt sein. Unsere Mitglieder agieren auch als
+        Moderatoren, welche jede Minute überprüfen, ob ein neuer Post oder eine neue Frage eingegangen ist.
+        <a href="login.html">Hier</a> können sie sich anmelden.
+
+        <br>
+        <br>
+        <br>
+        <a href="Forenpost/Post1.html">
+            <li>Post1</li>
+        </a>
+        <a href="Forenpost/Post2.html">
+            <li>Post2</li>
+        </a>
+        <a href="Forenpost/Post3.html">
+            <li>Post3</li>
+        </a>
+        <a href="Forenpost/PostAngreifer.html">
+            <li>
+                <div id="neuerPostAngreifer">
+                    <script>
+                        if (localStorage.length > 0) {
+                            neuerPostAngreifer.innerHTML += localStorage.key(0)
+                        }
+
+                    </script>
+                </div>
+            </li>
+        </a>
+
+        <br>
+        <br>
+        Um einen eigenen Beitrag zu verfassen, klicken sie <a href="Forenpost/post_erstellen.html">hier</a>.
+        <br>
+        <br>
+        <br>
+        Zurück zur <a href="index.html">Startseite</a>
+
+    </div>
+</div>
+</body>
+</html>

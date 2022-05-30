@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forumpost</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="headline"><h1>Forum</h1></div>
+    <br>
+    <div class="headline" id="head">
+        <script> head.innerHTML += localStorage.key(0)
+        </script>
+    </div>
+    <br>
+    <br>
+
+    <div class="forIndex">
+        <div id="neuerPost">
+            <script>
+                if (localStorage.length > 0) {
+                    neuerPost.innerHTML += localStorage.getItem(localStorage.key(0))
+                }
+            </script>
+        </div>
+        <br>
+        <br>
+        <br>
+        Zurück zur <a href="../index.html">Startseite</a> oder zum <a href="../Forum.html">Forum</a>
+
+    </div>
+</div>
+</body>
+</html>
