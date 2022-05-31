@@ -175,12 +175,10 @@ app.get("/users", async (req,res) => {
   }
 })
 
-app.delete("users/:email", (req,res) =>{
+app.delete("/users/:id", (req,res) =>{
   try{ 
-    const email = req.params.email;
-    const sqlQuery = 'DELETE FROM users where user_id=?';
-    const rows = pool.query(sqlQuery, req.params.id);
-    res.status(200).send("user deleted sucessfully");
+    pool.query('DELETE FROM users where user_id=?', req.params.id);
+    res.status(204).send("user deleted sucessfully");
   } catch (error){
     res.status(400).send(error.message);
   }
