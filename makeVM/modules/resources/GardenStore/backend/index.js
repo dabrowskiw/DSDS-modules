@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("./Database/database");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
 
 require('dotenv').config();
 
@@ -18,6 +19,9 @@ app.use(
     errors: err.errors,
   });
 });
+
+//to use cookies within middleware
+app.use(cookieParser());
 
 /**
  * Products endpoints
@@ -58,7 +62,7 @@ app.post("/comments", async (req,res) => {
   }
 })
 /**
- * Login & logout endpoints
+ * Login & logout endpoints & helper functions
  */
 
 app.post("/login", async (req,res) =>{
@@ -69,7 +73,7 @@ app.post("/login", async (req,res) =>{
     res.status(401);  //401 -> unauthorized
     return res.json({ message: "Wrong Email or Password."})
   }
-  res.cookie("sessionCookie", sessionId,{
+  res.cookie("session", sessionId,{
     // httpOnly: true,  //uncomment to prevent XSS attack if browser accepts httpOnly header
     sameSite: "none",  //none = sent cookies in all contexts, 1st party and XS requests
     secure: true  //only allow secure sending of cookies - only encrypted req allowed
@@ -81,14 +85,17 @@ app.post("/login", async (req,res) =>{
 async function login(email, password){
   const isPasswordCorrect = await checkPw(email, password);
   if(isPasswordCorrect){
-    const sessionId = crypto.randomUUID();
-    return sessionId;
+    const session_id = crypto.randomUUID();
+    const sqlQuery = 'INSERT INTO sessions (session_id, email) VALUES (?,?)';
+    const result = await pool.query(sqlQuery, [session_id, email]);
+    // console.log(result);
+    return session_id;
   }
   return undefined;
 }
 
 app.post("/logout", async (req,res) => {
-  res.clearCookie('sessionCookie');
+  res.clearCookie('session');
   res.status(200);
   return res.json({message: "Successfully logged out."});
 })
@@ -104,9 +111,41 @@ async function checkPw(email, password){
   }
 }
 
+async function isLoggedIn(req, res, next){
+  const sessionCookie = req.cookies.session;
+  if(!sessionCookie){
+    res.status(401);
+    return res.json({ message: "Authentication Error: Are you logged in?"});
+  }
+  let email;
+  if(sessionCookie != null){
+    try {
+      const sqlQuery = 'SELECT session_id, email FROM sessions WHERE session_id=?';
+      const rows = await pool.query(sqlQuery, sessionCookie);
+      email = rows[0].email;
+    } catch (error) {
+      return res.send(error.message);
+    }
+  }else email = null;
+
+  if (!email){
+    res.status(401);
+  }
+  next();
+}
+
 /**
  * Users endpoints
  */
+app.get("/users/:id", isLoggedIn, async (req, res) => {
+  try {
+    const sqlQuery = 'SELECT username, password, iban, address, email, user_id FROM users WHERE user_id=?';
+    const rows = await pool.query(sqlQuery, req.params.id);
+    res.status(200).send(rows);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+})
 
 // creates user with salted password hash and adds it to db
 app.post("/users", async (req,res) => {
@@ -125,12 +164,24 @@ app.post("/users", async (req,res) => {
   }
 })
 
-app.get("/users/:id", async (req, res) => {
-  try {
-    const sqlQuery = 'SELECT username, password, iban, address, email, user_id FROM users WHERE user_id=?';
-    const rows = await pool.query(sqlQuery, req.params.id);
+// for testing-purpose now to get all users with all their data - or leave it for vulnerable API??? 
+app.get("/users", async (req,res) => {
+  try{
+    const sqlQuery = 'SELECT * from users';
+    const rows = await pool.query(sqlQuery);
     res.status(200).send(rows);
-  } catch (error) {
+  } catch (error){
+    res.status(400).send(error.message);
+  }
+})
+
+app.delete("users/:email", (req,res) =>{
+  try{ 
+    const email = req.params.email;
+    const sqlQuery = 'DELETE FROM users where user_id=?';
+    const rows = pool.query(sqlQuery, req.params.id);
+    res.status(200).send("user deleted sucessfully");
+  } catch (error){
     res.status(400).send(error.message);
   }
 })

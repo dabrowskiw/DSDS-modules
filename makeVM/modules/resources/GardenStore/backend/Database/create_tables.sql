@@ -35,3 +35,13 @@ CREATE TABLE sys.products (
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb3
 COLLATE=utf8mb3_general_ci;
+
+CREATE TABLE sys.sessions (
+	session_id varchar(100) NOT NULL,
+	email varchar(100) NOT NULL,
+	CONSTRAINT sessions_pk PRIMARY KEY (session_id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb3
+COLLATE=utf8mb3_general_ci
+COMMENT='to save cookies';
