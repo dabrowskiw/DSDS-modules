@@ -1,0 +1,1 @@
+1. script welches session cookie nimmt von website
