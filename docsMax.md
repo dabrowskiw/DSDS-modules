@@ -1,1 +1,3 @@
-1. script welches session cookie nimmt von website
+1. create session cookie
+2. insert script welches session cookie igendwo hin sendet
+3. 
