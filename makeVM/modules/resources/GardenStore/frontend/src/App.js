@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LoginForm from "./components/login/LoginForm";
+import Register from "./components/login/Register";
 import LandingPage from "./components/landingPage/LandingPage";
 import DetailPage from "./components/product/Detail";
 import Profile from "./components/profile/Profile";
@@ -37,6 +38,11 @@ function App() {
             onTryLogin={loginTriedHandler}
             logged={loggedIn}
             baseUrl={baseUrl} />}
+        />
+        <Route
+          exact
+          path="/register"
+          element={<Register />}
         />
         <Route
           exact

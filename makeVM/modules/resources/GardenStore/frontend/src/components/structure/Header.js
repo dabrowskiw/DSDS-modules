@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 import '../styles.css';
 
 const Header = (props) => {
@@ -17,10 +18,13 @@ const Header = (props) => {
                 <h2><NavLink className="nav-link text-light" to={'/landingPage'}>Gardeningstore</NavLink></h2>
                 <nav className="menu">
                     <ul className="nav">
-                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} >Homes</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/profile/1'} >Profile</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} >Logout</NavLink></li>
-                        <li className="nav-item" ><NavLink className="nav-link text-light" to={'/profile/1'} >My Shopping Cart: 0{/*profile.cartProducts*/}</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} ><Icon.House/> Home</NavLink></li>
+                        {!props.loggedIn ?
+                            (<>
+                                <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} ><Icon.Lock/> Logout</NavLink></li>
+                                <li className="nav-item"><NavLink className="nav-link text-light" to={'/profile/1'} ><Icon.Person/> Profile</NavLink></li>
+                                <li className="nav-item" ><NavLink className="nav-link text-light" to={'/profile/1'} ><Icon.Cart/> My Shopping Cart: {profile.cartProducts}</NavLink></li></>
+                            ) : <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} ><Icon.Lock/> Login</NavLink></li>}
                     </ul>
                 </nav>
             </div>

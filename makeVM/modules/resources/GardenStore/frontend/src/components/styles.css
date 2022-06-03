@@ -17,7 +17,7 @@ h2 {
 }
 
 .truncate-overflow {
-    --max-lines: 3.5;
+    --max-lines: 3.2;
     max-height: calc(var(--lh) * var(--max-lines));
     overflow: hidden;
 }
@@ -37,6 +37,11 @@ h2 {
 
 .menu-container .menu {
     margin-top: -10px;
+}
+
+.login input {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .productList {

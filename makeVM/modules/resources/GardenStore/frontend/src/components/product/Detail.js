@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import "../styles.css";
 import { useNavigate, useParams } from "react-router";
+
+import * as Icon from 'react-bootstrap-icons';
 import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../structure/Header"
@@ -119,7 +121,7 @@ const Detail = (props) => {
                               Like
                             </button>
                             <button className="btn btn-primary btn-md" type="button">
-                              Add to Cart
+                              Add to Cart <Icon.Cart/>
                             </button>
                           </div>
                         </div>

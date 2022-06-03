@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import '../styles.css';
+import _ from "lodash";
 import { useNavigate, useParams } from 'react-router';
 import Header from "../structure/Header"
 import Footer from "../structure/Footer"
@@ -11,11 +12,11 @@ const Profile = (props) => {
     const BASE_URL = "http://localhost:3001";
 
     let navigate = useNavigate();
-    
+
     //if logged in
     if (!props.loggedIn) {
         //navigate("/");
-      }
+    }
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -65,18 +66,40 @@ const Profile = (props) => {
             <div className="container">
                 <Header />
                 <main>
-                    <Card>
-                        <Card.Body>
-                            <div>
-                                <div>{profile.userName} </div>
-                                <div>{profile.email} </div>
-                                <div>{profile.password} </div>
-                                <div>{profile.iban} </div>
-                                <div>{profile.address} </div>
-                                <div>{profile.created_at} </div>
-                            </div>
-                        </Card.Body>
-                    </Card>
+                <i className="bi-alarm"></i>
+                <i className="bi-alarm"></i>
+                    {!isLoaded ? (<div className="loading-screen">Loading profile...</div>) : (
+                        (!_.isEmpty(profile)) ? (
+                            
+                            <table className="table table-hover table-striped w-auto border">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Username</th>
+                                        <td>{profile.userName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">E-Mail</th>
+                                        <td>{profile.email}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Products in Cart</th>
+                                        <td>{profile.cartProducts}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bank-Account</th>
+                                        <td>{profile.iban}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Adress</th>
+                                        <td>{profile.address}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Member since</th>
+                                        <td>{profile.created_at}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        ) : (<p className="message">No profile found.</p>))}
                 </main>
             </div>
             <div>

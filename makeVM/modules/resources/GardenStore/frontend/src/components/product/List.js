@@ -5,6 +5,7 @@ import _ from "lodash";
 import "../styles.css";
 import { useNavigate } from "react-router";
 import 'react-bootstrap';
+import * as Icon from 'react-bootstrap-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const List = (props) => {
@@ -116,10 +117,10 @@ const List = (props) => {
                           </div>
                           <div className="d-flex flex-column mt-4">
                             <button className="btn btn-outline-primary btn-sm" type="button" onClick={() => navigate(`/detailPage/${product.id}`)}>
-                              Details
+                              Details <Icon.ListUl/>
                             </button>
                             <button className="btn btn-primary btn-sm mt-2" type="button">
-                              Add to Cart
+                              Add to Cart <Icon.Cart/>
                             </button>
                           </div>
                         </div>
