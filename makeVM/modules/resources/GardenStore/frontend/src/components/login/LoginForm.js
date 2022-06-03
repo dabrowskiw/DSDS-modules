@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles.css";
-import Header from "../structure/Header"
+import Header from "../structure/Header";
 import { useNavigate } from 'react-router';
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
 //import logo from "";
 
 import Footer from "../structure/Footer"
@@ -10,9 +10,6 @@ import Footer from "../structure/Footer"
 const LoginForm = (props) => {
 
   let navigate = useNavigate();
-  //connect Frontend to Backend
-  //const BASE_URL = "https";
-
 
   const BASE_URL = props.baseUrl;
   const [enteredMail, setEnteredMail] = useState("");
@@ -85,7 +82,7 @@ const LoginForm = (props) => {
                   <label htmlFor="exampleInputPassword1">Password</label>
                   <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                 </div>
-                <button type="submit" className="btn btn-success btn-md my-3">Submit</button>
+                <button type="button" className="btn btn-success btn-md my-3" onClick={clickHandler}>Submit</button>
               </form>
             </div>
             <div className="d-grid gap-2 text-center border-top pt-2 mt-2">

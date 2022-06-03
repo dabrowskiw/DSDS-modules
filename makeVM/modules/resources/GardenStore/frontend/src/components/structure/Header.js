@@ -6,7 +6,7 @@ import '../styles.css';
 const Header = (props) => {
 
 
-    const [profile, setProfile] = useState([]);
+    const [user, setUser] = useState([]);
 
     const logout = () => {
         props.onLogout();
@@ -21,10 +21,10 @@ const Header = (props) => {
                         <li className="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} ><Icon.House/> Home</NavLink></li>
                         {!props.loggedIn ?
                             (<>
-                                <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} ><Icon.Lock/> Logout</NavLink></li>
-                                <li className="nav-item"><NavLink className="nav-link text-light" to={'/profile/1'} ><Icon.Person/> Profile</NavLink></li>
-                                <li className="nav-item" ><NavLink className="nav-link text-light" to={'/profile/1'} ><Icon.Cart/> My Shopping Cart: {profile.cartProducts}</NavLink></li></>
-                            ) : <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout} ><Icon.Lock/> Login</NavLink></li>}
+                                <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout}><Icon.Lock/> Logout</NavLink></li>
+                                <li className="nav-item"><NavLink className="nav-link text-light" to={`/profile/${user.id}`}><Icon.Person/> Profile</NavLink></li>
+                                <li className="nav-item"><NavLink className="nav-link text-light" to={`/profile/${user.id}`}><Icon.Cart/> My Shopping Cart: {user.cartProducts}</NavLink></li></>
+                            ) : <li className="nav-item"><NavLink className="nav-link text-light" to={'/'}><Icon.Lock/> Login</NavLink></li>}
                     </ul>
                 </nav>
             </div>

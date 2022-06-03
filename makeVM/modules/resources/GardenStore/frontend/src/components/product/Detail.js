@@ -11,18 +11,60 @@ import Footer from "../structure/Footer"
 
 const Detail = (props) => {
 
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = props.baseUrl;
 
   let navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoadedComments, setIsLoadedComments] = useState(false);
   const [product, setProduct] = useState([]);
+  const [user, setUser] = useState([]);
   const [comments, setComments] = useState([]);
 
   const path = window.location.pathname;
   const { id } = useParams(); //gets id from current route
   const commentsToFind = comments.filter((comment) => comment.productId === id);
+
+  const clickHandler = () => {
+    var comment = comment;
+    var tableData = {
+      text: comment,
+      productId: id,
+      userName: user.userName,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
+      body: JSON.stringify(tableData),
+    };
+    fetch(`${BASE_URL}/comment/add`, requestOptions)
+  };
+
+  const likeHandler = () => {
+    const requestOptions = {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
+    };
+    fetch(`${BASE_URL}/products/${id}/like`, requestOptions)
+  };
+
+  const cartHandler = () => {
+    const requestOptions = {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
+    };
+    fetch(`${BASE_URL}/profile/${user.id}/cart`, requestOptions)
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -117,10 +159,10 @@ const Detail = (props) => {
                             <h6 className="text-success">{product.amount} in stock</h6>
                           </div>
                           <div className="d-flex flex-row mt-4">
-                            <button className="btn btn-outline-primary btn-md mx-2" type="button" onClick={() => null}>
+                            <button className="btn btn-outline-primary btn-md mx-2" type="button" onClick={likeHandler}>
                               Like
                             </button>
-                            <button className="btn btn-primary btn-md" type="button">
+                            <button className="btn btn-primary btn-md" type="button" onClick={cartHandler}>
                               Add to Cart <Icon.Cart/>
                             </button>
                           </div>
@@ -155,18 +197,18 @@ const Detail = (props) => {
                         {props.loggedIn ?
                           <form className="form-inline">
                             <div className="col-12 rounded-3 input-group">
-                              <textarea type="text" className="form-control" id="comment" placeholder="Your Comment" />
+                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment" />
                               <div className="col-auto input-group-append">
-                                <button type="submit" className="notRelativ btn btn-primary">Add Comment</button>
+                                <button type="button" className="notRelativ btn btn-primary" onClick={clickHandler}>Add Comment</button>
                               </div>
                             </div>
                           </form>
                           :
                           <form className="form-inline">
                             <div className="col-12 rounded-3 input-group">
-                              <textarea type="text" className="form-control" id="comment" placeholder="Please log in to leave a comment!" />
+                              <textarea disabled type="text" className="form-control" id="comment" placeholder="Please log in to leave a comment!" />
                               <div className="col-auto input-group-append">
-                                <button type="button" className="notRelativ btn btn-secondary">Add Comment</button>
+                                <button type="button" className="notRelativ btn btn-secondary disabled">Add Comment</button>
                               </div>
                             </div>
                           </form>

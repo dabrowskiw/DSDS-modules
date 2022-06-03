@@ -10,8 +10,8 @@ import Profile from "./components/profile/Profile";
 
 function App() {
 
-  const baseUrl = "";
-  // const baseUrl = "http://localhost:5000";
+  const baseUrl = "http://localhost:3001";
+  // const baseUrl = "";
 
   const [loggedIn, setLoggedIn] = useState(false);
   const loginTriedHandler = (result) => {
@@ -37,29 +37,36 @@ function App() {
           element={<LoginForm
             onTryLogin={loginTriedHandler}
             logged={loggedIn}
-            baseUrl={baseUrl} />}
+            baseUrl={baseUrl}
+          />}
         />
         <Route
           exact
           path="/register"
-          element={<Register />}
+          element={<Register
+            baseUrl={baseUrl}
+          />}
         />
         <Route
           exact
           path="/landingPage"
-          element={<LandingPage />}
+          element={<LandingPage
+          />}
         />
         <Route
           exact
           path="/detailPage/:id"
-          element={<DetailPage />}
-          logged={loggedIn}
+          element={<DetailPage
+            logged={loggedIn}
+            baseUrl={baseUrl}
+          />}
         />
         <Route
           exact
           path="/profile/:id"
-          element={<Profile />}
-          logged={loggedIn}
+          element={<Profile
+            logged={loggedIn}
+          />}
         />
       </Routes>
     </BrowserRouter>

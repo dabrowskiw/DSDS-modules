@@ -75,18 +75,18 @@ const Register = (props) => {
               <h3 className="title">Create your account</h3>
               <form className="d-grid gap-2">
                 <div className="form-group d-grid gap-2">
-                  <label for="name">Your Username</label>
-                  <input type="text" className="form-control" id="name" autocomplete="off" />
+                  <label htmlFor="username">Your Username</label>
+                  <input type="text" className="form-control" id="name" autoComplete="off" />
                 </div>
                 <div className="form-group d-grid gap-2">
-                  <label for="email">Email address</label>
-                  <input type="email" className="form-control" id="email" autocomplete="off"/>
+                  <label htmlFor="email">Email address</label>
+                  <input type="email" className="form-control" id="email" autoComplete="off"/>
                 </div>
                 <div className="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" className="form-control" id="password" autocomplete="off"/>
+                  <label htmlFor="password">Password</label>
+                  <input type="password" className="form-control" id="password" autoComplete="off"/>
                 </div>
-                <button type="submit" className="btn btn-success btn-md my-3">Register</button>
+                <button type="button" className="btn btn-success btn-md my-3" onClick={clickHandler}>Register</button>
               </form>
             </div>
             <div className="text-center border-top pt-2 mt-2">
