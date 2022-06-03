@@ -26,7 +26,8 @@
       "price": 12.00,
       "description": "This 8-piece rattan patio sofa set has a modern look and exquisite rattan craftsmanship for most styles place. The high-density sponge cushion and ergonomically designed angle provide a comfortable seating experience, which allows you and your guests sitting for relaxing and enjoying the outdoors. What's more, the furniture's sturdy steel frame, quality PE rattan, more advanced polyester fabric, and tempered glass countertops make it suitable for all-weather environments, ideal for indoor and outdoor use, poolside, deck or terrace for you. It offers a comfortable and exceptionally stunning outdoor setting.      ",
       "img": "",
-      "rates": 3.5,
+      "likes": 3,
+      "commentCounts": 1,
       "amount": 15
     },
     {
@@ -35,7 +36,8 @@
       "price": 8.00,
       "description": "Environmentally-friendly alternative to using chemicals to kill weeds. Easily change tool heads. Caution: Do not use during a lightning storm",
       "img": "",
-      "rates": 3.0,
+      "likes": 6,
+      "commentCounts": 3,
       "amount": 5
     }
   ],

@@ -14,24 +14,19 @@ const Detail = (props) => {
   let navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [isLoadedComments, setIsLoadedComments] = useState(false);
+  const [product, setProduct] = useState([]);
   const [comments, setComments] = useState([]);
 
-
-
-
   const path = window.location.pathname;
-
   const { id } = useParams(); //gets id from current route
-
-  const productToFind = products;
   const commentsToFind = comments.filter((comment) => comment.productId === id);
 
   useEffect(() => {
     let mounted = true;
 
     setTimeout(() => {
-      async function getProducts() {
+      async function getProduct() {
         fetch(`${BASE_URL}/products/${id}`, {
           method: "GET",
           credentials: "include",
@@ -41,7 +36,7 @@ const Detail = (props) => {
             (result) => {
               if (mounted) {
                 setIsLoaded(true);
-                setProducts(result);
+                setProduct(result);
               }
             },
             (error) => {
@@ -51,7 +46,7 @@ const Detail = (props) => {
               }
             }
           );
-      } getProducts();
+      } getProduct();
 
       async function getComments() {
         fetch(`${BASE_URL}/comments/`, {
@@ -62,13 +57,13 @@ const Detail = (props) => {
           .then(
             (result) => {
               if (mounted) {
-                setIsLoaded(true);
+                setIsLoadedComments(true);
                 setComments(result);
               }
             },
             (error) => {
               if (mounted) {
-                setIsLoaded(true);
+                setIsLoadedComments(true);
                 setError(error);
               }
             }
@@ -78,7 +73,7 @@ const Detail = (props) => {
     }, 2000);
 
     return () => (mounted = false); //cleanup function
-  }, [products, BASE_URL, navigate, path, props.logged]);
+  }, [product, BASE_URL, navigate, path, props.logged]);
 
   const logout = () => {
     props.onLogout();
@@ -90,7 +85,7 @@ const Detail = (props) => {
       <main>
         {error ? (<div>Error: {error.message}</div>) :
           (!isLoaded ? (<div className="loading-screen">Loading product...</div>) :
-            ((!_.isEmpty(products)) ? (
+            ((!_.isEmpty(product)) ? (
               <>
                 <div className="productList row justify-content-center mb-3">
                   <div className="col-md-10 col-xl-10 mb-3"></div>
@@ -108,19 +103,22 @@ const Detail = (props) => {
                           </div>
                         </div>
                         <div className="col-lg-6 col-xl-6">
-                          <h5 className="text-center">{productToFind.name}</h5>
-                          <p className="text-right">Sterne</p>
+                          <h5 className="text-center">{product.name}</h5>
+                          <p className="text-right"><span>{product.likes}</span> Likes | <span>{commentsToFind.length}</span> Comments</p>
                           <p className="mb-4 mb-md-0">
-                            {productToFind.description}
+                            {product.description}
                           </p>
                         </div>
                         <div className="col-md-6 col-lg-3 col-xl-3 border-mb-start-0 border-start">
                           <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">${productToFind.price}</h4>
-                            <h6 className="text-success">{productToFind.amount} in stock</h6>
+                            <h4 className="mb-1 me-1">${product.price}</h4>
+                            <h6 className="text-success">{product.amount} in stock</h6>
                           </div>
-                          <div className="d-flex flex-column mt-4">
-                            <button className="  btn btn-outline-primary btn-sm mt-2" type="button">
+                          <div className="d-flex flex-row mt-4">
+                            <button className="btn btn-outline-primary btn-md mx-2" type="button" onClick={() => null}>
+                              Like
+                            </button>
+                            <button className="btn btn-primary btn-md" type="button">
                               Add to Cart
                             </button>
                           </div>
@@ -134,21 +132,22 @@ const Detail = (props) => {
                   <div className="shadow-0 border bg-light bg-gradient rounded-3 mt-3">
                     <div className="card-body">
                       <div className="row justify-content-center">
-                        {(!_.isEmpty(commentsToFind)) ? (
-                          commentsToFind.map(
-                            (comment) => {
-                              return (
-                                <div className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
-                                  <div className="col-9 ">
-                                    <p>{comment.text}</p>
-                                  </div>
-                                  <div className="col-3 mb-0 text-right blockquote-footer">
-                                    <p>{comment.date} by {comment.userName}</p>
-                                  </div></div>
-                              )
-                            })
-                        ) : (<p className="message">Be the first to comment.</p>)
-                        }
+                        {!isLoadedComments ? (<div className="loading-screen">Loading comments...</div>) :
+                          ((!_.isEmpty(commentsToFind)) ? (
+                            commentsToFind.map(
+                              (comment) => {
+                                return (
+                                  <div key={comment.id} className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
+                                    <div className="col-9 ">
+                                      <p>{comment.text}</p>
+                                    </div>
+                                    <div className="col-3 mb-0 text-right blockquote-footer">
+                                      <p>{comment.date} by {comment.userName}</p>
+                                    </div></div>
+                                )
+                              })
+                          ) : (<p className="message">Be the first to comment.</p>)
+                          )}
 
                         {/* comment input field  */}
                         {props.loggedIn ?
@@ -169,7 +168,7 @@ const Detail = (props) => {
                               </div>
                             </div>
                           </form>
-                          
+
                         }
                       </div>
                     </div>

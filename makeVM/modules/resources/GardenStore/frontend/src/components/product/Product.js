@@ -11,8 +11,8 @@ const Product = ({
     price,
     description,
     img,
-    comments,
-    rates,
+    likes,
+    commentCount,
     amount
 }) => {
     function formatDate(date) {
