@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
-set -u
-set -e
-set -o pipefail 
-
+set -ueo pipefail
 
 cecho(){
     RED="\033[0;31m"
     GREEN="\033[0;32m"
     YELLOW="\033[1;33m"
 	PURPLE="\033[0;95m" 
-    # ... ADD MORE COLORS
     NC="\033[0m" # No Color
-    # ZSH
-    # printf "${(P)1}${2} ${NC}\n"
-    # Bash
     printf "${!1}${2} ${NC}\n"
 }
 
