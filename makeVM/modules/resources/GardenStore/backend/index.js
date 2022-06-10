@@ -168,12 +168,16 @@ async function isLoggedIn(req, res, next){
 /**
  * Users endpoints    TODO:check if logged in user can get other user data
  */
-app.get("/users/:id", isLoggedIn, async (req, res) => {
-  try {
-    const sqlQuery = 'SELECT username, password, iban, address, email, user_id FROM users WHERE user_id=?';
-    const rows = await pool.query(sqlQuery, req.params.id);
-    res.status(200).send(rows);
-  } catch (error) {
+app.get("/users", isLoggedIn, async (req, res) => {
+  try{
+  const sessionCookie = req.cookies.session;
+  const sqlQuery = 'SELECT session_id, email FROM sessions WHERE session_id=?';
+  const rows = await pool.query(sqlQuery, sessionCookie);
+  email = rows[0].email;
+  const sqlQuery2 = 'SELECT * FROM users WHERE email=?';
+  const rows2 = await pool.query(sqlQuery2, email);
+  return res.status(200).send(rows2[0]);
+  }catch(error){
     res.status(400).send(error.message);
   }
 })
@@ -191,17 +195,6 @@ app.post("/users", async (req,res) => {
     res.status(200);  
     return res.json({message: "user created successfully"});
   } catch (error) {
-    res.status(400).send(error.message);
-  }
-})
-
-// for testing-purpose now to get all users with all their data - or leave it for vulnerable API??? 
-app.get("/users", async (req,res) => {
-  try{
-    const sqlQuery = 'SELECT * from users';
-    const rows = await pool.query(sqlQuery);
-    res.status(200).send(rows);
-  } catch (error){
     res.status(400).send(error.message);
   }
 })

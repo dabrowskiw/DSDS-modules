@@ -4,6 +4,8 @@ CREATE TABLE sys.user (
 	iban varchar(100) NULL,
 	address varchar(100) NULL,
 	email varchar(100) NOT NULL,
+	cart_amount varchar(100) NULL,
+	created_at DATETIME NULL,
 	CONSTRAINT user_pk PRIMARY KEY (email)
 )
 ENGINE=InnoDB

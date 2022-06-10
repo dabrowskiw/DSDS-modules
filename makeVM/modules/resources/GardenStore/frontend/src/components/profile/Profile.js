@@ -31,7 +31,7 @@ const Profile = (props) => {
 
         setTimeout(() => {
             async function getProfile() {
-                fetch(`${BASE_URL}/profile/${id}`, {
+                fetch(`${BASE_URL}/users`, {
                     method: "GET",
                     credentials: "include",
                 })
@@ -61,10 +61,12 @@ const Profile = (props) => {
         props.onLogout();
     };
 
+    console.log(profile)
+
     return (
         <div>
             <div className="container">
-                <Header />
+                <Header loggedIn={props.loggedIn}/>
                 <main>
                 <i className="bi-alarm"></i>
                 <i className="bi-alarm"></i>
@@ -75,7 +77,7 @@ const Profile = (props) => {
                                 <tbody>
                                     <tr>
                                         <th scope="row">Username</th>
-                                        <td>{profile.userName}</td>
+                                        <td>{profile.username}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">E-Mail</th>
@@ -83,7 +85,7 @@ const Profile = (props) => {
                                     </tr>
                                     <tr>
                                         <th scope="row">Products in Cart</th>
-                                        <td>{profile.cartProducts}</td>
+                                        <td>{profile.cart_amount}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Bank-Account</th>

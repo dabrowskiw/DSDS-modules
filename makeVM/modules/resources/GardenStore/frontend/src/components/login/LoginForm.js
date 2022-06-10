@@ -69,7 +69,7 @@ const LoginForm = (props) => {
 
   return (
     <div className="container">
-      <Header />
+      <Header loggedIn={props.loggedIn}/>
       <main>
         <div className="row justify-content-center">
           <div className="col-11 col-sm-6 shadow-0 border rounded-3 py-2">

@@ -61,7 +61,6 @@ function App() {
 
 
   return (
-
     <BrowserRouter>
       <Routes>
         <Route
@@ -69,7 +68,7 @@ function App() {
           path="/"
           element={<LoginForm
             onTryLogin={loginTriedHandler}
-            logged={loggedIn}
+            loggedIn={loggedIn}
             baseUrl={baseUrl}
           />}
         />
@@ -77,6 +76,7 @@ function App() {
           exact
           path="/register"
           element={<Register
+            loggedIn={loggedIn}
             baseUrl={baseUrl}
           />}
         />
@@ -84,6 +84,7 @@ function App() {
           exact
           path="/landingPage"
           element={<LandingPage 
+            loggedIn={loggedIn}
             baseUrl={baseUrl}
           />}
         />
@@ -91,15 +92,15 @@ function App() {
           exact
           path="/detailPage/:id"
           element={<DetailPage
-            logged={loggedIn}
+            loggedIn={loggedIn}
             baseUrl={baseUrl}
           />}
         />
         <Route
           exact
-          path="/profile/:id"
+          path="/profile"
           element={<Profile
-            logged={loggedIn}
+            loggedIn={loggedIn}
             baseUrl={baseUrl}
           />}
         />

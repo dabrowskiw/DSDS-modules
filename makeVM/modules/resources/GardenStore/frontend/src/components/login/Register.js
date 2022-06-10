@@ -12,15 +12,12 @@ const Register = (props) => {
 
   let navigate = useNavigate();
 
-
-
   const BASE_URL = props.baseUrl;
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredMail, setEnteredMail] = useState("");
   const [enteredPass, setEnteredPass] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
 
- 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
@@ -67,7 +64,7 @@ const Register = (props) => {
 
   return (
     <div className="container">
-      <Header />
+      <Header loggedIn={props.loggedIn}/>
       <main>
         <div className="row justify-content-center">
           <div className="col-11 col-sm-6 shadow-0 border rounded-3 py-2">
