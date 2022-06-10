@@ -34,13 +34,14 @@ const LoginForm = (props) => {
   };
 
   const clickHandler = () => {
-    var mail = enteredMail;
-    var hashedPassword = bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
-    console.log(hashedPassword)
+    // var hashedPassword = bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
+    // console.log(hashedPassword)
     var tableData = {
-      email: mail,
-      password: hashedPassword,
+      email: enteredMail,
+      password: enteredPass,
     };
+
+    console.log(tableData);
 
     const requestOptions = {
       method: "POST",
@@ -53,7 +54,8 @@ const LoginForm = (props) => {
     fetch(`${BASE_URL}/login`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        if (res.status === "200") {
+        console.log(res.status);
+        if (res.status === 200) {
           props.onTryLogin(true);
           navigate('/landingPage');
           return true;
@@ -76,11 +78,11 @@ const LoginForm = (props) => {
               <form className="d-grid gap-2">
                 <div className="form-group d-grid gap-2">
                   <label htmlFor="exampleInputEmail1">Email address</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={mailChangeHandler}/>
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Password</label>
-                  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={passChangeHandler}/>
                 </div>
                 <button type="button" className="btn btn-success btn-md my-3" onClick={clickHandler}>Submit</button>
               </form>

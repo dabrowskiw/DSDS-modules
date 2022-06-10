@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -10,8 +10,10 @@ import Profile from "./components/profile/Profile";
 
 function App() {
 
-  const baseUrl = "http://localhost:3001";
-  // const baseUrl = "";
+  const baseUrl = "http://localhost:8000";
+  const [profile, setProfile] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
   const loginTriedHandler = (result) => {
@@ -26,6 +28,37 @@ function App() {
     });
     console.log(response);
   }
+
+  const path = window.location.pathname;
+
+  useEffect(() => {
+    let mounted = true;
+    setTimeout(() => {
+        async function getProfile() {
+            fetch(`${baseUrl}/users`, {
+                method: "GET",
+                credentials: "include",
+            })
+                .then((res) => res.json())
+                .then(
+                    (result) => {
+                        if (mounted) {
+                            setIsLoaded(true);
+                            setProfile(result);
+                        }
+                    },
+                    (error) => {
+                        if (mounted) {
+                            setIsLoaded(true);
+                            setError(error);
+                        }
+                    }
+                );
+        } getProfile();
+    }, 2000);
+    return () => (mounted = false); //cleanup function
+}, [profile, baseUrl, path, loggedIn]);
+
 
   return (
 
@@ -50,7 +83,8 @@ function App() {
         <Route
           exact
           path="/landingPage"
-          element={<LandingPage
+          element={<LandingPage 
+            baseUrl={baseUrl}
           />}
         />
         <Route
@@ -66,6 +100,7 @@ function App() {
           path="/profile/:id"
           element={<Profile
             logged={loggedIn}
+            baseUrl={baseUrl}
           />}
         />
       </Routes>

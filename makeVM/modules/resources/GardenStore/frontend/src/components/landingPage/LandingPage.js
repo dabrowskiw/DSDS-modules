@@ -11,17 +11,13 @@ import Detail from "../product/Detail"
 const LandingPage = (props) => {
 
     let navigate = useNavigate();
-    //connect Frontend to Backend
-    //const BASE_URL = "https://travelsitebackend.herokuapp.com";
-
-
-    const BASE_URL = props.baseUrl;
 
     return (
         <div className="container">
             <Header />
             <main>
-                <List />
+                <List
+                baseUrl={props.baseUrl} />
             </main>
             <Footer />
         </div>
