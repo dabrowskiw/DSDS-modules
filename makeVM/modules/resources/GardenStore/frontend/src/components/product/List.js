@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const List = (props) => {
 
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = props.baseUrl;
 
   let navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -70,9 +70,6 @@ const List = (props) => {
     }, 2000);
     return () => (mounted = false); //cleanup function
   }, [products, BASE_URL, navigate, path, props.logged]);
-
-
-
 
   const logout = () => {
     props.onLogout();
