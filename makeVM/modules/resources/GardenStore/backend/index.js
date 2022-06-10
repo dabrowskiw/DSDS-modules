@@ -40,10 +40,11 @@ app.get("/products/:id", async (req,res) =>{
   try {
     const sqlQuery = 'SELECT * FROM products WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
-    res.status(200).json(rows);
+    res.status(200).json(rows[0]);
   } catch (error) {
     res.status(400).send(error.message);
   }
+  // res.status(200).json({id:req.params.id});
 });
 
 app.get("/products", async (req,res)=>{

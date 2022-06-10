@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { NavLink } from 'react-router-dom';
 import _ from "lodash";
 import "../styles.css";
 import { useNavigate } from "react-router";
@@ -74,6 +73,8 @@ const List = (props) => {
   const logout = () => {
     props.onLogout();
   };
+
+  console.log(products);
 
   if (error) {
     return <div>Error: {error.message}</div>;
