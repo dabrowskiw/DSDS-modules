@@ -25,7 +25,6 @@ const Product = ({
             <div>{img} </div>
             <div>{description} </div>
             <div>{amount} </div>
-            <div>{rates} </div>
         </div>
     );
 };

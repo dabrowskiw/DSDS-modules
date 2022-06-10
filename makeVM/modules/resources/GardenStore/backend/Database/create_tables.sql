@@ -30,6 +30,9 @@ CREATE TABLE sys.products (
 	price FLOAT NOT NULL,
 	description varchar(200) NOT NULL,
 	img varchar(100) NULL,
+	likes varchar(100) NULL,
+	comment_count varchar(100) NULL,
+	amount varchar(100) NULL,
 	CONSTRAINT products_pk PRIMARY KEY (product_id)
 )
 ENGINE=InnoDB

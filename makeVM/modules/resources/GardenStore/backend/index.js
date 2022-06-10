@@ -38,7 +38,7 @@ app.use(cookieParser());
  */
 app.get("/products/:id", async (req,res) =>{
   try {
-    const sqlQuery = 'SELECT product_id, name, price, description FROM products WHERE product_id=?';
+    const sqlQuery = 'SELECT * FROM products WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
     res.status(200).json(rows);
   } catch (error) {
@@ -46,13 +46,33 @@ app.get("/products/:id", async (req,res) =>{
   }
 });
 
+app.get("/products", async (req,res)=>{
+  try {
+    const sqlQuery = 'SELECT * FROM products';
+    const rows = await pool.query(sqlQuery);
+    res.status(200).send(rows);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+})
+
 /**
  * Comments endpoints
  */
 app.get("/comments/:id", async (req,res) => {
   try {
-    const sqlQuery = 'SELECT comm_id, author, text, rating, created_at, product_id FROM comments WHERE product_id=?';
+    const sqlQuery = 'SELECT comment_id, username, text, created_at, product_id FROM comments WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
+    res.status(200).send(rows);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+})
+
+app.get("/comments", async (req,res)=>{
+  try {
+    const sqlQuery = 'SELECT * FROM comments';
+    const rows = await pool.query(sqlQuery);
     res.status(200).send(rows);
   } catch (error) {
     res.status(400).send(error.message);
@@ -61,9 +81,9 @@ app.get("/comments/:id", async (req,res) => {
 
 app.post("/comments", async (req,res) => {
   try {
-    const {product_id, author, text, rating} = req.body;
-    const sqlQuery = 'INSERT INTO comments (product_id, author, text, rating) VALUES (?,?,?,?)';
-    const result = await pool.query(sqlQuery, [product_id, author, text, rating]);
+    const {comment_id, username, text, created_at, product_id} = req.body;
+    const sqlQuery = 'INSERT INTO comments (comment_id, username, text, created_at, product_id) VALUES (?,?,?,?,?)';
+    const result = await pool.query(sqlQuery, [comment_id, username, text, created_at, product_id]);
     console.log(result);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
     return res.json({message: "comment created successfully"});

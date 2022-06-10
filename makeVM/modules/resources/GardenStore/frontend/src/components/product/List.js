@@ -86,7 +86,7 @@ const List = (props) => {
           products.map(
             (product) => {
               return (
-                <div key={product.id} className="col-md-10 col-xl-10 mb-3">
+                <div key={product.product_id} className="col-md-10 col-xl-10 mb-3">
                   <div className="shadow-0 border rounded-3 bg-light bg-gradient">
                     <div className="card-body">
                       <div className="row">
@@ -102,7 +102,7 @@ const List = (props) => {
                         </div>
                         <div className="col-md-8 col-lg-6 col-xl-6">
                           <h5 className="text-center">{product.name}</h5>
-                          <p className="text-right"><span>{product.likes}</span> Likes | <span>{comments.filter(x => x.productId == product.id).length}</span> Comments</p>
+                          <p className="text-right"><span>{product.likes}</span> Likes | <span>{comments.filter(x => x.product_id === product.product_id).length}</span> Comments</p>
                           <p className="truncate-overflow mb-4 mb-md-0">
                             {product.description}
                           </p>
@@ -113,7 +113,7 @@ const List = (props) => {
                             <h6 className="text-success">{product.amount} in stock</h6>
                           </div>
                           <div className="d-flex flex-column mt-4">
-                            <button className="btn btn-outline-primary btn-sm" type="button" onClick={() => navigate(`/detailPage/${product.id}`)}>
+                            <button className="btn btn-outline-primary btn-sm" type="button" onClick={() => navigate(`/detailPage/${product.product_id}`)}>
                               Details <Icon.ListUl/>
                             </button>
                             <button className="btn btn-primary btn-sm mt-2" type="button">
