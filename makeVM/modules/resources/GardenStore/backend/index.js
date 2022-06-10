@@ -135,7 +135,7 @@ async function isLoggedIn(req, res, next){
 }
 
 /**
- * Users endpoints
+ * Users endpoints    TODO:check if logged in user can get other user data
  */
 app.get("/users/:id", isLoggedIn, async (req, res) => {
   try {
