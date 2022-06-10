@@ -1,20 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LoginForm from "./components/login/LoginForm";
+import Register from "./components/login/Register";
 import LandingPage from "./components/landingPage/LandingPage";
+import DetailPage from "./components/product/Detail";
+import Profile from "./components/profile/Profile";
 
 function App() {
 
-  const baseUrl = "";
+  const baseUrl = "http://localhost:3001";
+  // const baseUrl = "";
 
   const [loggedIn, setLoggedIn] = useState(false);
   const loginTriedHandler = (result) => {
     setLoggedIn(result);
     // console.log("Login: " + result);
   };
-  const logoutHandler = async () =>{
+  const logoutHandler = async () => {
     setLoggedIn(false);
     const response = await fetch(`${baseUrl}/logout`, {
       method: "POST",
@@ -27,18 +31,42 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-      <Route
+        <Route
           exact
           path="/"
-          element={<LoginForm 
+          element={<LoginForm
             onTryLogin={loginTriedHandler}
-           logged={loggedIn} 
-           baseUrl={baseUrl}/>}
+            logged={loggedIn}
+            baseUrl={baseUrl}
+          />}
         />
-      <Route
+        <Route
+          exact
+          path="/register"
+          element={<Register
+            baseUrl={baseUrl}
+          />}
+        />
+        <Route
           exact
           path="/landingPage"
-          element={<LandingPage />}
+          element={<LandingPage
+          />}
+        />
+        <Route
+          exact
+          path="/detailPage/:id"
+          element={<DetailPage
+            logged={loggedIn}
+            baseUrl={baseUrl}
+          />}
+        />
+        <Route
+          exact
+          path="/profile/:id"
+          element={<Profile
+            logged={loggedIn}
+          />}
         />
       </Routes>
     </BrowserRouter>

@@ -6,7 +6,7 @@ const Footer = () => {
     
   return (
     <footer>
-      © 2021
+      HTW Project: Hacking with VMs - XSS Cross Site Scripting by R. Schulz and E. Wiese © 2022
     </footer>
   );
 };

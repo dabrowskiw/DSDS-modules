@@ -6,13 +6,13 @@ import Moment from 'moment';
 
 
 const Product = ({
-    product_id,
+    id,
     name,
     price,
     description,
     img,
-    comments,
-    rates,
+    likes,
+    commentCount,
     amount
 }) => {
     function formatDate(date) {
@@ -20,17 +20,13 @@ const Product = ({
     }
 
     return (
-        <Card>
-            <Card.Body>
-                <div className="trip-details">
-                    <div>{name} </div>
-                    <div>{img} </div>
-                    <div>{description} </div>
-                    <div>{amount} </div>
-                    <div>{rates} </div>
-                </div>
-            </Card.Body>
-        </Card>
+        <div>
+            <div>{name} </div>
+            <div>{img} </div>
+            <div>{description} </div>
+            <div>{amount} </div>
+            <div>{rates} </div>
+        </div>
     );
 };
 
