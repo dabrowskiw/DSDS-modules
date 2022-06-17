@@ -62,7 +62,7 @@ app.get("/products", async (req,res)=>{
  */
 app.get("/comments/:id", async (req,res) => {
   try {
-    const sqlQuery = 'SELECT comment_id, username, text, created_at, product_id FROM comments WHERE product_id=?';
+    const sqlQuery = 'SELECT comment_id, author, text, created_at, product_id FROM comments WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
     res.status(200).send(rows);
   } catch (error) {
@@ -83,7 +83,7 @@ app.get("/comments", async (req,res)=>{
 app.post("/comments", async (req,res) => {
   try {
     const {comment_id, username, text, created_at, product_id} = req.body;
-    const sqlQuery = 'INSERT INTO comments (comment_id, username, text, created_at, product_id) VALUES (?,?,?,?,?)';
+    const sqlQuery = 'INSERT INTO comments (comment_id, author, text, created_at, product_id) VALUES (?,?,?,?,?)';
     const result = await pool.query(sqlQuery, [comment_id, username, text, created_at, product_id]);
     console.log(result);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
@@ -116,7 +116,7 @@ app.post("/login", async (req,res) =>{
 async function login(email, password){
   const isPasswordCorrect = await checkPw(email, password);
   if(isPasswordCorrect){
-    const session_id = crypto.randomUUID();
+    const session_id = crypto.randomUUID(); // >node v v15.6.0 
     const sqlQuery = 'INSERT INTO sessions (session_id, email) VALUES (?,?)';
     const result = await pool.query(sqlQuery, [session_id, email]);
     // console.log(result);
@@ -138,6 +138,7 @@ async function checkPw(email, password){
     const rows = await pool.query(sqlQuery, email);
     return bcrypt.compare(password, rows[0].password);
   } catch (error) {
+    console.log(error);
     return undefined;
   }
 }
