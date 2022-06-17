@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marc Zuckerberg</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Marc Zuckerberg</h1>
+            <p class="lead mb-0">Welcome to my social exhibit</p>
+        </div>
+    </div>
+</header>
+<!-- Page content-->
+<div class="container">
+    <div class="row">
+        <!-- Blog entries-->
+        <div class="col-lg-7">
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <a><img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">January 1, 2022</div>
+                    <h2 class="card-title">Featured Post Title</h2>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                    <a class="btn btn-primary" href="">Read more →</a>
+                </div>
+            </div>
+            <!-- Nested row for non-featured blog posts-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">January 1, 2022</div>
+                            <h2 class="card-title h4">Post Title</h2>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                            <a class="btn btn-primary" >Read more →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a ><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">January 1, 2022</div>
+                            <h2 class="card-title h4">Post Title</h2>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                            <a class="btn btn-primary">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Comment Section-->
+        <div class="col-lg-5">
+            <!-- Search widget-->
+            <div class="card mb-4 bg-light">
+                <div class="card-header">
+                    <div class="d-flex flex-column">
+                        <h5>Comment Section</h5>
+                        <!--/*@thymesVar id="newComment" type="com.hackenanvms.springmvc.commentSection.Comment"   */-->
+                        <form  method="post" th:action="@{/marc_zuckerberg_new_comment}" th:object="${newComment}">
+                            <textarea th:field="*{commentMsg}" type="text" class="form-control rounded-0" aria-describedby="addCommentBtn" placeholder="Add comment"></textarea>
+                            <div class="d-flex flex-row input-group rounded-0 my-1">
+                                <input th:field="*{creatorName}" type="text" class="form-control rounded-0" aria-describedby="addCommentBtn" placeholder="Add Username">
+                                <button id="addCommentBtn" class="btn btn-primary rounded-0" type="submit">Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--/*@thymesVar id="commentList" type="java.util.ArrayList"*/-->
+                <div th:each="comment : ${commentList}" class="card-body py-1">
+                    <div class="card my-1 text-black rounded-0">
+                        <div class="card-body">
+                            <div class="d-flex flex-row align-items-center">
+                                <!--/*@thymesVar id="creatorName" type="java.lang.String"*/-->
+                                <h5 th:text="${comment.creatorName}">Anonymous</h5>
+                                <!--/*@thymesVar id="creationDate" type="java.lang.String"*/-->
+                                <span class="mb-1 mx-2" th:text="${comment.creationDate}"></span>
+                            </div>
+                            <div class="comment-text-sm">
+                                <!--/*@thymesVar id="commentMsg" type="java.lang.String"*/-->
+                                <span th:utext="${comment.commentMsg}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript" src="webjars/bootstrap/5.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
