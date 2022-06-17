@@ -34,14 +34,13 @@ const LoginForm = (props) => {
   };
 
   const clickHandler = () => {
-    // var hashedPassword = bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
-    // console.log(hashedPassword)
+    var hashedPassword = bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
+    console.log(hashedPassword)
     var tableData = {
       email: enteredMail,
       password: enteredPass,
     };
-   
-    console.log(tableData);
+
 
     const requestOptions = {
       method: "POST",
