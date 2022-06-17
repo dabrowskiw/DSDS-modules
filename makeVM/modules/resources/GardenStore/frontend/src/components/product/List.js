@@ -74,8 +74,6 @@ const List = (props) => {
     props.onLogout();
   };
 
-  console.log(products);
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {

@@ -66,7 +66,8 @@ const Profile = (props) => {
     return (
         <div>
             <div className="container">
-                <Header loggedIn={props.loggedIn}/>
+                <Header loggedIn={props.loggedIn}
+        user={props.user} />
                 <main>
                 <i className="bi-alarm"></i>
                 <i className="bi-alarm"></i>

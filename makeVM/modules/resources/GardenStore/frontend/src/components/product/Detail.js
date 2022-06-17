@@ -30,7 +30,7 @@ const Detail = (props) => {
     var tableData = {
       text: comment,
       productId: id,
-      userName: user.userName,
+      author: user.userName,
     };
 
     const requestOptions = {
@@ -80,10 +80,7 @@ const Detail = (props) => {
             (result) => {
               if (mounted) {
                 setIsLoaded(true);
-                console.log("result-useEffect: "+result);
                 setProduct(result);
-                
-                console.log("product-useEffect: "+product);
               }
             },
             (error) => {
@@ -125,9 +122,11 @@ const Detail = (props) => {
     props.onLogout();
   };
 
+
   return (<div>
     <div className="container">
-      <Header loggedIn={props.loggedIn}/>
+      <Header loggedIn={props.loggedIn}
+        user={props.user} />
       <main>
         {error ? (<div>Error: {error.message}</div>) :
           (!isLoaded ? (<div className="loading-screen">Loading product...</div>) :
@@ -164,9 +163,9 @@ const Detail = (props) => {
                             <button className="btn btn-outline-primary btn-md mx-2" type="button" onClick={likeHandler}>
                               Like
                             </button>
-                            <button className="btn btn-primary btn-md" type="button" 
-                            onClick={cartHandler}>
-                              Add to Cart <Icon.Cart/>
+                            <button className="btn btn-primary btn-md" type="button"
+                              onClick={cartHandler}>
+                              Add to Cart <Icon.Cart />
                             </button>
                           </div>
                         </div>

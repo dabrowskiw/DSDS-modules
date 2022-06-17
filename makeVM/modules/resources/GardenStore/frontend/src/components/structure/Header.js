@@ -6,11 +6,11 @@ import '../styles.css';
 const Header = (props) => {
 
     const [user, setUser] = useState([]);
-
+    
     const logout = () => {
         props.onLogout();
     }
-    
+  
     return (
         <header className="after-login">
             <div className="menu-container">
@@ -23,7 +23,7 @@ const Header = (props) => {
                             (<>
                                 <li className="nav-item"><NavLink className="nav-link text-light" to={'/'} onClick={logout}><Icon.Lock/> Logout</NavLink></li>
                                 <li className="nav-item"><NavLink className="nav-link text-light" to={`/profile`}><Icon.Person/> Profile</NavLink></li>
-                                <li className="nav-item"><NavLink className="nav-link text-light" to={`/profile`}><Icon.Cart/> My Shopping Cart: {user.cart_amount}</NavLink></li></>
+                                <li className="nav-item"><NavLink className="nav-link text-light" to={`/profile`}><Icon.Cart/> My Shopping Cart: {props.user.cart_amount}</NavLink></li></>
                             ) : <li className="nav-item"><NavLink className="nav-link text-light" to={'/'}><Icon.Lock/> Login</NavLink></li>}
                     </ul>
                 </nav>

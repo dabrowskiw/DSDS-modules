@@ -40,7 +40,7 @@ const LoginForm = (props) => {
       email: enteredMail,
       password: enteredPass,
     };
-
+   
     console.log(tableData);
 
     const requestOptions = {
@@ -69,7 +69,8 @@ const LoginForm = (props) => {
 
   return (
     <div className="container">
-      <Header loggedIn={props.loggedIn}/>
+      <Header loggedIn={props.loggedIn}
+        user={props.user} />
       <main>
         <div className="row justify-content-center">
           <div className="col-11 col-sm-6 shadow-0 border rounded-3 py-2">

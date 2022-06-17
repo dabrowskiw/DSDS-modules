@@ -33,29 +33,31 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    setTimeout(() => {
+    if (loggedIn) {
+      setTimeout(() => {
         async function getProfile() {
-            fetch(`${baseUrl}/users`, {
-                method: "GET",
-                credentials: "include",
-            })
-                .then((res) => res.json())
-                .then(
-                    (result) => {
-                        if (mounted) {
-                            setIsLoaded(true);
-                            setProfile(result);
-                        }
-                    },
-                    (error) => {
-                        if (mounted) {
-                            setIsLoaded(true);
-                            setError(error);
-                        }
-                    }
-                );
+          fetch(`${baseUrl}/users`, {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((res) => res.json())
+            .then(
+              (result) => {
+                if (mounted) {
+                  setIsLoaded(true);
+                  setProfile(result);
+                }
+              },
+              (error) => {
+                if (mounted) {
+                  setIsLoaded(true);
+                  setError(error);
+                }
+              }
+            );
         } getProfile();
-    }, 2000);
+      }, 2000);
+}
     return () => (mounted = false); //cleanup function
 }, [profile, baseUrl, path, loggedIn]);
 
@@ -86,6 +88,7 @@ function App() {
           element={<LandingPage 
             loggedIn={loggedIn}
             baseUrl={baseUrl}
+            user={profile}
           />}
         />
         <Route
@@ -94,6 +97,7 @@ function App() {
           element={<DetailPage
             loggedIn={loggedIn}
             baseUrl={baseUrl}
+            user={profile}
           />}
         />
         <Route
@@ -102,6 +106,7 @@ function App() {
           element={<Profile
             loggedIn={loggedIn}
             baseUrl={baseUrl}
+            user={profile}
           />}
         />
       </Routes>

@@ -14,7 +14,8 @@ const LandingPage = (props) => {
 
     return (
         <div className="container">
-            <Header loggedIn={props.loggedIn}/>
+            <Header loggedIn={props.loggedIn}
+        user={props.user} />
             <main>
                 <List
                 baseUrl={props.baseUrl} />
