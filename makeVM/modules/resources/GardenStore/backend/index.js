@@ -82,14 +82,14 @@ app.get("/comments", async (req,res)=>{
 
 app.post("/comments", async (req,res) => {
   try {
-    const {comment_id, username, text, created_at, product_id} = req.body;
-    const sqlQuery = 'INSERT INTO comments (comment_id, author, text, created_at, product_id) VALUES (?,?,?,?,?)';
-    const result = await pool.query(sqlQuery, [comment_id, username, text, created_at, product_id]);
+    const {author, text, product_id} = req.body;
+    const sqlQuery = 'INSERT INTO comments (comment_id, author, text, product_id) VALUES (?,?,?,?)';
+    const result = await pool.query(sqlQuery, [crypto.randomUUID ,author, text,  product_id]);
     console.log(result);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
     return res.json({message: "comment created successfully"});
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).send(error);
   }
 })
 /**
@@ -184,17 +184,16 @@ app.get("/users", isLoggedIn, async (req, res) => {
 })
 
 // creates user with salted password hash and adds it to db
-app.post("/users", async (req,res) => {
+app.post("/user", async (req,res) => {
   try {
-    const {username, plainpassword, iban, address, email} = req.body;
+    const {username, pw, iban, address, email} = req.body;
     const user_id = crypto.randomUUID();
     const salt = await bcrypt.genSalt();
-    const password = await bcrypt.hash(plainpassword, salt);
+    const password = await bcrypt.hash(pw, salt);
     const sqlQuery = 'INSERT INTO users (username, password, iban, address, email, user_id) VALUES (?,?,?,?,?,?)';
     const result = await pool.query(sqlQuery, [username, password, iban, address, email, user_id]);
     console.log(result);
-    res.status(200);  
-    return res.json({message: "user created successfully"});
+    return res.status(200).json({message: "user created successfully"});
   } catch (error) {
     res.status(400).send(error.message);
   }

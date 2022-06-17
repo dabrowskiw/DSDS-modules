@@ -28,9 +28,9 @@ const Detail = (props) => {
   const clickHandler = () => {
     var comment = comment;
     var tableData = {
+      author: props.user.username,
       text: comment,
-      productId: id,
-      author: user.userName,
+      product_id: id
     };
 
     const requestOptions = {
@@ -41,7 +41,7 @@ const Detail = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/comment/add`, requestOptions)
+    fetch(`${BASE_URL}/comments/`, requestOptions)
   };
 
   const likeHandler = () => {
