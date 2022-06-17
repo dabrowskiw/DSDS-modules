@@ -13,7 +13,7 @@ DEFAULT CHARSET=utf8mb3
 COLLATE=utf8mb3_general_ci;
 
 CREATE TABLE sys.comments (
-	comment_id varchar(100) NULL,
+	comment_id varchar(100) NOT NULL,
 	author varchar(100) NOT NULL,
 	`text` varchar(300) NOT NULL,
 	rating INT NULL,
