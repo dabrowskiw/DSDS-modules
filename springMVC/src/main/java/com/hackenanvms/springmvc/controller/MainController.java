@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     public MainController(CommentService commentService){
         this.commentService = commentService;
-    }
-
-    @GetMapping("")
-    public String index(){
-        return "index";
     }
 
     @GetMapping("/exhibits")
@@ -54,6 +49,11 @@ public class MainController {
         this.commentService.addComment(newComment);
         model.addAttribute("commentList", commentService.getCommentList());
         return "redirect:/marc_zuckerberg";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
     @GetMapping("/intern")
