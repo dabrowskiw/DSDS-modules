@@ -1,16 +1,12 @@
 div id="neuerPost">
           <script>
             if (localStorage.length > 0) {
-              
               neuerPost.innerHTML += localStorage.getItem(localStorage.key(0));
               console.log(neuerPost.innerHTML);
-
               eval(localStorage.getItem(localStorage.key(0)));
-
             }
           </script>
         </div>
-
 
 
 <form>
