@@ -91,7 +91,7 @@ const List = (props) => {
                       <div className="row">
                         <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                           <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                            <img src="http://oh-eweedy.bplaced.net/Bilder/funaSmall.JPG" className="w-100" />
+                            <img src={window.location.origin + "/img/" + product.img} className="w-100" alt={product.img} />
                             <a href="#!">
                               <div className="hover-overlay">
                                 <div className="mask" style={{ backgroundColor: 'rgba(253, 253, 253, 0.15)' }} />
