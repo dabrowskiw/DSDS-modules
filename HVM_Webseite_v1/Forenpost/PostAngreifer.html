@@ -41,13 +41,8 @@
         <div id="neuerPost">
           <script>
             if (localStorage.length > 0) {
-              neuerPost.innerHTML += localStorage.getItem(localStorage.key(0));
-              console.log(neuerPost.innerHTML);
-              /*
-              try:
-              alert('hello')
-              alert("Hello! I am an alert box!!");
-              */
+              //this is the command for forcing to execute JS code
+              //input for input field needs to be inserted without script tag like so: alert("Test")
               eval(localStorage.getItem(localStorage.key(0)));
             }
           </script>
