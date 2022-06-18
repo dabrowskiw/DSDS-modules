@@ -1,5 +1,5 @@
 # Notes
-Where do i have to inject the eval command for executing the script? At the point where the inner html gets called 
+Where do i have to inject the eval command for executing the script? At the point where the inner html gets called. Need to get session cookie. For that i need to create a session cookie. 
 
 # Action plan
 1. Create post in forum who contains malicous script
