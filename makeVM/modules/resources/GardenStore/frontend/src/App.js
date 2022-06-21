@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -13,20 +13,19 @@ function App() {
   const baseUrl = "http://localhost:8000";
   const [profile, setProfile] = useState([]);
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const loginTriedHandler = (result) => {
+
+  const loginHandler = (result) => {
     setLoggedIn(result);
-    // console.log("Login: " + result);
   };
+
   const logoutHandler = async () => {
     setLoggedIn(false);
     const response = await fetch(`${baseUrl}/logout`, {
       method: "POST",
       credentials: "include",
     });
-    console.log(response);
   }
 
   const path = window.location.pathname;
@@ -36,7 +35,7 @@ function App() {
     if (loggedIn) {
       setTimeout(() => {
         async function getProfile() {
-          fetch(`${baseUrl}/users`, {
+          fetch(`${baseUrl}/userprofile`, {
             method: "GET",
             credentials: "include",
           })
@@ -44,19 +43,17 @@ function App() {
             .then(
               (result) => {
                 if (mounted) {
-                  setIsLoaded(true);
                   setProfile(result);
                 }
               },
               (error) => {
                 if (mounted) {
-                  setIsLoaded(true);
                   setError(error);
                 }
               }
             );
         } getProfile();
-      }, 2000);
+      }, 200);
 }
     return () => (mounted = false); //cleanup function
 }, [profile, baseUrl, path, loggedIn]);
@@ -69,7 +66,7 @@ function App() {
           exact
           path="/"
           element={<LoginForm
-            onTryLogin={loginTriedHandler}
+            onTryLogin={loginHandler}
             loggedIn={loggedIn}
             baseUrl={baseUrl}
           />}

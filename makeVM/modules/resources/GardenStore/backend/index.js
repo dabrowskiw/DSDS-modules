@@ -124,7 +124,6 @@ async function login(email, password){
     const session_id = crypto.randomUUID(); // >node v v15.6.0 
     const sqlQuery = 'INSERT INTO sessions (session_id, email) VALUES (?,?)';
     const result = await pool.query(sqlQuery, [session_id, email]);
-    // console.log(result);
     return session_id;
   }
   return undefined;
@@ -134,6 +133,7 @@ app.post("/logout", async (req,res) => {
   res.clearCookie('session');
   res.status(200);
   return res.json({message: "Successfully logged out."});
+  // delete cookie from database
 })
 
 // check salted & hashedPW with bcrypt
@@ -175,7 +175,7 @@ async function isLoggedIn(req, res, next){
  * Users endpoints    TODO:check if logged in user can get other user data
  */
 
-// get only logged in user
+// get only username of logged user
 app.get("/users", isLoggedIn, async (req, res) => {
   try{
   const sessionCookie = req.cookies.session;
@@ -188,6 +188,21 @@ app.get("/users", isLoggedIn, async (req, res) => {
   }catch(error){
     res.status(400).send(error.message);
   }
+})
+
+// get full user profile
+app.get("/userprofile", isLoggedIn, async (req,res) => {
+  try{
+    const sessionCookie = req.cookies.session;
+    const sqlQuery = 'SELECT session_id, email FROM sessions WHERE session_id=?';
+    const rows = await pool.query(sqlQuery, sessionCookie);
+    email = rows[0].email;
+    const sqlQuery2 = 'SELECT * FROM users WHERE email=?';
+    const rows2 = await pool.query(sqlQuery2, email);
+    return res.status(200).send(rows2[0]);
+    }catch(error){
+      res.status(400).send(error.message);
+    }
 })
 
 // creates user with salted password hash and adds it to db

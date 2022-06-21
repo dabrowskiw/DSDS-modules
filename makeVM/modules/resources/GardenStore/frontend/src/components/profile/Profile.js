@@ -31,7 +31,7 @@ const Profile = (props) => {
 
         setTimeout(() => {
             async function getProfile() {
-                fetch(`${BASE_URL}/users`, {
+                fetch(`${BASE_URL}/userprofile`, {
                     method: "GET",
                     credentials: "include",
                 })

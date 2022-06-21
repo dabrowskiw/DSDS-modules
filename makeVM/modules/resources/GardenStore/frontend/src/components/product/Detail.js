@@ -198,7 +198,7 @@ const Detail = (props) => {
                   <div className="shadow-0 border bg-light bg-gradient rounded-3 mt-3">
                     <div className="card-body">
                       <div className="row justify-content-center">
-                        {!isLoadedComments ? (<div className="loading-screen">Loading comments...</div>) :
+                        {!isLoadedComments ? (<div className="loading-screen">Loading comments...<br/></div>) :
                           ((!_.isEmpty(comments)) ? (
                             comments.map(
                               (comment) => {
@@ -208,7 +208,7 @@ const Detail = (props) => {
                                       <p>{comment.text}</p>
                                     </div>
                                     <div className="col-3 mb-0 text-right blockquote-footer">
-                                      <p>{comment.created_at} by {comment.username}</p>
+                                      <p>{comment.created_at} by {comment.author}</p>
                                     </div></div>
                                 )
                               })
