@@ -85,7 +85,6 @@ app.post("/comments", async (req,res) => {
     const {comment_id, username, text, created_at, product_id} = req.body;
     const sqlQuery = 'INSERT INTO comments (comment_id, author, text, created_at, product_id) VALUES (?,?,?,?,?)';
     const result = await pool.query(sqlQuery, [comment_id, username, text, created_at, product_id]);
-    console.log(result);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
     return res.json({message: "comment created successfully"});
   } catch (error) {
