@@ -20,12 +20,17 @@ const Detail = (props) => {
   const [product, setProduct] = useState([]);
   const [loggedUser, setLoggedUser] = useState([]);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState();
+  const [newComment, setNewComment] = useState("");
+
+  // var newComment;
 
   const path = window.location.pathname;
   const { id } = useParams(); //gets id from current route
 
   const addCommentButtonHandler = () => {
+
+    // const commentTextField = document.getElementById('comment');
+
     var tableData = {
       author: loggedUser,
       text: newComment,
@@ -34,18 +39,19 @@ const Detail = (props) => {
 
     const requestOptions = {
       method: "POST",
-      mode: "cors",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/comments/`, requestOptions)
+    fetch(`${BASE_URL}/comments`, requestOptions)
   };
 
   const addCommentTextFieldChangeHandler = (e) => {
     const enteredComment = e.target.value;
     setNewComment(enteredComment);
+    // newComment = enteredComment;
+    // console.log(newComment);
   }
 
   const likeButtonHandler = () => {
@@ -126,6 +132,7 @@ const Detail = (props) => {
           (result) => {
             if(mounted){
               setLoggedUser(result.username);
+              console.log(result.username)
             }
           },(error) => {
             if(mounted){
@@ -137,7 +144,7 @@ const Detail = (props) => {
     }, 2000);
 
     return () => (mounted = false); //cleanup function
-  }, [product, BASE_URL, navigate, path, props.logged, id, comments]);
+  }, [product, BASE_URL, navigate, path, props.logged, id, comments, loggedUser]);
 
   const logout = () => {
     props.onLogout();
@@ -193,9 +200,8 @@ const Detail = (props) => {
                       </div>
                     </div>
                   </div>
+
                   {/* comment section  */}
-
-
                   <div className="shadow-0 border bg-light bg-gradient rounded-3 mt-3">
                     <div className="card-body">
                       <div className="row justify-content-center">
@@ -220,7 +226,20 @@ const Detail = (props) => {
                         {props.loggedIn ?
                           <form className="form-inline">
                             <div className="col-12 rounded-3 input-group">
-                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment" onChange={addCommentTextFieldChangeHandler}/>
+                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment"  
+                               onChange={addCommentTextFieldChangeHandler}
+                              />
+                              <div dangerouslySetInnerHTML={{"__html": newComment}}/>
+                              
+                              {/* 
+                               <div dangerouslySetInnerHTML={{"__html": newComment}}/>
+                              for xss-testing purpose only
+                              // <div id="comment">
+                              // </div>
+                              // <input placeholder="Enter sth:" /> 
+                              */}
+
+
                               <div className="col-auto input-group-append">
                                 <button type="button" className="notRelativ btn btn-primary" onClick={addCommentButtonHandler}>Add Comment</button>
                               </div>

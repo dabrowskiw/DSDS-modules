@@ -52,7 +52,7 @@ function App() {
               }
             );
         } getProfile();
-      }, 200);
+      }, 2000);
 }
     return () => (mounted = false); //cleanup function
 }, [profile, baseUrl, path, loggedIn]);
