@@ -8,6 +8,12 @@ const cors = require("cors");
 require('dotenv').config();
 
 
+//TODO 
+//comment function 
+//user register succeed-> weiterleitung auf homepage
+//like endpunkt
+//cart count erhöhen Add to Cart endpunkt
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -41,7 +47,8 @@ app.get("/products/:id", async (req,res) =>{
     const sqlQuery = 'SELECT * FROM products WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
     res.status(200).json(rows[0]);
-  } catch (error) {
+  } catch (error) {res.status(401);
+    return res.json({
     res.status(400).send(error.message);
   }
   // res.status(200).json({id:req.params.id});
@@ -84,7 +91,8 @@ app.post("/comments", async (req,res) => {
   try {
     const {author, text, product_id} = req.body;
     const sqlQuery = 'INSERT INTO comments (comment_id, author, text, product_id) VALUES (?,?,?,?)';
-    const result = await pool.query(sqlQuery, [crypto.randomUUID ,author, text,  product_id]);
+    const uuid = crypto.randomUUID;
+    const result = await pool.query(sqlQuery, [uuid ,author, text,  product_id]);
     console.log(result);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
     return res.json({message: "comment created successfully"});
