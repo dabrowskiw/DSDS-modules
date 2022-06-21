@@ -1,41 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="webjars/bootstrap/5.0.0/css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-light">
 <div th:replace="fragments/navbar :: navbar"></div>
-<header class="py-5 bg-light border-bottom mb-4">
-    <div class="container">
-        <div class="text-center my-5">
-            <h1 class="fw-bolder">Intern Area</h1>
-            <p class="lead mb-0">This is the area only meant for Employees</p>
-        </div>
-    </div>
-</header>
-<div class="container px-4 px-lg-5">
-    <!-- Page content-->
-    <div class="container">
-        <div class="row mx-2 my-2">
-            <!-- Featured blog post-->
-            <div class="card col-4">
-                <a href="/logout"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                <div class="card-body">
-                </div>
-            </div>
-            <div class="card col-2">
-                <a><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2022</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary">Read more →</a>
+<div sec:authorize="hasRole('user')">
+    <div class="row col-12 d-flex flex-row">
+        <div class="col-1"></div>
+        <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+            <div class="card-body">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Intern Area</h1>
+                    <p class="lead mb-0">you are currently an user</p>
                 </div>
             </div>
         </div>
+        <div class="col-1"></div>
     </div>
 </div>
+<div sec:authorize="hasRole('admin')">
+    <div class="row col-12 d-flex flex-row">
+        <div class="col-1"></div>
+        <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+            <div class="card-body">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Intern Area</h1>
+                    <p class="lead mb-0">you are currently an Admin</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
 </body>
 </html>

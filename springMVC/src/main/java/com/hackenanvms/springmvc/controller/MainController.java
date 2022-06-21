@@ -60,4 +60,9 @@ public class MainController {
     public String intern(){
         return "intern";
     }
+
+    @GetMapping("/contact")
+    public String contact(){
+        return "contact";
+    }
 }
