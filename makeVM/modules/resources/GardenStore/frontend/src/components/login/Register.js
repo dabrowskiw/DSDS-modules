@@ -15,6 +15,8 @@ const Register = (props) => {
   const BASE_URL = props.baseUrl;
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredMail, setEnteredMail] = useState("");
+  const [enteredAddress, setEnteredAddress] = useState("");
+  const [enteredIban, setEnteredIban] = useState("");
   const [enteredPass, setEnteredPass] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
 
@@ -28,15 +30,31 @@ const Register = (props) => {
     pass: "invalid password"
   };
 
+  const usernameChangeHandler = (event) => {
+    setEnteredUsername(event.target.value);
+  };
+  const emailChangeHandler = (event) => {
+    setEnteredMail(event.target.value);
+  };
+  const addressChangeHandler = (event) => {
+    setEnteredAddress(event.target.value);
+  };
+  const ibanChangeHandler = (event) => {
+    setEnteredIban(event.target.value);
+  };
+  const passChangeHandler = (event) => {
+    setEnteredPass(event.target.value);
+  };
+
+
   const clickHandler = () => {
-    var username = enteredUsername;
-    var mail = enteredMail;
-    var hashedPassword = bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
     
     var tableData = {
-      username: username,
-      email: mail,
-      password: hashedPassword,
+      username: enteredUsername,
+      email: enteredMail,
+      pw: bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu'),
+      address: enteredAddress,
+      iban: enteredIban
     };
 
     const requestOptions = {
@@ -47,10 +65,10 @@ const Register = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/register`, requestOptions)
+    fetch(`${BASE_URL}/user`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        if (res.status === "200") {
+        if (res.status === "200") { //TODO hier kommt nie ein status an
           props.onTryLogin(true);
           navigate('/landingPage');
           return true;
@@ -74,21 +92,29 @@ const Register = (props) => {
               <form className="d-grid gap-2">
                 <div className="form-group d-grid gap-2">
                   <label htmlFor="username">Your Username</label>
-                  <input type="text" className="form-control" id="name" autoComplete="off" />
+                  <input onChange={usernameChangeHandler} type="text" className="form-control" id="name" autoComplete="off" />
                 </div>
                 <div className="form-group d-grid gap-2">
                   <label htmlFor="email">Email address</label>
-                  <input type="email" className="form-control" id="email" autoComplete="off"/>
+                  <input onChange={emailChangeHandler} type="email" className="form-control" id="email" autoComplete="off" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="address">Address</label>
+                  <textarea onChange={addressChangeHandler} type="textfield" className="form-control" id="address" autoComplete="off" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="iban">IBAN</label>
+                  <input onChange={ibanChangeHandler} type="text" className="form-control" id="iban" autoComplete="off" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
-                  <input type="password" className="form-control" id="password" autoComplete="off"/>
+                  <input onChange={passChangeHandler} type="password" className="form-control" id="password" autoComplete="off" />
                 </div>
                 <button type="button" className="btn btn-success btn-md my-3" onClick={clickHandler}>Register</button>
               </form>
             </div>
             <div className="text-center border-top pt-2 mt-2">
-                Already have an account? <Link to="/">Sign-In</Link>
+              Already have an account? <Link to="/">Sign-In</Link>
             </div>
           </div>
         </div>

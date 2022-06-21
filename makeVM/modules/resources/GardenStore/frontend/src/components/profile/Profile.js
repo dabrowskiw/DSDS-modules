@@ -61,8 +61,6 @@ const Profile = (props) => {
         props.onLogout();
     };
 
-    console.log(profile)
-
     return (
         <div>
             <div className="container">

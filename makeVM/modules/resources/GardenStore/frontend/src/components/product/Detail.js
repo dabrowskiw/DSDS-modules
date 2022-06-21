@@ -27,9 +27,9 @@ const Detail = (props) => {
   const clickHandler = () => {
     var comment = comment;
     var tableData = {
+      author: props.user.username,
       text: comment,
-      productId: id,
-      author: user.userName,
+      product_id: id
     };
 
     const requestOptions = {
@@ -40,7 +40,7 @@ const Detail = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/comment/add`, requestOptions)
+    fetch(`${BASE_URL}/comments/`, requestOptions)
   };
 
   const likeHandler = () => {
@@ -138,7 +138,7 @@ const Detail = (props) => {
                       <div className="row">
                         <div className="col-lg-6  ">
                           <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                            <img src="http://oh-eweedy.bplaced.net/Bilder/funaSmall.JPG" className="w-100" />
+                            <img src={window.location.origin + "/img/" + product.img} className="w-100" alt={product.img} />
                             <a href="#!">
                               <div className="hover-overlay">
                                 <div className="mask" style={{ backgroundColor: 'rgba(253, 253, 253, 0.15)' }} />

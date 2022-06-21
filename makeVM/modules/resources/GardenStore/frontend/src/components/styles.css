@@ -1,3 +1,7 @@
+:root {
+    --green: #198754;
+  }
+
 html {
     --lh: 1.4rem;
     line-height: var(--lh);
@@ -55,7 +59,7 @@ header {
     top: 0%;
     right: 0%;
     height: 90px;
-    background-color: #30ba0a;
+    background-color: var(--green);
 }
 
 main {
@@ -79,6 +83,6 @@ footer {
     left: 0%;
     width: 100%;
     height: 30px;
-    background-color: #30ba0a;
+    background-color: var(--green);
     padding: 5px;
 }
