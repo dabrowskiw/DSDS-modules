@@ -23,7 +23,6 @@ const Detail = (props) => {
 
   const path = window.location.pathname;
   const { id } = useParams(); //gets id from current route
-  const commentsToFind = comments.filter((comment) => comment.productId === id);
 
   const clickHandler = () => {
     var comment = comment;
@@ -68,7 +67,6 @@ const Detail = (props) => {
 
   useEffect(() => {
     let mounted = true;
-
     setTimeout(() => {
       async function getProduct() {
         fetch(`${BASE_URL}/products/${id}`, {
@@ -92,6 +90,7 @@ const Detail = (props) => {
           );
       } getProduct();
 
+      mounted = true;
       async function getProductComments() {
         fetch(`${BASE_URL}/comments/${id}`, {
           method: "GET",
@@ -113,10 +112,10 @@ const Detail = (props) => {
             }
           );
       } getProductComments();
-    }, 2000);
+    }, 5000);
 
     return () => (mounted = false); //cleanup function
-  }, [product, BASE_URL, navigate, path, props.logged, id]);
+  }, [product, BASE_URL, navigate, path, props.logged, id, comments]);
 
   const logout = () => {
     props.onLogout();
@@ -149,7 +148,7 @@ const Detail = (props) => {
                         </div>
                         <div className="col-lg-6 col-xl-6">
                           <h5 className="text-center">{product.name}</h5>
-                          <p className="text-right"><span>{product.likes}</span> Likes | <span>{commentsToFind.length}</span> Comments</p>
+                          <p className="text-right"><span>{product.likes}</span> Likes | <span>{comments.length}</span> Comments</p>
                           <p className="mb-4 mb-md-0">
                             {product.description}
                           </p>
@@ -179,8 +178,8 @@ const Detail = (props) => {
                     <div className="card-body">
                       <div className="row justify-content-center">
                         {!isLoadedComments ? (<div className="loading-screen">Loading comments...</div>) :
-                          ((!_.isEmpty(commentsToFind)) ? (
-                            commentsToFind.map(
+                          ((!_.isEmpty(comments)) ? (
+                            comments.map(
                               (comment) => {
                                 return (
                                   <div key={comment.comment_id} className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
