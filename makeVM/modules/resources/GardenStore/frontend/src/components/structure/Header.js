@@ -1,26 +1,18 @@
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router';
 import '../styles.css';
 
 const Header = (props) => {
 
+    let navigate = useNavigate();
+
     const [user, setUser] = useState([]);
     const BASE_URL = props.BASE_URL;
-    
-    const logout = () => {
-        fetch(`${BASE_URL}/logout`, {
-            method: "POST",
-            credentials: "include"
-          })
-            .then((response) => response.json())
-            .then((res) => {
-              if (res.status === 200) {
-                return true;
-              } else {
-                return false;
-              }
-            });
+
+    const logout = () =>{
+        props.onLogout();
     }
   
     return (
@@ -34,7 +26,7 @@ const Header = (props) => {
                         {props.loggedIn ?
                             (<>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link text-light" to={'/'} onClick={logout}><Icon.Lock/> Logout</NavLink></li>
+                                    <NavLink className="nav-link text-light" to='/' onClick={logout}><Icon.Lock/> Logout</NavLink></li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link text-light" to={`/profile`}><Icon.Person/> Profile</NavLink></li>
                                 <li className="nav-item">

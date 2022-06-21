@@ -5,11 +5,16 @@ import List from "../product/List"
 
 const LandingPage = (props) => {
 
+    const logout = () => {
+        props.onLogout();
+    };
+
     return (
         <div className="container">
             <Header 
             loggedIn={props.loggedIn}
-            user={props.user} />
+            user={props.user}
+            onLogout={logout} />
             <main>
                 <List
                 baseUrl={props.baseUrl} />

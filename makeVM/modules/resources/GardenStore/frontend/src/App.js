@@ -13,7 +13,6 @@ function App() {
   const baseUrl = "http://localhost:8000";
   const [profile, setProfile] = useState([]);
   const [error, setError] = useState(null);
-
   const [loggedIn, setLoggedIn] = useState(false);
 
   const loginHandler = (result) => {
@@ -22,7 +21,7 @@ function App() {
 
   const logoutHandler = async () => {
     setLoggedIn(false);
-    const response = await fetch(`${baseUrl}/logout`, {
+    await fetch(`${baseUrl}/logout`, {
       method: "POST",
       credentials: "include",
     });
@@ -86,6 +85,7 @@ function App() {
             loggedIn={loggedIn}
             baseUrl={baseUrl}
             user={profile}
+            onLogout={logoutHandler}
           />}
         />
         <Route
@@ -95,6 +95,7 @@ function App() {
             loggedIn={loggedIn}
             baseUrl={baseUrl}
             user={profile}
+            onLogout={logoutHandler}
           />}
         />
         <Route
@@ -104,6 +105,7 @@ function App() {
             loggedIn={loggedIn}
             baseUrl={baseUrl}
             user={profile}
+            onLogout={logoutHandler}
           />}
         />
       </Routes>

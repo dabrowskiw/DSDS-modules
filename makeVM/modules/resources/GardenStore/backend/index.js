@@ -133,7 +133,7 @@ app.post("/logout", async (req,res) => {
   res.clearCookie('session');
   res.status(200);
   return res.json({message: "Successfully logged out."});
-  // delete cookie from database
+  // TODO: delete cookie from database
 })
 
 // check salted & hashedPW with bcrypt

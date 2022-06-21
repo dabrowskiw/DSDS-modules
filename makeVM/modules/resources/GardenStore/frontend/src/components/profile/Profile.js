@@ -64,8 +64,10 @@ const Profile = (props) => {
     return (
         <div>
             <div className="container">
-                <Header loggedIn={props.loggedIn}
-        user={props.user} />
+                <Header 
+                loggedIn={props.loggedIn} 
+                user={props.user} 
+                onLogout={logout}/>
                 <main>
                 <i className="bi-alarm"></i>
                 <i className="bi-alarm"></i>

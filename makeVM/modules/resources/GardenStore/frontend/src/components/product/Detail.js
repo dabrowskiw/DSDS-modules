@@ -146,7 +146,8 @@ const Detail = (props) => {
   return (<div>
     <div className="container">
       <Header loggedIn={props.loggedIn}
-        user={props.user} />
+        user={props.user}
+        onLogout={logout} />
       <main>
         {error ? (<div>Error: {error.message}</div>) :
           (!isLoaded ? (<div className="loading-screen">Loading product...</div>) :
