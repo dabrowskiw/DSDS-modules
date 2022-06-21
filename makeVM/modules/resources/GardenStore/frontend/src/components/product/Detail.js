@@ -18,17 +18,17 @@ const Detail = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoadedComments, setIsLoadedComments] = useState(false);
   const [product, setProduct] = useState([]);
-  const [user, setUser] = useState([]);
+  const [loggedUser, setLoggedUser] = useState([]);
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState();
 
   const path = window.location.pathname;
   const { id } = useParams(); //gets id from current route
 
-  const clickHandler = () => {
-    var comment = comment;
+  const addCommentButtonHandler = () => {
     var tableData = {
-      author: props.user.username,
-      text: comment,
+      author: loggedUser,
+      text: newComment,
       product_id: id
     };
 
@@ -43,7 +43,12 @@ const Detail = (props) => {
     fetch(`${BASE_URL}/comments/`, requestOptions)
   };
 
-  const likeHandler = () => {
+  const addCommentTextFieldChangeHandler = (e) => {
+    const enteredComment = e.target.value;
+    setNewComment(enteredComment);
+  }
+
+  const likeButtonHandler = () => {
     const requestOptions = {
       method: "POST",
       mode: "cors",
@@ -54,7 +59,7 @@ const Detail = (props) => {
     fetch(`${BASE_URL}/products/${id}/like`, requestOptions)
   };
 
-  const cartHandler = () => {
+  const addToCartButtonHandler = () => {
     const requestOptions = {
       method: "POST",
       mode: "cors",
@@ -62,7 +67,7 @@ const Detail = (props) => {
       headers: { "Content-Type": "application/json" },
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
     };
-    fetch(`${BASE_URL}/profile/${user.id}/cart`, requestOptions)
+    fetch(`${BASE_URL}/profile/${loggedUser.id}/cart`, requestOptions)
   };
 
   useEffect(() => {
@@ -90,7 +95,6 @@ const Detail = (props) => {
           );
       } getProduct();
 
-      mounted = true;
       async function getProductComments() {
         fetch(`${BASE_URL}/comments/${id}`, {
           method: "GET",
@@ -112,7 +116,25 @@ const Detail = (props) => {
             }
           );
       } getProductComments();
-    }, 5000);
+      
+      async function getLoggedUser(){
+        fetch(`${BASE_URL}/users`,{
+          method: "GET",
+          credentials: "include",
+        }).then((res) => res.json())
+        .then(
+          (result) => {
+            if(mounted){
+              setLoggedUser(result.username);
+            }
+          },(error) => {
+            if(mounted){
+              setError(error);
+            }
+          }
+        )
+      }  getLoggedUser();
+    }, 2000);
 
     return () => (mounted = false); //cleanup function
   }, [product, BASE_URL, navigate, path, props.logged, id, comments]);
@@ -120,7 +142,6 @@ const Detail = (props) => {
   const logout = () => {
     props.onLogout();
   };
-
 
   return (<div>
     <div className="container">
@@ -159,11 +180,11 @@ const Detail = (props) => {
                             <h6 className="text-success">{product.amount} in stock</h6>
                           </div>
                           <div className="d-flex flex-row mt-4">
-                            <button className="btn btn-outline-primary btn-md mx-2" type="button" onClick={likeHandler}>
+                            <button className="btn btn-outline-primary btn-md mx-2" type="button" onClick={likeButtonHandler}>
                               Like
                             </button>
                             <button className="btn btn-primary btn-md" type="button"
-                              onClick={cartHandler}>
+                              onClick={addToCartButtonHandler}>
                               Add to Cart <Icon.Cart />
                             </button>
                           </div>
@@ -198,9 +219,9 @@ const Detail = (props) => {
                         {props.loggedIn ?
                           <form className="form-inline">
                             <div className="col-12 rounded-3 input-group">
-                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment" />
+                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment" onChange={addCommentTextFieldChangeHandler}/>
                               <div className="col-auto input-group-append">
-                                <button type="button" className="notRelativ btn btn-primary" onClick={clickHandler}>Add Comment</button>
+                                <button type="button" className="notRelativ btn btn-primary" onClick={addCommentButtonHandler}>Add Comment</button>
                               </div>
                             </div>
                           </form>

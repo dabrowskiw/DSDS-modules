@@ -48,10 +48,8 @@ app.get("/products/:id", async (req,res) =>{
     const rows = await pool.query(sqlQuery, req.params.id);
     res.status(200).json(rows[0]);
   } catch (error) {
-    res.status(401);
+    res.status(400).send(error.message);
   }
-    return res.json(res.status(400).send(error.message));
-  // res.status(200).json({id:req.params.id});
 });
 
 app.get("/products", async (req,res)=>{
@@ -89,9 +87,10 @@ app.get("/comments", async (req,res)=>{
 
 app.post("/comments", async (req,res) => {
   try {
-    const {comment_id, username, text, created_at, product_id} = req.body;
-    const sqlQuery = 'INSERT INTO comments (comment_id, author, text, created_at, product_id) VALUES (?,?,?,?,?)';
-    const result = await pool.query(sqlQuery, [comment_id, username, text, created_at, product_id]);
+    const payload = req.body;
+    const comment_id = crypto.randomUUID(); // >node v v15.6.0 
+    const sqlQuery = 'INSERT INTO comments (comment_id, author, text, product_id) VALUES (?,?,?,?)';
+    const result = await pool.query(sqlQuery, [comment_id, payload.author, payload.text, payload.product_id]);
     res.status(200);   // TODO: request result throws error that big int can't be parsed 
     return res.json({message: "comment created successfully"});
   } catch (error) {
@@ -175,13 +174,15 @@ async function isLoggedIn(req, res, next){
 /**
  * Users endpoints    TODO:check if logged in user can get other user data
  */
+
+// get only logged in user
 app.get("/users", isLoggedIn, async (req, res) => {
   try{
   const sessionCookie = req.cookies.session;
   const sqlQuery = 'SELECT session_id, email FROM sessions WHERE session_id=?';
   const rows = await pool.query(sqlQuery, sessionCookie);
   email = rows[0].email;
-  const sqlQuery2 = 'SELECT * FROM users WHERE email=?';
+  const sqlQuery2 = 'SELECT username FROM users WHERE email=?';
   const rows2 = await pool.query(sqlQuery2, email);
   return res.status(200).send(rows2[0]);
   }catch(error){
@@ -190,7 +191,7 @@ app.get("/users", isLoggedIn, async (req, res) => {
 })
 
 // creates user with salted password hash and adds it to db
-app.post("/user", async (req,res) => {
+app.post("/users", async (req,res) => {
   try {
     const {username, pw, iban, address, email} = req.body;
     const user_id = crypto.randomUUID();
