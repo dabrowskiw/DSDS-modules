@@ -1,3 +1,2 @@
-1. create session cookie
-2. insert script welches session cookie igendwo hin sendet
-3. 
+1. put website on netlify
+2. part of injecting script via text field
