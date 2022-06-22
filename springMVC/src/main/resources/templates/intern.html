@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div sec:authorize="hasRole('user')">
+    <div class="row col-12 d-flex flex-row">
+        <div class="col-1"></div>
+        <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+            <div class="card-body">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Intern Area</h1>
+                    <p class="lead mb-0">you are currently an user</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+<div sec:authorize="hasRole('admin')">
+    <div class="row col-12 d-flex flex-row">
+        <div class="col-1"></div>
+        <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+            <div class="card-body">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Intern Area</h1>
+                    <p class="lead mb-0">you are currently an Admin</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+</body>
+</html>

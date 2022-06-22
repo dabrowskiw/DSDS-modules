@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="row col-12 d-flex flex-row">
+    <div class="col-1"></div>
+    <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+        <div class="card-body">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Wilkommen im ... Museum!</h1>
+                <p class="lead mb-0">...</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<!-- Page Content-->
+<div class="container px-4 px-lg-5">
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="card bg-white rounded-0 shadow col-lg-5 bg-light">
+            <div class="card-body">
+                <p> In unserem Museum können sie viele Berühmtheiten aus dem Bereich der Informatik kennenlernen
+                und in unserem Forum deren Schaffen diskutieren. Falls sie eine Mitgliedschaft unseres Museums besitzen,
+                können sie auch auf weitere Informationen zu den Persönlichkeiten zugreifen.
+                </p>
+                <a class="btn rounded-0 btn-primary" th:href="@{/exhibits}">Zu den Ausstellungen</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
