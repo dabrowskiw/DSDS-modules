@@ -20,16 +20,13 @@ const Detail = (props) => {
   const [product, setProduct] = useState([]);
   const [loggedUser, setLoggedUser] = useState([]);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
 
-  // var newComment;
+  const [newComment, setNewComment] = useState("");   //only for testing xss
 
   const path = window.location.pathname;
   const { id } = useParams(); //gets id from current route
 
   const addCommentButtonHandler = () => {
-
-    // const commentTextField = document.getElementById('comment');
 
     var tableData = {
       author: loggedUser,
@@ -44,14 +41,15 @@ const Detail = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/comments`, requestOptions)
+    fetch(`${BASE_URL}/comments`, requestOptions);
+
+    //Clear comment text area onClick
+    document.getElementById('comment').value = "";
   };
 
   const addCommentTextFieldChangeHandler = (e) => {
     const enteredComment = e.target.value;
     setNewComment(enteredComment);
-    // newComment = enteredComment;
-    // console.log(newComment);
   }
 
   const likeButtonHandler = () => {
@@ -99,8 +97,7 @@ const Detail = (props) => {
               }
             }
           );
-      } getProduct();
-
+      } 
       async function getProductComments() {
         fetch(`${BASE_URL}/comments/${id}`, {
           method: "GET",
@@ -121,7 +118,7 @@ const Detail = (props) => {
               }
             }
           );
-      } getProductComments();
+      } 
       
       async function getLoggedUser(){
         fetch(`${BASE_URL}/users`,{
@@ -132,7 +129,6 @@ const Detail = (props) => {
           (result) => {
             if(mounted){
               setLoggedUser(result.username);
-              console.log(result.username)
             }
           },(error) => {
             if(mounted){
@@ -140,8 +136,11 @@ const Detail = (props) => {
             }
           }
         )
-      }  getLoggedUser();
-    }, 2000);
+      }  
+      getProduct();
+      getProductComments();
+      getLoggedUser();
+    }, 100);
 
     return () => (mounted = false); //cleanup function
   }, [product, BASE_URL, navigate, path, props.logged, id, comments, loggedUser]);
@@ -212,7 +211,8 @@ const Detail = (props) => {
                                 return (
                                   <div key={comment.comment_id} className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
                                     <div className="col-9 ">
-                                      <p>{comment.text}</p>
+                                      {/* <p>{comment.text}</p> */}
+                                      <p><span dangerouslySetInnerHTML={{ __html: comment.text }} /></p> 
                                     </div>
                                     <div className="col-3 mb-0 text-right blockquote-footer">
                                       <p>{comment.created_at} by {comment.author}</p>
@@ -229,17 +229,6 @@ const Detail = (props) => {
                               <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment"  
                                onChange={addCommentTextFieldChangeHandler}
                               />
-                              <div dangerouslySetInnerHTML={{"__html": newComment}}/>
-                              
-                              {/* 
-                               <div dangerouslySetInnerHTML={{"__html": newComment}}/>
-                              for xss-testing purpose only
-                              // <div id="comment">
-                              // </div>
-                              // <input placeholder="Enter sth:" /> 
-                              */}
-
-
                               <div className="col-auto input-group-append">
                                 <button type="button" className="notRelativ btn btn-primary" onClick={addCommentButtonHandler}>Add Comment</button>
                               </div>
