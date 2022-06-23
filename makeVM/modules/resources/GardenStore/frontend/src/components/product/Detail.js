@@ -8,6 +8,7 @@ import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../structure/Header"
 import Footer from "../structure/Footer"
+import moment from 'moment';
 
 const Detail = (props) => {
 
@@ -215,7 +216,7 @@ const Detail = (props) => {
                                       <p><span dangerouslySetInnerHTML={{ __html: comment.text }} /></p> 
                                     </div>
                                     <div className="col-3 mb-0 text-right blockquote-footer">
-                                      <p>{comment.created_at} by {comment.author}</p>
+                                      <p>{moment(comment.created_at).fromNow()} by {comment.author}</p>
                                     </div></div>
                                 )
                               })
