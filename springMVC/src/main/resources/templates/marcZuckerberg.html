@@ -38,38 +38,43 @@
             <div class="card-header bg-white shadow rounded-0 border border-1">
                 <div class="d-flex flex-column">
                     <h5>Comment Section</h5>
+                    <div class="text-warning mb-2">
+                        <h6>Note:</h6>
+                        All committed comments will be reviewed by an internal employee to ensure political correctness!
+                        Only then will your comment appear on this side!
+                    </div>
                     <!--/*@thymesVar id="newComment" type="com.hackenanvms.springmvc.commentSection.Comment"   */-->
                     <form  method="post" th:action="@{/marc_zuckerberg_new_comment}" th:object="${newComment}">
                         <textarea rows="4" th:field="*{commentMsg}" type="text" class="form-control bg-light mb-2 rounded-0" aria-describedby="addCommentBtn" placeholder="Enter your comment"></textarea>
                         <div class="d-flex flex-row input-group rounded-0 my-2">
                             <input th:field="*{creatorName}" type="text" class="form-control bg-light rounded-0" aria-describedby="addCommentBtn" placeholder="Add Username">
-                            <button id="addCommentBtn" class="btn btn-primary rounded-0" type="submit">Comment</button>
+                            <button id="addCommentBtn" class="btn btn-primary rounded-0" type="submit">Commit</button>
                         </div>
                     </form>
                 </div>
             </div>
             <!--/*@thymesVar id="commentList" type="java.util.ArrayList"*/-->
-            <div style="height: 450px;" class="card-body py-1 overflow-scroll">
-            <div th:each="comment : ${commentList}" >
-                <div class="card shadow border-0 my-1 text-black rounded-0">
-                    <div class="card-body">
-                        <div class="d-flex flex-row align-items-center">
-                            <!--/*@thymesVar id="creatorName" type="java.lang.String"*/-->
-                            <h5 th:text="${comment.creatorName}">Anonymous</h5>
-                            <!--/*@thymesVar id="creationDate" type="java.lang.String"*/-->
-                            <span class="mb-1 mx-2" th:text="${comment.creationDate}"></span>
-                        </div>
-                        <div class="comment-text-sm">
-                            <!--/*@thymesVar id="commentMsg" type="java.lang.String"*/-->
-                            <span th:utext="${comment.commentMsg}"></span>
+            <div style="height: 585px;" class="card-body py-1 overflow-scroll">
+                <div th:each="comment : ${commentList}" >
+                    <div class="card shadow border-0 my-1 text-black rounded-0">
+                        <div class="card-body">
+                            <div class="d-flex flex-row align-items-center">
+                                <!--/*@thymesVar id="creatorName" type="java.lang.String"*/-->
+                                <h5 th:text="${comment.creatorName}">Anonymous</h5>
+                                <!--/*@thymesVar id="creationDate" type="java.lang.String"*/-->
+                                <span class="mb-1 mx-2" th:text="${comment.creationDate}"></span>
+                            </div>
+                            <div class="comment-text-sm">
+                                <!--/*@thymesVar id="commentMsg" type="java.lang.String"*/-->
+                                <span th:utext="${comment.commentMsg}"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+        <div class="col-1"></div>
     </div>
-    <div class="col-1"></div>
 </div>
 </body>
 </html>

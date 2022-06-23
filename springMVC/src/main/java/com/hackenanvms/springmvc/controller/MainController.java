@@ -3,10 +3,11 @@ package com.hackenanvms.springmvc.controller;
 import com.hackenanvms.springmvc.commentSection.Comment;
 import com.hackenanvms.springmvc.commentSection.CommentService;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 public class MainController {
@@ -45,9 +46,8 @@ public class MainController {
     }
 
     @PostMapping("/marc_zuckerberg_new_comment")
-    public String createComment(Model model, @ModelAttribute Comment newComment){
-        this.commentService.addComment(newComment);
-        model.addAttribute("commentList", commentService.getCommentList());
+    public String createComment(@ModelAttribute Comment newComment){
+        this.commentService.addCommittedComment(newComment);
         return "redirect:/marc_zuckerberg";
     }
 
@@ -57,8 +57,21 @@ public class MainController {
     }
 
     @GetMapping("/intern")
-    public String intern(){
+    public String intern(Model model){
+        model.addAttribute("committedCommentList", this.commentService.getCommittedCommentList());
         return "intern";
+    }
+
+    @PostMapping("/delete_comment")
+    public String deleteComment(@RequestParam UUID id){
+        this.commentService.deleteCommittedComment(id);
+        return "redirect:/intern";
+    }
+
+    @PostMapping("/publicize_comment")
+    public String publicizeComment(@RequestParam UUID id){
+        this.commentService.moveFromCommittedToPublicized(id);
+        return "redirect:/intern";
     }
 
     @GetMapping("/contact")

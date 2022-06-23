@@ -1,7 +1,6 @@
 package com.hackenanvms.springmvc.configuration;
 
 
-import com.hackenanvms.springmvc.filter.SessionFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
-
 
 @Configuration
 @EnableWebSecurity
@@ -25,8 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.addFilterBefore(new SessionFilter(), ChannelProcessingFilter.class)
-                .authorizeHttpRequests().antMatchers( "/intern").hasAnyRole("user","admin")
+        http.authorizeHttpRequests().antMatchers( "/intern").hasAnyRole("user","admin")
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll().logoutSuccessUrl("/login").and().csrf().disable();
     }
