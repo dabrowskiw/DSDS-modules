@@ -48,7 +48,7 @@ const Register = (props) => {
 
 
   const clickHandler = () => {
-    
+
     var tableData = {
       username: enteredUsername,
       email: enteredMail,
@@ -65,20 +65,23 @@ const Register = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/users`, requestOptions)
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.status === 200) {
-          props.onTryLogin(true);
-          alert('Successfully created user ' + enteredUsername + '\nPlease sign in again!');
-          navigate('/');
-          return true;
-        } else {
-          setErrorMessages({ name: "pass", message: errors.pass });
-          props.onTryLogin(false);
-          return false;
-        }
+      fetch(`${BASE_URL}/users`, requestOptions)
+        .then((response) => response.json())
+        .then((res) => {
+          if (res.status === 200) {
+            alert('Successfully created user ' + enteredUsername + '\nPlease sign in again!');
+            navigate('/');
+            return true;
+          } else {
+            alert('Please try again! E-mail address may already be registered.');
+            setErrorMessages({ name: "pass", message: errors.pass });
+            return false;
+          }
+        }).catch(error=>{
+          alert('Please try again! E-mail address may already be registered.');
+          console.log(error);
       });
+  
   };
 
   return (

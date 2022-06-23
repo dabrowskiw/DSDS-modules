@@ -30,7 +30,7 @@ const LoginForm = (props) => {
     );
 
   const errors = {
-    pass: "invalid password"
+    pass: "Invalid password"
   };
 
   const clickHandler = () => {
@@ -50,7 +50,6 @@ const LoginForm = (props) => {
     fetch(`${BASE_URL}/login`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        console.log(res.status);
         if (res.status === 200) {
           props.onTryLogin(true);
           navigate('/landingPage');
@@ -58,6 +57,7 @@ const LoginForm = (props) => {
         } else {
           setErrorMessages({ name: "pass", message: errors.pass });
           props.onTryLogin(false);
+          alert('Please try again! '+ res.message);
           return false;
         }
       });
