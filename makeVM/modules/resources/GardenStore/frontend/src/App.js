@@ -76,6 +76,7 @@ function App() {
           element={<Register
             loggedIn={loggedIn}
             baseUrl={baseUrl}
+            onTryLogin={loginHandler}
           />}
         />
         <Route

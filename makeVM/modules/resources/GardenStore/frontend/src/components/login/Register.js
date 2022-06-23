@@ -65,12 +65,13 @@ const Register = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-    fetch(`${BASE_URL}/user`, requestOptions)
+    fetch(`${BASE_URL}/users`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        if (res.status === "200") { //TODO hier kommt nie ein status an
+        if (res.status === 200) {
           props.onTryLogin(true);
-          navigate('/landingPage');
+          alert('Successfully created user ' + enteredUsername + '\nPlease sign in again!');
+          navigate('/');
           return true;
         } else {
           setErrorMessages({ name: "pass", message: errors.pass });

@@ -215,7 +215,7 @@ app.post("/users", async (req,res) => {
     const sqlQuery = 'INSERT INTO users (username, password, iban, address, email, user_id) VALUES (?,?,?,?,?,?)';
     const result = await pool.query(sqlQuery, [username, password, iban, address, email, user_id]);
     console.log(result);
-    return res.status(200).json({message: "user created successfully"});
+    return res.status(200).json({status:200, message: "user created successfully"});
   } catch (error) {
     res.status(400).send(error.message);
   }
