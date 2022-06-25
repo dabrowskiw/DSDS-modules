@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<!--/*@thymesVar id="containerList" type="java.util.ArrayList"*/-->
+<!--/*@thymesVar id="container" type="com.hackenanvms.springmvc.storageContainer.Container"*/-->
+<div th:each="container : ${containerList}">
+    <div class="row col-12 d-flex flex-row">
+        <div class="col-3"></div>
+        <div class="card bg-white shadow rounded-0 border-0 col-4 my-2 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn-icons-png.flaticon.com/512/679/679720.png">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto" th:text="${container.containerName}">Container 1</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a  th:href="@{/intern/storage/container(id=${container.containerId},name=${container.containerName})}" class="btn btn-primary rounded-0 float-end my-auto">Access Container</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-5"></div>
+    </div>
+</div>
+</body>
+</html>
