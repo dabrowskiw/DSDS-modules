@@ -15,6 +15,7 @@ cecho(){
 
 #Portforwarding for docker registry
 vboxmanage modifyvm ${VMNAME} --natpf1 "DOCKERREGISTRY,tcp,,5500,,5000"
+vboxmanage modifyvm ${VMNAME} --natpf1 "DOCKERDAEMON,tcp,,4444,,4444"
 vboxmanage startvm "${VMNAME}" --type headless
 cecho "PURPLE" "Waiting for VM to come up..."
 sleep 8
