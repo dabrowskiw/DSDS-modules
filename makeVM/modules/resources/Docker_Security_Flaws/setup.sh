@@ -11,8 +11,6 @@ cecho(){
     printf "${!1}${2} ${NC}\n"
 }
 
-
-
 # curl just now needed - delete later on
 cecho "PURPLE" "Installing dependencies..."
 echo ""
@@ -53,6 +51,15 @@ docker restart registry
 cecho "PURPLE" "Verifying registry is running and image was pushed successfully..."
 echo ""
 curl -X GET http://127.0.0.1:5000/v2/_catalog
+
+# use exposed tcp socket for connection 
+
+sed -i '14s/.*/ExecStart=/usr/sbin/dockerd -H tcp://0.0.0.0:4444 -H unix:///var/run/docker.sock' /usr/lib/systemd/system/docker.service
+systemctl daemon-reload
+systemctl restart docker.service
+
+apt-get install nmap
+nmap localhost
 
 echo ""
 cecho "GREEN" "Setup succesfull."
