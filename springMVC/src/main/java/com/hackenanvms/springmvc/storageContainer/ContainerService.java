@@ -12,10 +12,10 @@ public class ContainerService {
     private List<Container> containerList = new ArrayList<>();
 
     public ContainerService(){
-        this.containerList.add(new Container("container1", "News Container","Employee#1","Content"));
-        this.containerList.add(new Container("container2", "Noam Container","Employee#2","Content"));
-        this.containerList.add(new Container("container3", "Neum. Container","Employee#3","Content"));
-        this.containerList.add(new Container("container4", " Container","Employee#2","Content"));
+        this.containerList.add(new Container("container1", "Container#1","Employee#1","Content"));
+        this.containerList.add(new Container("container2", "Container#2","Employee#2","Content"));
+        this.containerList.add(new Container("container3", "Container#3","Employee#3","Content"));
+        this.containerList.add(new Container("container4", "Container#4","Employee#2","Content"));
         this.containerList.add(new Container("container5", "VIP Container","Director","Content"));
     }
 

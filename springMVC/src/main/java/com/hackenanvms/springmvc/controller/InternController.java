@@ -1,8 +1,8 @@
 package com.hackenanvms.springmvc.controller;
 
 import com.hackenanvms.springmvc.commentSection.CommentService;
-import com.hackenanvms.springmvc.storageContainer.Container;
-import com.hackenanvms.springmvc.storageContainer.ContainerService;
+import com.hackenanvms.springmvc.storageContainer.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,15 @@ public class InternController {
 
     private final CommentService commentService;
     private final ContainerService containerService;
+    private final ContainerRequestService containerRequestService;
 
-    public InternController(CommentService commentService, ContainerService containerService){
+
+    public InternController(CommentService commentService,
+                            ContainerService containerService,
+                            ContainerRequestService containerRequestService){
         this.commentService = commentService;
         this.containerService = containerService;
+        this.containerRequestService = containerRequestService;
     }
 
     @GetMapping("")
@@ -64,5 +69,25 @@ public class InternController {
             return "concreteContainer";
         }
         return "redirect:/intern/storage/container?id="+id+"&name="+container.getContainerName()+"&error";
+    }
+
+    @GetMapping("/storage/container_forum")
+    public String containerForum(Model model){
+        model.addAttribute("requestList", containerRequestService.getRequestList());
+        model.addAttribute("newRequest", new ContainerRequest(""));
+        model.addAttribute("newResponse", new ContainerRequestResponse(UUID.randomUUID().toString(),""));
+        return "containerForum";
+    }
+
+    @PostMapping("/storage/container_forum_new_request")
+    public String addContainerRequest(@ModelAttribute ContainerRequest newRequest, Authentication authentication){
+        this.containerRequestService.addRequest(newRequest.getRequestMessage(), authentication.getName());
+        return "redirect:/intern/storage/container_forum";
+    }
+
+    @PostMapping("/storage/container_forum_new_response")
+    public String addContainerRequest(@ModelAttribute ContainerRequestResponse newResponse){
+        this.containerRequestService.addResponseToRequest(newResponse);
+        return "redirect:/intern/storage/container_forum";
     }
 }
