@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Storage</title>
@@ -8,18 +8,23 @@
 <body class="bg-light">
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="col-12 d-flex flex-row">
-    <div class="col-1"></div>
-    <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+    <div class="col-2"></div>
+    <div class="card bg-white shadow rounded-0 border-0 col-8  my-2">
+        <div class="card-header bg-white">
+            <!--/*@thymesVar id="container" type="com.hackenanvms.springmvc.storageContainer.Container"*/-->
+            <h1 th:text="${container.containerName}">Container name not found</h1>
+            <div class="d-flex flex-row">
+                Owned by:
+                <p class="mx-1" th:text="${container.containerOwner}">container owner not found</p>
+            </div>
+        </div>
         <div class="card-body">
             <div class="text-center my-5">
-                <!--/*@thymesVar id="container" type="com.hackenanvms.springmvc.storageContainer.Container"*/-->
-                <h1 class="fw-bolder" th:text="${container.containerName}">Intern Area</h1>
-                <p class="lead" th:text="${container.containerOwner}">you are currently an user</p>
                 <p th:text="${container.content}"></p>
             </div>
         </div>
     </div>
-    <div class="col-1"></div>
+    <div class="col-2"></div>
 </div>
 </body>
 </html>

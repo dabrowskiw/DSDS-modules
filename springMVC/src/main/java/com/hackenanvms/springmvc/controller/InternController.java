@@ -29,20 +29,25 @@ public class InternController {
 
     @GetMapping("")
     public String intern(Model model){
-        model.addAttribute("committedCommentList", this.commentService.getCommittedCommentList());
         return "intern";
     }
 
-    @PostMapping("/delete_comment")
-    public String deleteComment(@RequestParam UUID id){
-        this.commentService.deleteCommittedComment(id);
-        return "redirect:/intern";
+    @GetMapping("/commentReview")
+    public String commentReview(Model model){
+        model.addAttribute("committedCommentList", this.commentService.getCommittedCommentList());
+        return "commentReview";
     }
 
-    @PostMapping("/publicize_comment")
+    @PostMapping("/commentReview/delete_comment")
+    public String deleteComment(@RequestParam UUID id){
+        this.commentService.deleteCommittedComment(id);
+        return "redirect:/intern/commentReview";
+    }
+
+    @PostMapping("/commentReview/publicize_comment")
     public String publicizeComment(@RequestParam UUID id){
         this.commentService.moveFromCommittedToPublicized(id);
-        return "redirect:/intern";
+        return "redirect:/intern/commentReview";
     }
 
 

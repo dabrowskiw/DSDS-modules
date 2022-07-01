@@ -20,55 +20,31 @@
     </div>
     <div class="col-1"></div>
 </div>
-<div class="row col-12">
+<div class="row col-12 d-flex flex-row my-4 ">
     <div class="col-1"></div>
-    <div class="col-4">
-        <div class="card border-0 rounded-0 bg-white">
-            <div class="card-header bg-white shadow rounded-0 border border-1">
-                <div class="d-flex flex-column">
-                    <h5>Committed Comments</h5>
-                </div>
-            </div>
-            <div style="height: 585px;" class="card-body py-1 overflow-scroll">
-                <!--/*@thymesVar id="committedCommentList" type="java.util.ArrayList"*/-->
-                <div th:each="comment : ${committedCommentList}" >
-                    <div class="card shadow border-0 my-1 text-black rounded-0">
-                        <div class="card-body">
-                            <div class="d-flex flex-row align-items-center">
-                                <!--/*@thymesVar id="creatorName" type="java.lang.String"*/-->
-                                <h5 th:text="${comment.creatorName}">Anonymous</h5>
-                                <!--/*@thymesVar id="creationDate" type="java.lang.String"*/-->
-                                <span class="mb-1 mx-2" th:text="${comment.creationDate}"></span>
-                            </div>
-                            <div class="comment-text-sm mb-2">
-                                <!--/*@thymesVar id="commentMsg" type="java.lang.String"*/-->
-                                <span th:utext="${comment.commentMsg}"></span>
-                            </div>
-                            <div class="d-flex flex-row float-end">
-                                <!--/*@thymesVar id="commentToBeDeleted" type="com.hackenanvms.springmvc.commentSection.Comment"*/-->
-                                <form th:action="@{/intern/delete_comment}" method="post">
-                                    <!--/*@thymesVar id="id" type="java.util.UUID"*/-->
-                                    <input type="hidden" name="id" th:value="${comment.id}">
-                                    <input id="deleteCommentBtn" type="submit" class="btn btn-danger rounded-0" value="Delete">
-                                </form>
-                                <!--/*@thymesVar id="commentToBePublicized" type="com.hackenanvms.springmvc.commentSection.Comment"*/-->
-                                <form class="mx-1" th:action="@{/intern/publicize_comment}" method="post">
-                                    <!--/*@thymesVar id="id" type="java.util.UUID"*/-->
-                                    <input type="hidden" name="id" th:value="${comment.id}">
-                                    <input id="publicizeCommentBtn" type="submit" class="btn btn-primary rounded-0" value="Publicize">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <div class="col-5">
+        <div class="card bg-white shadow rounded-0 border-0 mx-1 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2021/05/04/18/35/list-6229425_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto">Comment Section</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a  th:href="@{/intern/commentReview}" class="btn btn-primary rounded-0 float-end my-auto">Comment Section</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-6">
-        <div class="card border-0 rounded-0 bg-white shadow">
+    <div class="col-5">
+        <div class="card bg-white shadow rounded-0 border-0 mx-1 px-1">
             <div class="card-body">
-                <h5>By clicking the button below, you can get to the internal, employee only, container storage.</h5>
-                <a class="btn btn-primary rounded-0 float-end" th:href="@{/intern/storage}">Show Containers</a>
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2018/06/28/03/50/folder-3503133_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto">Container Storage</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a th:href="@{/intern/storage}" class="btn btn-primary rounded-0 float-end my-auto">Container Storage</a>
+                </div>
             </div>
         </div>
     </div>

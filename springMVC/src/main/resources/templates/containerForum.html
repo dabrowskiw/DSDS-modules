@@ -18,7 +18,6 @@
                         <form  method="post" th:action="@{/intern/storage/container_forum_new_request}" th:object="${newRequest}">
                             <textarea rows="4" th:field="*{requestMessage}" type="text" class="form-control bg-light mb-2 rounded-0" aria-describedby="addCommentBtn" placeholder="Enter your container link"></textarea>
                             <div class="d-flex flex-row input-group rounded-0 my-2">
-                                <label sec:authentication="name" ></label>
                                 <button id="addCommentBtn" class="btn btn-primary rounded-0" type="submit">Commit</button>
                             </div>
                         </form>
@@ -39,14 +38,15 @@
                                 <a class="mb-3" th:href="${request.requestMessage}" th:text="${request.requestMessage}"></a>
                             </div>
                             <!--/*@thymesVar id="newResponse" type="com.hackenanvms.springmvc.storageContainer.ContainerRequestResponse"*/-->
-                            <form  method="post" th:action="@{/intern/storage/container_forum_new_response}" th:object="${newResponse}">
-                                <div class="d-flex flex-row input-group rounded-0 my-2 mt-2">
-                                    <input type="hidden" th:value="${request.requestId}" id="respondedId" name="respondedId">
-                                    <input th:field="*{responseMessage}" type="text" class="form-control bg-light rounded-0" aria-describedby="addCommentBtn" placeholder="Enter your Response">
-                                    <button id="addResponseBtn" class="btn btn-primary rounded-0" type="submit">Commit</button>
-                                </div>
-                            </form>
-
+                            <div sec:authorize="hasRole('admin')">
+                                <form  method="post" th:action="@{/intern/storage/container_forum_new_response}" th:object="${newResponse}">
+                                    <div class="d-flex flex-row input-group rounded-0 my-2 mt-2">
+                                        <input type="hidden" th:value="${request.requestId}" id="respondedId" name="respondedId">
+                                        <input th:field="*{responseMessage}" type="text" class="form-control bg-light rounded-0" aria-describedby="addCommentBtn" placeholder="Enter your Response">
+                                        <button id="addResponseBtn" class="btn btn-primary rounded-0" type="submit">Commit</button>
+                                    </div>
+                                </form>
+                            </div>
                         <div th:if="${request.response != null}">
                             <div class="card mx-2 rounded-0 border-0">
                                 <div class="card-body">
