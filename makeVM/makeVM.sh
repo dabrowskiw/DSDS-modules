@@ -7,6 +7,7 @@ export VMNAME="HTW-Injectable"
 export STARTSNAPSHOT="CleanInstall"
 #export STARTSNAPSHOT="SSH-LEMP"
 
+mkdir -p temp 
 rm -f ${ENVFILE}
 # Remove temporary keys by restarting ssh agent
 eval "$(ssh-agent -s)"
