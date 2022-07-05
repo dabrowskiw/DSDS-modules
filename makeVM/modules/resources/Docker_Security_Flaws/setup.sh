@@ -11,7 +11,6 @@ cecho(){
     printf "${!1}${2} ${NC}\n"
 }
 
-# curl just now needed - delete later on
 cecho "PURPLE" "Installing dependencies..."
 echo ""
 apt-get -y update && apt-get -y install docker.io curl docker-compose
@@ -25,12 +24,8 @@ cecho "PURPLE" "Start docker registry on port 5000..."
 echo ""
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
-# can be deleted later on
-docker ps
-
 cecho "PURPLE" "Setting up config for unsecure docker communication"
 mv /root/config/daemon.js /etc/docker
-
 
 cecho "PURPLE" "pushing test images to registry..."
 echo ""
@@ -55,24 +50,15 @@ sed -i "14s|.*|$exec_start|" /usr/lib/systemd/system/docker.service
 
 systemctl daemon-reload
 systemctl restart docker.service
-apt-get -y install nmap
-nmap localhost
 
  echo ""
 cecho "GREEN" "Setup Postgres container"
 
-
 /root/config/container_testDB/build.sh
 #docker-compose up -f /config/container_testDB/docker_compose.yml -d
-echo "pwd out"
-pwd
 
 #docker-compose up -d -f /config/container_testDB/docker_compose.yml
 docker-compose -f config/container_testDB/docker-compose.yml up -d
-
-echo ""
-docker ps -a
-
 
 echo ""
 cecho "GREEN" "Setup succesfull."
