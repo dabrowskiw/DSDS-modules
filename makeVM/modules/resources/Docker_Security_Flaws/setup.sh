@@ -14,7 +14,7 @@ cecho(){
 # curl just now needed - delete later on
 cecho "PURPLE" "Installing dependencies..."
 echo ""
-apt-get -y update && apt-get -y install docker.io && apt-get -y install curl
+apt-get -y update && apt-get -y install docker.io curl docker-compose
 
 # could be deleted later on
 cecho "PURPLE" "Verifying docker is working"
@@ -55,9 +55,20 @@ sed -i "14s|.*|$exec_start|" /usr/lib/systemd/system/docker.service
 
 systemctl daemon-reload
 systemctl restart docker.service
-
-apt-get install nmap
+apt-get -y install nmap
 nmap localhost
+
+ echo ""
+cecho "GREEN" "Setup Postgres container"
+
+
+/root/config/container_testDB/build.sh
+docker-compose up -d -f /config/container_testDB/docker_compose.yml
+#docker-compose -f /config/container_testDB/docker-compose.yml
+
+echo ""
+docker ps -a
+
 
 echo ""
 cecho "GREEN" "Setup succesfull."
