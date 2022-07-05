@@ -63,8 +63,12 @@ cecho "GREEN" "Setup Postgres container"
 
 
 /root/config/container_testDB/build.sh
-docker-compose up -d -f /config/container_testDB/docker_compose.yml
-#docker-compose -f /config/container_testDB/docker-compose.yml
+#docker-compose up -f /config/container_testDB/docker_compose.yml -d
+echo "pwd out"
+pwd
+
+#docker-compose up -d -f /config/container_testDB/docker_compose.yml
+docker-compose -f config/container_testDB/docker-compose.yml up -d
 
 echo ""
 docker ps -a
