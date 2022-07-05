@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y bash curl docker
 # The base Postgres image will run all SQL files in this directory. For more
 # information, see "Initialization scripts" at
 # https://hub.docker.com/_/postgres/
-COPY sql/*.sql /docker-entrypoint-initdb.d/
+COPY /config/container_testDB/sql/*.sql /docker-entrypoint-initdb.d/
 
 # OPTIONAL: Loading from CSVs for data import.
 # If you wish to use data stored in CSV/TSV format to populate your database,
