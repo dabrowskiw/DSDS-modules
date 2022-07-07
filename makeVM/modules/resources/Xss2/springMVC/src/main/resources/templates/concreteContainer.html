@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="col-12 d-flex flex-row">
+    <div class="col-2"></div>
+    <div class="card bg-white shadow rounded-0 border-0 col-8  my-2">
+        <div class="card-header bg-white">
+            <!--/*@thymesVar id="container" type="com.hackenanvms.springmvc.storageContainer.Container"*/-->
+            <h1 th:text="${container.containerName}">Container name not found</h1>
+            <div class="d-flex flex-row">
+                Owned by:
+                <p class="mx-1" th:text="${container.containerOwner}">container owner not found</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="text-center my-5">
+                <p th:text="${container.content}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

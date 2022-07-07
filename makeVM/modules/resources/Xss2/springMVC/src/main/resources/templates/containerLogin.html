@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Container Login</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container px-4 px-lg-5">
+    <div class="mx-auto col-md-4 mt-5">
+        <div class="card bg-white border-0 rounded-0 shadow h-100 bg-light">
+            <div class="card-body text-center">
+                <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                <h1 th:utext="${containerName}"></h1>
+                <h6 class="text-warning" th:if="${param.error}">
+                    Invalid password.
+                </h6>
+                <!--/*@thymesVar id="containerId" type="java.lang.String"*/-->
+                <form th:action="@{/intern/storage/container(id=${containerId})}" method="post">
+                    <!--/*@thymesVar id="containerPassword" type="java.lang.String"*/-->
+                    <input type="password" th:value="${containerPassword}" name="containerPassword" id="passwordInput" class="form-control rounded-0 bg-light" placeholder="Enter container password"/>
+                    <button type="submit" class="btn btn-primary rounded-0">Access Container</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

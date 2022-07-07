@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marc Zuckerberg</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="row col-12 d-flex flex-row">
+    <div class="col-1"></div>
+    <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+        <div class="card-body">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Marc Zuckerberg</h1>
+                <p class="lead mb-0">Welcome to my social exhibit</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="row col-12">
+    <div class="col-1"></div>
+    <div class="col-6">
+        <!-- Featured blog post-->
+        <div class="card bg-white rounded-0 border-0 shadow bg-white">
+            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg" alt="..." />
+            <div class="card-body">
+                <div class="small text-muted">January 1, 2022</div>
+                <h2 class="card-title">Featured Post Title</h2>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            </div>
+        </div>
+    </div>
+    <!-- Comment Section-->
+    <div class="col-4">
+        <div class="card border-0 rounded-0 bg-white">
+            <div class="card-header bg-white shadow rounded-0 border border-1">
+                <div class="d-flex flex-column">
+                    <h5>Comment Section</h5>
+                    <div class="text-warning mb-2">
+                        <h6>Note:</h6>
+                        All committed comments will be reviewed by an internal employee to ensure political correctness!
+                        Only then will your comment appear on this side!
+                    </div>
+                    <!--/*@thymesVar id="newComment" type="com.hackenanvms.springmvc.commentSection.Comment"   */-->
+                    <form  method="post" th:action="@{/exhibits/marc_zuckerberg_new_comment}" th:object="${newComment}">
+                        <textarea rows="4" th:field="*{commentMsg}" type="text" class="form-control bg-light mb-2 rounded-0" aria-describedby="addCommentBtn" placeholder="Enter your comment"></textarea>
+                        <div class="d-flex flex-row input-group rounded-0 my-2">
+                            <input th:field="*{creatorName}" type="text" class="form-control bg-light rounded-0" aria-describedby="addCommentBtn" placeholder="Add Username">
+                            <button id="addCommentBtn" class="btn btn-primary rounded-0" type="submit">Commit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--/*@thymesVar id="commentList" type="java.util.ArrayList"*/-->
+            <div style="height: 585px;" class="card-body py-1 overflow-scroll">
+                <div th:each="comment : ${commentList}" >
+                    <div class="card shadow border-0 my-1 text-black rounded-0">
+                        <div class="card-body">
+                            <div class="d-flex flex-row align-items-center">
+                                <!--/*@thymesVar id="creatorName" type="java.lang.String"*/-->
+                                <h5 th:text="${comment.creatorName}">Anonymous</h5>
+                                <!--/*@thymesVar id="creationDate" type="java.lang.String"*/-->
+                                <span class="mb-1 mx-2" th:text="${comment.creationDate}"></span>
+                            </div>
+                            <div class="comment-text-sm">
+                                <!--/*@thymesVar id="commentMsg" type="java.lang.String"*/-->
+                                <span th:utext="${comment.commentMsg}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+</body>
+</html>
