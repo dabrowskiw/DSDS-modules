@@ -65,23 +65,23 @@ const Register = (props) => {
       //Sicherheitsvorkehrung: Strict-Transport-Security: max-age=31536000; includeSubDomains
       body: JSON.stringify(tableData),
     };
-      fetch(`${BASE_URL}/users`, requestOptions)
-        .then((response) => response.json())
-        .then((res) => {
-          if (res.status === 200) {
-            alert('Successfully created user ' + enteredUsername + '\nPlease sign in again!');
-            navigate('/');
-            return true;
-          } else {
-            alert('Please try again! E-mail address may already be registered.');
-            setErrorMessages({ name: "pass", message: errors.pass });
-            return false;
-          }
-        }).catch(error=>{
+    fetch(`${BASE_URL}/users`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.status === 200) {
+          alert('Successfully created user ' + enteredUsername + '\nPlease sign in again!');
+          navigate('/');
+          return true;
+        } else {
           alert('Please try again! E-mail address may already be registered.');
-          console.log(error);
+          setErrorMessages({ name: "pass", message: errors.pass });
+          return false;
+        }
+      }).catch(error => {
+        alert('Please try again! E-mail address may already be registered.');
+        console.log(error);
       });
-  
+
   };
 
   return (
@@ -89,7 +89,7 @@ const Register = (props) => {
       <Header loggedIn={props.loggedIn}
         user={props.user} />
       <main>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center pb-5">
           <div className="col-11 col-sm-6 shadow-0 border rounded-3 py-2">
             <div className="login">
               <h3 className="title">Create your account</h3>
@@ -122,9 +122,9 @@ const Register = (props) => {
             </div>
           </div>
         </div>
-      </main >
+      </main>
       <Footer />
-    </div >
+    </div>
 
   );//return
 };//function
