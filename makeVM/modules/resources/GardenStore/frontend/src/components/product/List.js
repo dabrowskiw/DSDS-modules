@@ -108,7 +108,7 @@ const List = (props) => {
                         </div>
                         <div className="col-md-4 col-lg-3 col-xl-3 border-sm-start-none border-start">
                           <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">${product.price}</h4>
+                            <h4 className="mb-1 me-1">${parseFloat(product.price).toFixed(2)}</h4>
                             <h6 className="text-success">{product.amount} in stock</h6>
                           </div>
                           <div className="d-flex flex-column mt-4">

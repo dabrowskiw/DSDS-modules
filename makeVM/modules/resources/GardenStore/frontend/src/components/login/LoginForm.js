@@ -36,7 +36,7 @@ const LoginForm = (props) => {
   const clickHandler = () => {
     var tableData = {
       email: enteredMail,
-      password: enteredPass,
+      password: enteredPass, //sollte verschluesselt werden via https
     };
 
     const requestOptions = {

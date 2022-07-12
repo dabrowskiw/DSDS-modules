@@ -98,7 +98,7 @@ const Detail = (props) => {
               }
             }
           );
-      } 
+      }
       async function getProductComments() {
         fetch(`${BASE_URL}/comments/${id}`, {
           method: "GET",
@@ -119,25 +119,27 @@ const Detail = (props) => {
               }
             }
           );
-      } 
-      
-      async function getLoggedUser(){
-        fetch(`${BASE_URL}/users`,{
-          method: "GET",
-          credentials: "include",
-        }).then((res) => res.json())
-        .then(
-          (result) => {
-            if(mounted){
-              setLoggedUser(result.username);
-            }
-          },(error) => {
-            if(mounted){
-              setError(error);
-            }
-          }
-        )
-      }  
+      }
+
+      async function getLoggedUser() {
+        if (props.loggedIn) {
+          fetch(`${BASE_URL}/users`, {
+            method: "GET",
+            credentials: "include",
+          }).then((res) => res.json())
+            .then(
+              (result) => {
+                if (mounted) {
+                  setLoggedUser(result.username);
+                }
+              }, (error) => {
+                if (mounted) {
+                  setError(error);
+                }
+              }
+            )
+        }
+      }
       getProduct();
       getProductComments();
       getLoggedUser();
@@ -184,7 +186,7 @@ const Detail = (props) => {
                         </div>
                         <div className="col-md-6 col-lg-3 col-xl-3 border-mb-start-0 border-start">
                           <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">${product.price}</h4>
+                            <h4 className="mb-1 me-1">${parseFloat(product.price).toFixed(2)}</h4>
                             <h6 className="text-success">{product.amount} in stock</h6>
                           </div>
                           <div className="d-flex flex-row mt-4">
@@ -205,15 +207,15 @@ const Detail = (props) => {
                   <div className="shadow-0 border bg-light bg-gradient rounded-3 mt-3">
                     <div className="card-body">
                       <div className="row justify-content-center">
-                        {!isLoadedComments ? (<div className="loading-screen">Loading comments...<br/></div>) :
+                        {!isLoadedComments ? (<div className="loading-screen">Loading comments...<br /></div>) :
                           ((!_.isEmpty(comments)) ? (
-                            comments.map(
+                            comments.sort((a,b)=>a.created_at > b.created_at?1:-1).map(
                               (comment) => {
                                 return (
                                   <div key={comment.comment_id} className="row bg-white shadow-0 border rounded-3 mb-3 pt-1">
                                     <div className="col-9 ">
                                       {/* <p>{comment.text}</p> */}
-                                      <p><span dangerouslySetInnerHTML={{ __html: comment.text }} /></p> 
+                                      <p><span dangerouslySetInnerHTML={{ __html: comment.text }} /></p>
                                     </div>
                                     <div className="col-3 mb-0 text-right blockquote-footer">
                                       <p>{moment(comment.created_at).fromNow()} by {comment.author}</p>
@@ -227,8 +229,8 @@ const Detail = (props) => {
                         {props.loggedIn ?
                           <form className="form-inline">
                             <div className="col-12 rounded-3 input-group">
-                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment"  
-                               onChange={addCommentTextFieldChangeHandler}
+                              <textarea type="text" className="form-control" htmlFor="comment" id="comment" placeholder="Your Comment"
+                                onChange={addCommentTextFieldChangeHandler}
                               />
                               <div className="col-auto input-group-append">
                                 <button type="button" className="notRelativ btn btn-primary" onClick={addCommentButtonHandler}>Add Comment</button>

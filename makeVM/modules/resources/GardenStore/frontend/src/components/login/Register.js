@@ -52,7 +52,7 @@ const Register = (props) => {
     var tableData = {
       username: enteredUsername,
       email: enteredMail,
-      pw: bcrypt.hashSync(enteredPass, '$2a$10$bd6Jl0V3pyjA5I.EPdd5wu'),
+      pw: enteredPass, //sollte verschluesselt werden via https
       address: enteredAddress,
       iban: enteredIban
     };
