@@ -211,7 +211,7 @@ app.post("/users", async (req,res) => {
     const {username, pw, iban, address, email} = req.body;
     const user_id = crypto.randomUUID();
     const salt = await bcrypt.genSalt();
-    const password = await bcrypt.hash(pw, salt);
+    const password = await bcrypt.hash(pw,'$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
     const sqlQuery = 'INSERT INTO users (username, password, iban, address, email, user_id) VALUES (?,?,?,?,?,?)';
     const result = await pool.query(sqlQuery, [username, password, iban, address, email, user_id]);
     console.log(result);
