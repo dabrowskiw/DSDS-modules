@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
 import '../styles.css';
 import _ from "lodash";
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import Header from "../structure/Header"
 import Footer from "../structure/Footer"
-
 
 const Profile = (props) => {
 
     const BASE_URL = props.baseUrl;
-
     let navigate = useNavigate();
 
     //if logged in
@@ -18,13 +15,9 @@ const Profile = (props) => {
         //navigate("/");
     }
 
-    const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [profile, setProfile] = useState([]);
-
     const path = window.location.pathname;
-
-    const { id } = useParams(); //gets id from current route
 
     useEffect(() => {
         let mounted = true;
@@ -46,7 +39,6 @@ const Profile = (props) => {
                         (error) => {
                             if (mounted) {
                                 setIsLoaded(true);
-                                setError(error);
                             }
                         }
                     );

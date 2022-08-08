@@ -7,6 +7,7 @@ import Register from "./components/login/Register";
 import LandingPage from "./components/landingPage/LandingPage";
 import DetailPage from "./components/product/Detail";
 import Profile from "./components/profile/Profile";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

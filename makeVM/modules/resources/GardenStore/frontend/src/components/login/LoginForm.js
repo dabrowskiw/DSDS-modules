@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "../styles.css";
 import Header from "../structure/Header";
 import { useNavigate } from 'react-router';
-import bcrypt from 'bcryptjs';
-//import logo from "";
 
 import Footer from "../structure/Footer"
 

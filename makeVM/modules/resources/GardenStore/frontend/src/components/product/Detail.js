@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import "../styles.css";
-import { useNavigate, useParams } from "react-router";
-
 import * as Icon from 'react-bootstrap-icons';
 import 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate, useParams } from "react-router";
 import Header from "../structure/Header"
 import Footer from "../structure/Footer"
 import moment from 'moment';
@@ -146,11 +144,13 @@ const Detail = (props) => {
     }, 100);
 
     return () => (mounted = false); //cleanup function
-  }, [product, BASE_URL, navigate, path, props.logged, id, comments, loggedUser]);
+  }, [product, BASE_URL, navigate, path, props.loggedIn, id, comments, loggedUser]);
+
 
   const logout = () => {
     props.onLogout();
   };
+
 
   return (<div>
     <div className="container">

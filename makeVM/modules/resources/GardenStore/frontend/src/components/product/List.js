@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-
 import _ from "lodash";
 import "../styles.css";
-import { useNavigate } from "react-router";
 import 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router";
 
 const List = (props) => {
 
@@ -69,10 +67,6 @@ const List = (props) => {
     }, 2000);
     return () => (mounted = false); //cleanup function
   }, [products, BASE_URL, navigate, path, props.logged]);
-
-  const logout = () => {
-    props.onLogout();
-  };
 
   if (error) {
     return <div>Error: {error.message}</div>;

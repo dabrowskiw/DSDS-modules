@@ -16,7 +16,7 @@ const Header = (props) => {
     }
   
     return (
-        <header className="after-login">
+        <header>
             <div className="menu-container">
                 {/* <img className="logo" alt='Logo' src={image}/> */}
                 <h2><NavLink className="nav-link text-light" to={'/landingPage'}>Gardeningstore</NavLink></h2>

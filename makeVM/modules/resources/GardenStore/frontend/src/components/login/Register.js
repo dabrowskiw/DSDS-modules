@@ -4,9 +4,6 @@ import Header from "../structure/Header"
 import Footer from "../structure/Footer"
 import { useNavigate } from 'react-router';
 import { Link } from "react-router-dom";
-import bcrypt from 'bcryptjs'
-//import logo from "";
-
 
 const Register = (props) => {
 
