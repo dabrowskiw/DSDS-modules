@@ -1,15 +1,9 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router';
 import '../styles.css';
 
 const Header = (props) => {
-
-    let navigate = useNavigate();
-
-    const [user, setUser] = useState([]);
-    const BASE_URL = props.BASE_URL;
 
     const logout = () =>{
         props.onLogout();
@@ -18,8 +12,7 @@ const Header = (props) => {
     return (
         <header>
             <div className="menu-container">
-                {/* <img className="logo" alt='Logo' src={image}/> */}
-                <h2><NavLink className="nav-link text-light" to={'/landingPage'}>Gardeningstore</NavLink></h2>
+                <h2><NavLink className="nav-link text-light header-title" to={'/landingPage'}>Gardeningstore</NavLink></h2>
                 <nav className="menu">
                     <ul className="nav">
                         <li className="nav-item"><NavLink className="nav-link text-light" to={'/landingPage'} ><Icon.House/> Home</NavLink></li>

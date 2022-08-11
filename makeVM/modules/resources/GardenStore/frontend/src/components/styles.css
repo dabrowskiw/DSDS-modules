@@ -39,10 +39,6 @@ h2 {
         "footer";
 }
 
-.menu-container .menu {
-    margin-top: -10px;
-}
-
 .login input {
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,8 +54,12 @@ header {
     left: 0%;
     top: 0%;
     right: 0%;
-    height: 90px;
+    height: 105px;
     background-color: var(--green);
+}
+
+.header-title{
+    margin-top: 10px;
 }
 
 main {
