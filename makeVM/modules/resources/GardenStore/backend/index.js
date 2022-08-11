@@ -139,7 +139,7 @@ app.post("/logout", async (req,res) => {
 // check salted & hashedPW with bcrypt
 async function checkPw(email, password){
   try {
-    const sqlQuery = 'SELECT email, password FROM users WHERE email=?';
+    const sqlQuery = 'SELECT email, password FROM user WHERE email=?';
     const rows = await pool.query(sqlQuery, email);
     return bcrypt.compare(password, rows[0].password);
   } catch (error) {
@@ -182,7 +182,7 @@ app.get("/users", isLoggedIn, async (req, res) => {
   const sqlQuery = 'SELECT session_id, email FROM sessions WHERE session_id=?';
   const rows = await pool.query(sqlQuery, sessionCookie);
   email = rows[0].email;
-  const sqlQuery2 = 'SELECT username FROM users WHERE email=?';
+  const sqlQuery2 = 'SELECT username FROM user WHERE email=?';
   const rows2 = await pool.query(sqlQuery2, email);
   return res.status(200).send(rows2[0]);
   }catch(error){
@@ -197,7 +197,7 @@ app.get("/userprofile", isLoggedIn, async (req,res) => {
     const sqlQuery = 'SELECT session_id, email FROM sessions WHERE session_id=?';
     const rows = await pool.query(sqlQuery, sessionCookie);
     email = rows[0].email;
-    const sqlQuery2 = 'SELECT * FROM users WHERE email=?';
+    const sqlQuery2 = 'SELECT * FROM user WHERE email=?';
     const rows2 = await pool.query(sqlQuery2, email);
     return res.status(200).send(rows2[0]);
     }catch(error){
@@ -211,8 +211,8 @@ app.post("/users", async (req,res) => {
     const {username, pw, iban, address, email} = req.body;
     const user_id = crypto.randomUUID();
     const salt = await bcrypt.genSalt();
-    const password = await bcrypt.hash(pw,'$2a$10$bd6Jl0V3pyjA5I.EPdd5wu');
-    const sqlQuery = 'INSERT INTO users (username, password, iban, address, email, user_id) VALUES (?,?,?,?,?,?)';
+    const password = await bcrypt.hash(pw,salt);
+    const sqlQuery = 'INSERT INTO user (username, password, iban, address, email, user_id) VALUES (?,?,?,?,?,?)';
     const result = await pool.query(sqlQuery, [username, password, iban, address, email, user_id]);
     console.log(result);
     return res.status(200).json({status:200, message: "user created successfully"});
@@ -223,7 +223,7 @@ app.post("/users", async (req,res) => {
 
 app.delete("/users/:id", (req,res) =>{
   try{ 
-    pool.query('DELETE FROM users where user_id=?', req.params.id);
+    pool.query('DELETE FROM user where user_id=?', req.params.id);
     res.status(204).send("user deleted sucessfully");
   } catch (error){
     res.status(400).send(error.message);

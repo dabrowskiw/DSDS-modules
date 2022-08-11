@@ -6,6 +6,7 @@ CREATE TABLE sys.user (
 	email varchar(100) NOT NULL,
 	cart_amount varchar(100) NULL,
 	created_at DATETIME NULL,
+	user_id varchar(100) NOT NULL,
 	CONSTRAINT user_pk PRIMARY KEY (email)
 )
 ENGINE=InnoDB
@@ -30,7 +31,7 @@ CREATE TABLE sys.products (
 	product_id varchar(100) NOT NULL,
 	name varchar(100) NOT NULL,
 	price FLOAT NOT NULL,
-	description varchar(200) NOT NULL,
+	description varchar(700) NOT NULL,
 	img varchar(100) NULL,
 	likes varchar(100) NULL,
 	comment_count varchar(100) NULL,
