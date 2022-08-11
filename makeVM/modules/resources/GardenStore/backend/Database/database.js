@@ -1,27 +1,5 @@
 require('dotenv').config();
 
-/* 
-for mysql instead mariaDB
-const mysql = require('mysql');
-const util = require('util')
-
-const pool = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "nopw",
-    database: "hack",
-    connectionLimit: 5
-  });
- 
-  pool.query = util.promisify(pool.query);
-  
-  pool.getConnection(function(err) {
-    if (err) throw err;
-    console.log("Connected with DB!");
-  });
-
-  module.exports = pool;
- */
 const mariadb = require('mariadb');
 
 const pool = mariadb.createPool({
