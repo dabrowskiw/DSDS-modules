@@ -16,7 +16,7 @@ COLLATE=utf8mb3_general_ci;
 CREATE TABLE sys.comments (
 	comment_id varchar(100) NOT NULL,
 	author varchar(100) NOT NULL,
-	`text` varchar(300) NOT NULL,
+	text varchar(300) NOT NULL,
 	rating INT NULL,
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
 	product_id varchar(100) NOT NULL,
@@ -29,9 +29,9 @@ COLLATE=utf8mb3_general_ci;
 
 CREATE TABLE sys.products (
 	product_id varchar(100) NOT NULL,
-	name varchar(100) NOT NULL,
+	name varchar(300) NOT NULL,
 	price FLOAT NOT NULL,
-	description varchar(700) NOT NULL,
+	description varchar(2000) NOT NULL,
 	img varchar(100) NULL,
 	likes varchar(100) NULL,
 	comment_count varchar(100) NULL,
