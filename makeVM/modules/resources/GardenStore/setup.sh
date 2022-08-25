@@ -15,7 +15,7 @@ cd backend/Database
 mysql
 create database sys;
 create user mario@localhost identified by 'Its4321?!';
-grant all privileges on sys.* to mario@localhost;
+grant all privileges on *.* to mario@localhost;
 exit
 mysql -p sys < create_tables.sql
 Its4321?!       # enter password to execute sql-file
