@@ -19,7 +19,6 @@ create user mario@localhost identified by 'Its4321?!';
 grant all privileges on sys.* to mario@localhost;
 exit
 
-cd backend/Database
 mysql -p sys < create_tables.sql
 Its4321?!       # enter password to execute sql-file
 mysql -p sys < INSERT_products_users.sql
