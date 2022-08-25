@@ -13,20 +13,6 @@ ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb3
 COLLATE=utf8mb3_general_ci;
 
-CREATE TABLE sys.comments (
-	comment_id varchar(100) NOT NULL,
-	author varchar(100) NOT NULL,
-	text varchar(300) NOT NULL,
-	rating INT NULL,
-	created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
-	product_id varchar(100) NOT NULL,
-	CONSTRAINT comments_pk PRIMARY KEY (comment_id),
-	CONSTRAINT comments_FK FOREIGN KEY (product_id) REFERENCES sys.products(product_id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb3
-COLLATE=utf8mb3_general_ci;
-
 CREATE TABLE sys.products (
 	product_id varchar(100) NOT NULL,
 	name varchar(300) NOT NULL,
@@ -37,6 +23,20 @@ CREATE TABLE sys.products (
 	comment_count varchar(100) NULL,
 	amount varchar(100) NULL,
 	CONSTRAINT products_pk PRIMARY KEY (product_id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb3
+COLLATE=utf8mb3_general_ci;
+
+CREATE TABLE sys.comments (
+	comment_id varchar(100) NOT NULL,
+	author varchar(100) NOT NULL,
+	text varchar(300) NOT NULL,
+	rating INT NULL,
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
+	product_id varchar(100) NOT NULL,
+	CONSTRAINT comments_pk PRIMARY KEY (comment_id),
+	CONSTRAINT comments_FK FOREIGN KEY (product_id) REFERENCES sys.products(product_id)
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb3
