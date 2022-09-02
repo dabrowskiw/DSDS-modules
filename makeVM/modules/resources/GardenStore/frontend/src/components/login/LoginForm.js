@@ -79,7 +79,7 @@ const LoginForm = (props) => {
                   <label htmlFor="exampleInputPassword1">Password</label>
                   <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={passChangeHandler}/>
                 </div>
-                <button type="button" className="btn btn-success btn-md my-3" onClick={clickHandler}>Submit</button>
+                <button type="button" className="btn btn-success btn-md my-3" id="submitbtn" onClick={clickHandler}>Submit</button>
               </form>
             </div>
             <div className="d-grid gap-2 text-center border-top pt-2 mt-2">
