@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 
-# Install dependencies 
-printf "\n--Install dependencies\n"
-cd ../backend
-npm i
-cd ../frontend
-npm i
-
 # Start Servers
 printf "\n--Start Server Backend\n"
-cd ../backend
-npm run start &
+cd /home/mario/GardenStore/backend
+pm2 --name backend start npm -- start
 
 printf "\n--Start Server Frontend\n"
-cd ../frontend
-npm run start &
+cd /home/mario/GardenStore/frontend
+pm2 --name frontend start npm -- start
 
 printf '\n--GardenStore is up.\n'

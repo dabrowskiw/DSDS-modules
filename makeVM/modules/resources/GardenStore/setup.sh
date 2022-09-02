@@ -47,7 +47,4 @@ printf "\n--Start Server Frontend\n"
 cd /home/mario/GardenStore/frontend
 pm2 --name frontend start npm -- start
 
-
-pm2 ps
-read -p "Press any key to exit..."
 printf '\n--GardenStore is up.\n'
