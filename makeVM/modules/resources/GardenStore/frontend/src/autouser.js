@@ -18,7 +18,7 @@ async function nevillebot(){
 	submit.click();
 
      //It is always a safe practice to quit the browser after execution
-     await driver.quit();
+    //  await driver.quit();
 }
 
 nevillebot();
