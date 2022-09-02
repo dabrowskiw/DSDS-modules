@@ -34,17 +34,6 @@ npm i
 cd /home/mario/GardenStore/frontend
 npm i
 
-
 #npm i react-scripts@5   # to solve "opensslerrorstack error 03000086 digital envelope init error"
- 
-# Start Servers
-printf "\n--Start Server Backend\n"
-cd /home/mario/GardenStore/backend
-pm2 --name backend start npm -- start
 
-
-printf "\n--Start Server Frontend\n"
-cd /home/mario/GardenStore/frontend
-pm2 --name frontend start npm -- start
-
-printf '\n--GardenStore is up.\n'
+printf "\n--GardenStore is installed\n" 
