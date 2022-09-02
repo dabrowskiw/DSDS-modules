@@ -13,7 +13,7 @@ apt-get install -y nodejs
 # Setup Database Backend
 printf "\n--Setup database\n" 
 cd backend/Database
-# mysql << EOF
+mysql #<< EOF  # opens sub shell
 create database sys;
 create user mario@localhost identified by 'Its4321?!';
 grant all privileges on sys.* to mario@localhost;
