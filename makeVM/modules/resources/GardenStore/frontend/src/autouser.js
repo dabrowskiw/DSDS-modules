@@ -1,5 +1,23 @@
-const {By,Key,Builder} = require("selenium-webdriver");
+const {By,Key,Builder, until} = require("selenium-webdriver");
 require("geckodriver");
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
+var productsArray = [];
+var resultArray = [];
+
+async function getProducts() {
+    fetch(`http://localhost:8000/products`, {
+      method: "GET",
+      credentials: "include",
+    }).then((res) => res.json())
+      .then(
+        (result) => {
+            productsArray = result
+            productsArray.map((product) => resultArray.push("http://localhost:3000/detailPage/"+product.product_id))
+        }
+      );
+}
+getProducts()
 
 async function nevillebot(){
     var user = "dolor.vitae@outlook.edu";
@@ -13,12 +31,16 @@ async function nevillebot(){
     //To send a search query by passing the value in searchString.
     await driver.findElement(By.id("exampleInputEmail1")).sendKeys(user);
     await driver.findElement(By.id("exampleInputPassword1")).sendKeys(password);
-
+    
     var submit = driver.findElement(By.id("submitbtn"));
 	submit.click();
 
-     //It is always a safe practice to quit the browser after execution
-    //  await driver.quit();
+    while(true){
+    for(let i = 0; i<resultArray.length; i++){
+        await driver.get(resultArray[i]);
+        await new Promise(r => setTimeout(r, 4000));
+    }
+    }
 }
 
 nevillebot();

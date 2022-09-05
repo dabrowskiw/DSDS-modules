@@ -16,6 +16,7 @@
     "geckodriver": "^3.0.2",
     "json-server": "^0.17.0",
     "moment": "^2.29.3",
+    "node-fetch": "^3.2.10",
     "react": "^18.1.0",
     "react-bootstrap": "^2.3.1",
     "react-bootstrap-icons": "^1.8.4",
