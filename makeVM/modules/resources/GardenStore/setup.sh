@@ -11,6 +11,8 @@ curl -sL https://deb.nodesource.com/setup_18.x | bash -
 apt-get install -y nodejs
 apt-get install -y net-tools
 
+apt-get install -y firefox-esr
+
 # Setup Database Backend
 printf "\n--Setup database...\n" 
 cd /home/mario/GardenStore/backend/Database
@@ -32,6 +34,11 @@ npm install pm2 -g
 #install dependencies backend
 npm i
 cd /home/mario/GardenStore/frontend
+npm i
+
+# Setup userbot
+printf "\n--Setup userbot\n" 
+cd /home/mario/GardenStore/userbot
 npm i
 
 #npm i react-scripts@5   # to solve "opensslerrorstack error 03000086 digital envelope init error"
