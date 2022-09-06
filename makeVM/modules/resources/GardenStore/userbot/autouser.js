@@ -1,6 +1,8 @@
 const { By, Key, Builder, until } = require("selenium-webdriver");
-var options = new FirefoxOptions();
-options.AddArguments("--headless");
+const firefox = require('selenium-webdriver/firefox');
+var options = new firefox.Options();
+
+options.addArguments("--headless");
 
 require("geckodriver");
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));

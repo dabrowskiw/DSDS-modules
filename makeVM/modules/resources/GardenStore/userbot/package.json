@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "geckodriver": "^3.0.2",
+    "node-fetch": "^3.2.10",
+    "selenium-webdriver": "^4.4.0"
+  }
+}
