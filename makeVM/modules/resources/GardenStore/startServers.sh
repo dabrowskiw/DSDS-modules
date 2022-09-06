@@ -13,4 +13,5 @@ printf '\n--GardenStore is up.\n'
 
 # Start userBot
 printf "\n--Start userBot 'neville'\n"
+cd /home/mario/GardenStore/userbot
 pm2 --name userBot start node -- autouser.js

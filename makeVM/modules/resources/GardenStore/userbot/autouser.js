@@ -1,11 +1,9 @@
-const { By, Key, Builder, until } = require("selenium-webdriver");
+const { By, Key, Builder, promise, until } = require("selenium-webdriver");
 const firefox = require('selenium-webdriver/firefox');
-var options = new firefox.Options();
-
-options.addArguments("--headless");
-
-require("geckodriver");
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+require("geckodriver");
+
+promise.USE_PROMISE_MANAGER = false;
 
 var productsArray = [];
 var resultArray = [];
@@ -27,8 +25,14 @@ getProducts()
 async function nevillebot() {
   var user = "dolor.vitae@outlook.edu";
   var password = "pw";
+
+  const options = new firefox.Options();
+  options.headless(); //once newer webdriver ships
   //To wait for browser to build and launch properly
-  let driver = await new Builder().forBrowser('firefox').build();
+  let driver = await new Builder()
+    .forBrowser('firefox')
+    .setFirefoxOptions(options)
+    .build();
 
   //To fetch from the browser with our code.
   await driver.get("http://localhost:3000");
