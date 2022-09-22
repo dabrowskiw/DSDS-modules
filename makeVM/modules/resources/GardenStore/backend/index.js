@@ -41,7 +41,7 @@ app.use(cookieParser());
 /**
  * Products endpoints
  */
-app.get("/products/:id", isLoggedIn, async (req,res) =>{
+app.get("/products/:id", async (req,res) =>{
   try {
     const sqlQuery = 'SELECT * FROM products WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
@@ -51,7 +51,7 @@ app.get("/products/:id", isLoggedIn, async (req,res) =>{
   }
 });
 
-app.get("/products", isLoggedIn, async (req,res)=>{
+app.get("/products", async (req,res)=>{
   try {
     const sqlQuery = 'SELECT * FROM products';
     const rows = await pool.query(sqlQuery);
@@ -64,7 +64,7 @@ app.get("/products", isLoggedIn, async (req,res)=>{
 /**
  * Comments endpoints
  */
-app.get("/comments/:id", isLoggedIn, async (req,res) => {
+app.get("/comments/:id", async (req,res) => {
   try {
     const sqlQuery = 'SELECT comment_id, author, text, created_at, product_id FROM comments WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
@@ -74,7 +74,7 @@ app.get("/comments/:id", isLoggedIn, async (req,res) => {
   }
 })
 
-app.get("/comments", isLoggedIn, async (req,res)=>{
+app.get("/comments", async (req,res)=>{
   try {
     const sqlQuery = 'SELECT * FROM comments';
     const rows = await pool.query(sqlQuery);
