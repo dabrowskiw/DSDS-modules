@@ -1,9 +1,8 @@
-const { By, Key, Builder, promise, until } = require("selenium-webdriver");
-const firefox = require('selenium-webdriver/firefox');
+const puppeteer = require('puppeteer');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-require("geckodriver");
 
-promise.USE_PROMISE_MANAGER = false;
+var user = "dolor.vitae@outlook.edu";
+var password = "pw";
 
 var productsArray = [];
 var resultArray = [];
@@ -19,39 +18,28 @@ async function getProducts() {
         productsArray.map((product) => resultArray.push("http://localhost:3000/detailPage/" + product.product_id))
       }
     );
-}
-getProducts()
+};
+getProducts();
 
-async function nevillebot() {
-  var user = "dolor.vitae@outlook.edu";
-  var password = "pw";
+(async () => {
+  const browser = await puppeteer.launch({args: ['--no-sandbox']});
+  // const browser = await puppeteer.launch({args: ['--no-sandbox'], headless: false}); // for local testing with graphical browser
+  const page = await browser.newPage();
+  await page.goto("http://localhost:3000");
 
-  const options = new firefox.Options();
-  options.headless(); //once newer webdriver ships
-  //To wait for browser to build and launch properly
-  let driver = await new Builder()
-    .forBrowser('firefox')
-    .setFirefoxOptions(options)
-    .build();
+  await page.type('#inputEmail', user);
+  await page.type('#inputPassword', password);
+  await page.click('#submitbtn');
 
-  //To fetch from the browser with our code.
-  await driver.get("http://localhost:3000");
-
-  //To send a search query by passing the value in searchString.
-  await driver.findElement(By.id("exampleInputEmail1")).sendKeys(user);
-  await driver.findElement(By.id("exampleInputPassword1")).sendKeys(password);
-
-  var submit = driver.findElement(By.id("submitbtn"));
-  submit.click();
+  await page.waitForNavigation();
 
   console.log("Logged In");
 
-  while (true) {
+  // open each product url in endless loop
+  while (true){
     for (let i = 0; i < resultArray.length; i++) {
-      await driver.get(resultArray[i]);
+      await page.goto(resultArray[i]);    
       await new Promise(r => setTimeout(r, 4000));
     }
   }
-}
-
-nevillebot();
+})();
