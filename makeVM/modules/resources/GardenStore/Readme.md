@@ -1,38 +1,45 @@
 # Garden Store
 
 ## Verwendung
-Stelle sicher, dass die VM in VirtualBox wie in 
-[DSDS-modules](https://github.com/dabrowskiw/DSDS-modules/tree/master/makeVM)
-beschrieben erstellt wurde.
 
-Um das Modul GardenStore zu installieren, muss in der modules.txt die
-Zeile garden-store.sh stehen. Dann kannst du wie in 
+1. Um das Modul GardenStore zu installieren, muss in der modules.txt die
+Zeile `garden-store.sh` stehen! Die anderen Module können bis auf die erste Zeile ssh.sh auskommentiert werden.
+
+2. DANACH kannst du wie in
 [DSDS-modules](https://github.com/dabrowskiw/DSDS-modules/tree/master/makeVM)
-das Skript makeVM.sh starten.
+beschrieben die VM in VirtualBox erstellen und das Skript `makeVM.sh` starten
+(ruft die modules.txt auf).
 
 Alles andere passiert von selbst: Die Datei garden-store.sh kopiert
-das Module in die VM und erstellt die benötigten Netzwerkrouten.
-Dann wird die setup.sh auf der VM ausgeführt. Diese holt alle 
-weiteren Abhängigkeiten via apt-get install, konfiguriert die Server
-und startet einen User-Bot, der das Ziel für die Hack-Attacke simuliert.
+das Modul in die VM (mittels scp) und erstellt die benötigten Netzwerkrouten.
+Dann wird die setup.sh auf der VM gestartet. Diese holt alle
+weiteren Abhängigkeiten via apt-get install, konfiguriert die Server mit der
+Datenbank und startet einen User-Bot, der das Ziel für die Hack-Attacke simuliert.
 
-Ist alles eingerichtet, kann der Server gestartet werden unter 
-`/home/mario/GardenStore` mit `./startServers.sh`
+3. Ist alles eingerichtet, kann der Server in der VM (als root) gestartet werden unter `/home/mario/GardenStore` mit `./startServers.sh`.
 
-Die Website sollte nun unter [localhost:3000](localhost:3000) aufrufbar sein.
+Die Website sollte nun auf deinem Host-PC unter [localhost:3000](localhost:3000) aufrufbar sein.
 
 ## Abhängigkeiten
-Alle benötigten Abhängigkeiten werden mittels setup.sh installiert.
-Dazu gehört
-* curl
-* mariadb-server
-* chromium
-* nodejs (v18)
-    * unteranderem mit puppeteer für den User-Bot
+
+Alle benötigten Abhängigkeiten werden automatisch mittels setup.sh installiert.
+Dazu gehören
+
+* mariadb-server (für die Datenbank)
+* curl (um NodeJS zu holen)
+* nodejs v18 (für die Server)
+  * unteranderem mit puppeteer für den User-Bot
+* chromium (für den User-Bot)
 
 ## User Notes
 
 In der VM kann mittels `pm2 status` überprüft werden, ob alle Dienste laufen:
+
 * frontend
 * backend
 * userbot
+
+pm2 übernimmt die Server-Starts. Server manuell starten mit:
+
+1. npm i - install everything locally
+2. npm start - start server (im jeweiligen Verzeichnis frontend oder backend aufrufen) oder npm run dev - start mit nodemon
