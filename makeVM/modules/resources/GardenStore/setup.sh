@@ -9,7 +9,7 @@ apt-get install -y mariadb-server
 apt-get install -y curl
 curl -sL https://deb.nodesource.com/setup_18.x | bash -
 apt-get install -y nodejs
-apt-get install -y net-tools
+#apt-get install -y net-tools
 apt-get install -y chromium
 
 # Setup Database Backend
