@@ -11,7 +11,7 @@ pm2 --name frontend start npm -- start
 
 printf '\n--GardenStore is up.\n'
 
-# Start userBot
+# Start userbot
 printf "\n--Start userBot 'neville'\n"
 cd /home/mario/GardenStore/userbot
-pm2 --name userBot start node -- autouser.js
+pm2 --name userbot start node -- autouser.js

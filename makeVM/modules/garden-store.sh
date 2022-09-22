@@ -11,6 +11,7 @@ sleep 8
 # delete node_modules folder if created already to save setup time
 rm -r modules/resources/GardenStore/frontend/node_modules  
 rm -r modules/resources/GardenStore/backend/node_modules
+rm -r modules/resources/GardenStore/userbot/node_modules
 
 scp -P 2200 -i ${TMPDIR}/rootkey -r modules/resources/GardenStore/ root@127.0.0.1:/home/${USER_DIR_NAME}
 ssh -p 2200 -i ${TMPDIR}/rootkey root@127.0.0.1 "cd /home/${USER_DIR_NAME}/GardenStore && bash setup.sh"

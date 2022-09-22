@@ -72,11 +72,11 @@ const LoginForm = (props) => {
               <h3 className="title">Sign In</h3>
               <form className="d-grid gap-2">
                 <div className="form-group d-grid gap-2">
-                  <label htmlFor="exampleInputEmail1">Email address</label>
+                  <label htmlFor="inputEmail">Email address</label>
                   <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={mailChangeHandler}/>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">Password</label>
+                  <label htmlFor="inputPassword">Password</label>
                   <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={passChangeHandler}/>
                 </div>
                 <button id="submitbtn" type="button" className="btn btn-success btn-md my-3" onClick={clickHandler}>Submit</button>
