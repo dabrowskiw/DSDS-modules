@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 var user = "dolor.vitae@outlook.edu";
 var password = "pw";
@@ -21,8 +22,12 @@ async function getProducts() {
 getProducts()
 
 async function userbot() {
+  
+};
+userbot();
+
+(async () => {
   const browser = await puppeteer.launch({args: ['--no-sandbox'], headless: false});
-  // const browser = await puppeteer.launch();
   const page = await browser.newPage();
   //await page.goto('https://www.google.com');
 
@@ -44,10 +49,10 @@ async function userbot() {
 
   while (true){
     for (let i = 0; i < resultArray.length; i++) {
+      
       await page.goto(resultArray[i]);
       await new Promise(r => setTimeout(r, 4000));
     }
   }
   // await browser.close();
-};
-userbot();
+})();
