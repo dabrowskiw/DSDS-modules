@@ -7,13 +7,6 @@ const cors = require("cors");
 
 require('dotenv').config();
 
-
-//TODO 
-//comment function 
-//user register succeed-> weiterleitung auf homepage
-//like endpunkt
-//cart count erhöhen Add to Cart endpunkt
-
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -48,7 +41,7 @@ app.use(cookieParser());
 /**
  * Products endpoints
  */
-app.get("/products/:id", async (req,res) =>{
+app.get("/products/:id", isLoggedIn, async (req,res) =>{
   try {
     const sqlQuery = 'SELECT * FROM products WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
@@ -58,7 +51,7 @@ app.get("/products/:id", async (req,res) =>{
   }
 });
 
-app.get("/products", async (req,res)=>{
+app.get("/products", isLoggedIn, async (req,res)=>{
   try {
     const sqlQuery = 'SELECT * FROM products';
     const rows = await pool.query(sqlQuery);
@@ -71,7 +64,7 @@ app.get("/products", async (req,res)=>{
 /**
  * Comments endpoints
  */
-app.get("/comments/:id", async (req,res) => {
+app.get("/comments/:id", isLoggedIn, async (req,res) => {
   try {
     const sqlQuery = 'SELECT comment_id, author, text, created_at, product_id FROM comments WHERE product_id=?';
     const rows = await pool.query(sqlQuery, req.params.id);
@@ -81,7 +74,7 @@ app.get("/comments/:id", async (req,res) => {
   }
 })
 
-app.get("/comments", async (req,res)=>{
+app.get("/comments", isLoggedIn, async (req,res)=>{
   try {
     const sqlQuery = 'SELECT * FROM comments';
     const rows = await pool.query(sqlQuery);
@@ -91,13 +84,13 @@ app.get("/comments", async (req,res)=>{
   }
 })
 
-app.post("/comments", async (req,res) => {
+app.post("/comments", isLoggedIn, async (req,res) => {
   try {
     const payload = req.body;
     const comment_id = crypto.randomUUID(); // >node v v15.6.0 
     const sqlQuery = 'INSERT INTO comments (comment_id, author, text, product_id) VALUES (?,?,?,?)';
     const result = await pool.query(sqlQuery, [comment_id, payload.author, payload.text, payload.product_id]);
-    res.status(200);   // TODO: request result throws error that big int can't be parsed 
+    res.status(200);  
     return res.json({message: "comment created successfully"});
   } catch (error) {
     res.status(400).send(error);
@@ -110,7 +103,6 @@ app.post("/comments", async (req,res) => {
 app.post("/login", async (req,res) =>{
   const payload = req.body;
   const sessionId = await login(payload.email, payload.password);
-  // console.log(sessionId);
   if(!sessionId){
     res.status(401);  //401 -> unauthorized
     return res.json({ message: "Wrong Email or Password."})
@@ -127,7 +119,7 @@ app.post("/login", async (req,res) =>{
 async function login(email, password){
   const isPasswordCorrect = await checkPw(email, password);
   if(isPasswordCorrect){
-    const session_id = crypto.randomUUID(); // >node v v15.6.0 
+    const session_id = crypto.randomUUID(); // >node v15.6.0 
     const sqlQuery = 'INSERT INTO sessions (session_id, email) VALUES (?,?)';
     const result = await pool.query(sqlQuery, [session_id, email]);
     return session_id;
@@ -136,13 +128,14 @@ async function login(email, password){
 }
 
 app.post("/logout", async (req,res) => {
+  const sessionCookie = req.cookies.session;
   res.clearCookie('session');
   res.status(200);
+  const sqlQuery = 'DELETE FROM sessions WHERE session_id=?';
+  await pool.query(sqlQuery, [sessionCookie]);
   return res.json({message: "Successfully logged out."});
-  // optional TODO: delete cookie from database 
 })
 
-// check salted & hashedPW with bcrypt
 async function checkPw(email, password){
   try {
     const sqlQuery = 'SELECT email, password FROM user WHERE email=?';
@@ -178,7 +171,7 @@ async function isLoggedIn(req, res, next){
 }
 
 /**
- * Users endpoints    TODO:check if logged in user can get other user data
+ * Users endpoints
  */
 
 // get only username of logged user
@@ -235,8 +228,6 @@ app.delete("/users/:id", (req,res) =>{
     res.status(400).send(error.message);
   }
 })
-
-//TODO: save sessionCookie to db and check with login
 
 /** Start listening */
 app.listen(port, () => {
