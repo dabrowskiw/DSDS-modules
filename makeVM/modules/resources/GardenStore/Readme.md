@@ -31,7 +31,7 @@ Dazu gehören
   * unteranderem mit puppeteer für den User-Bot
 * chromium (für den User-Bot)
 
-## User Notes
+## Appendix
 
 In der VM kann mittels `pm2 status` überprüft werden, ob alle Dienste laufen:
 
@@ -43,3 +43,8 @@ pm2 übernimmt die Server-Starts. Server manuell starten mit:
 
 1. npm i - install everything locally
 2. npm start - start server (im jeweiligen Verzeichnis frontend oder backend aufrufen) oder npm run dev - start mit nodemon
+
+## Authors
+
+* [@butburg](https://www.github.com/octokatherine)
+* [@simontree](https://github.com/simontree)
