@@ -17,7 +17,7 @@ cecho  "PURPLE" "Copying setup.sh to vm..."
 echo ""
 scp -P 2200 -i temp/rootkey -r modules/resources/Docker_Security_Flaws/setup.sh root@127.0.0.1:/root/
 
-cecho "PURPLE" "Copying config files to vm..."
+cecho "PURPLE" "Copying files to vm..."
 scp -r -P 2200 -i temp/rootkey -r modules/resources/Docker_Security_Flaws/config root@127.0.0.1:/root/
 
 cecho "PURPLE" "Running docker-security-flaws setup..."
