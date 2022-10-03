@@ -1,0 +1,14 @@
+Oh damn. Welcome to this VM. You’ve been administrator of this machine, but somehow it got hacked.
+There is a program running, encrypting your precious cat pictures in /usr/share/cat_pictures_archive/
+but you forgot to backup them. You have access to your personal user account, mario with the password
+Its4321?! 
+But the root user's password was changed. Currently there is no action by the intruder, so
+it’s your moment! 
+Try to escalate your privileges on this machine to get root access to the machine and stop the
+encryption of the pictures. 
+If you need some help, check the hints in this folder. They point to specific technologies and
+elements of this system and may help you find the right attacking vectors. If you’re still
+struggeling, there is a walkthrough which describes each step and provides the needed scripts and
+commands. 
+You don’t have to, but it might be useful to use a Kali-Linux VM, it provides some useful tools for
+this challenge. 
