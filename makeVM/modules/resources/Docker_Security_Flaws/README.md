@@ -1,24 +1,12 @@
 # Docker-Security-Flaws 
 
-
 ## Installation
 This module shows two of many possible misconfiguration in Docker environments that could lead to security-related vulnerabilities.
 To use it, the `ssh.sh` script, as well as the `docker-security-flaws.sh` script must be included in `modules.txt`. After running the makeVM.sh script, the vulnerable docker setup is ready to use.
 
 ## Writeup
 
-
-- When enumerating ports, you will find port `5500` running a docker registry
-- its possible to interact with such registrys via an api
-
-
-### RCE 
-
-`docker -H tcpL//localhost:4444 exec -it registry /bin/sh`
-
-- provides us a shell inside the container 
-
-## Two ways to exploit the vm
+There are two ways to exploit the vm.
 
 ### 1) Exploit VM via via exposed socket (RCE)
 
@@ -27,9 +15,9 @@ To use it, the `ssh.sh` script, as well as the `docker-security-flaws.sh` script
 - `docker -H tcp://localhost:4444 run -v /:/mnt --rm -it alpine chroot /mnt sh`
 - mountings the hosts `/` directory to the `/mnt` directory in a new container, `chrooting` and then connecting via `shell`
 
-### 2) 
+### 2) Exploit VM via investigating image layers 
 
-Since it is possible to load images from the registry, we can further investiagte those. The workstation image contains ssh credentials for the vm. 
+Since it is possible to load images from the registry, we can further investigate those. The workstation image contains ssh credentials for the vm. 
 
 ```
 #!/bin/bash
@@ -54,10 +42,9 @@ for i in ./*/; do
 It is also possible to use tools like [dive](https://github.com/wagoodman/dive) to take a closer look at layers.
 
 
-
 ## Further information
 
-### Registriy discovery
+### Registry discovery
 
 When discovering a registry, it is always useful to enumerate it further. For example, it is possible to find out all repositories registered on this registry. This is possible as follows:
 
@@ -92,5 +79,4 @@ It would be advisable to use some form of authentication (e.g., a proxy) to prev
 ### Docker images / layers
 
 Do not use docker images from untrusted sources. If you use docker images, try to understand the image creation process. Do not store or load credentials in docker images.
-
 
