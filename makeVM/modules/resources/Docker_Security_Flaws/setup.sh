@@ -14,7 +14,7 @@ cecho(){
 
 setup_registry(){
     cecho "PURPLE" "Start docker registry on port 5000..."
-    docker run -d -p 5000:5000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --name registry registry:2
+    docker run -d -p 5000:5000 --restart=always --name registry registry:2
     cecho "PURPLE" "Setting up config for insecure docker communication"
     mv /root/config/daemon.js /etc/docker
 
