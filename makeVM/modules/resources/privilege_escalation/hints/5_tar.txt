@@ -1,0 +1,5 @@
+Tar is a utility for creating and packing files into an archive. It is mostly used for backups or
+software distribution. The name ‘tar’, short for ‘taped archive’ , points back to the time when data
+was saved on magnetic tapes. During the years the tar program became more complex and offers different
+types for the storage of the data. A tar archive serializes the objects and adds a 512 byte long
+header with additional metadata generated from the file. 

@@ -1,0 +1,5 @@
+John the Ripper is an open source tool for cracking passwords. It collects the most used programs and
+tools for attacking passwords of various types and encodings. The full documentation can be found
+here: https://www.openwall.com/john/doc/EXAMPLES.shtml
+On an unixoid system password hashes are saved in /etc/shadow. If you can access this file, it is a
+traditional attacking vector to check for weak passwords from other users.  

@@ -1,6 +1,6 @@
 ssh.sh
-lemp.sh
-dre.sh
+#lemp.sh
+#dre.sh
 
 
 #log poisoning module 
@@ -10,3 +10,5 @@ dre.sh
 #docker.sh
 #phpmyadmin.sh
 #1a-akademie.sh
+
+privilege_escalation.sh

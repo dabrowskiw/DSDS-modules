@@ -1,0 +1,9 @@
+The Advanced Encryption Standard (short AES) are a family of symmetric key algorithms based on a
+common encryption and differing key and blocklengths. AES is based on a substitution-permutation
+network. This means that a series of linked mathematical operation is performed to encrypt the
+original text. Therefore the algorithm splits the plaintext into chunks and encrypts each chunck
+with alternating rounds of substitutions and permutation. Therefore substitution boxes (S-boxes)
+and permutation boxes (P-boxes) are created. One single box is easy to compute on soft- or
+hardware and produces only small cryptographic strength. Through the combination of both box
+types and the constant usage of the key the encryption reaches a high level of security. These
+days AES is proclaimed to be save, when correctly implemented. 
