@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="row col-12 d-flex flex-row">
+    <div class="col-1"></div>
+    <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+        <div class="card-body">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Welcome to the _Museum</h1>
+                <div class="d-flex flex-row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <p class="lead mb-0">
+                            On this site you will find four exhibits of more or less
+                            well known personalities of computer science/the tech industry.
+                            Each designed in their respective theme.
+                        </p>
+                        <p class="lead mb-0">
+                            Our team hopes you enjoy your stay and learn something new.
+                        </p>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="row col-12 d-flex flex-row my-4 ">
+    <div class="col-1"></div>
+    <div class="col-4">
+        <div class="card bg-white shadow rounded-0 border-0 mx-1 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2018/06/28/03/24/document-3503099_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto">Exhibits</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a  th:href="@{/exhibits}" class="btn btn-primary rounded-0 float-end my-auto">Exhibits</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class="card bg-white shadow rounded-0 border-0 mx-1 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2015/12/08/19/08/castle-1083570_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto">Intern</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a th:href="@{/intern}" class="btn btn-primary rounded-0 float-end my-auto">Intern</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+</body>
+</html>

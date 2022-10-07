@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forum</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="main-container">
+    <div class="headline"><h1>Wilkommen in unserem Forum</h1></div>
+    <br>
+    <div class="forIndex">In unserem Forum können sie gerne über das Leben & Schaffen der Persönlichkeiten diskutieren.
+        Falls sie eine Anfrage an eine nicht öffentliche Datei stellen, wird sich ein Admin innerhalb von einer Minute
+        darum kümmern.
+
+        <br>
+        <br>
+        <br>
+        <a href="Forenpost/Post1.html">
+            <li>Post1</li>
+        </a>
+        <a href="Forenpost/Post2.html">
+            <li>Post2</li>
+        </a>
+        <a href="Forenpost/Post3.html">
+            <li>Post3</li>
+        </a>
+        <a href="Forenpost/PostAngreifer.html">
+            <li>
+                <div id="neuerPostAngreifer">
+                    <script>
+                        if (localStorage.length > 0) {
+                            neuerPostAngreifer.innerHTML += localStorage.key(0)
+                        }
+                    </script>
+                </div>
+            </li>
+        </a>
+        <a href="Forenpost/Post4_Mitglied.html">
+            <li>Post4_Mod</li>
+        </a>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+Cron is a command line program which schedules jobs on a unixoid system. Cronjobs are often used for
+periodic tasks like down- and uploading data or for system maintenance tasks. The actions cron
+performes are configured in a crontab file, which can be user specific or globally contributed for the
+system (mostly to find in /etc directory). It follows a specific syntax of setting the interval and
+afterwards specifying the task to perform. 
+
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                         7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * * <command to execute>
+(Source: https://en.wikipedia.org/wiki/Cron)

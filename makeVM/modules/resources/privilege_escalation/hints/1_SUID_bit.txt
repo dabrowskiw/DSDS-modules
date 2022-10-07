@@ -1,0 +1,4 @@
+The SUID bit is linux-specific flag, which allows users to run executables with the file systems
+permissions of the executables owner or group. A common usage is allowing users to run programs with
+higher privileges so that they are able to fulfill tasks, which need a higher privilege rank without
+granting the full rights to the user. 
