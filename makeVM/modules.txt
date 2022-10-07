@@ -1,5 +1,16 @@
 ssh.sh
 
+#lemp.sh
+#dre.sh
+
+# log poisoning module 
+# only enable ssh.sh & init_log_poison.sh
+
+#log poisoning module 
+#only enable ssh.sh & init_log_poison.sh
+#init_log_poison.sh
+
+
 # General stuff
 #lemp.sh
 #docker.sh
@@ -23,3 +34,6 @@ ssh.sh
 # Privilege escalation
 # Needs nothing from General stuff
 # privilege_escalation.sh
+
+#Docker Security
+#docker-security-flaws.sh
