@@ -1,0 +1,88 @@
+:root {
+    --green: #198754;
+  }
+
+html {
+    --lh: 1.4rem;
+    line-height: var(--lh);
+}
+
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h2 {
+    text-align: center;
+}
+
+.truncate-overflow {
+    --max-lines: 3.2;
+    max-height: calc(var(--lh) * var(--max-lines));
+    overflow: hidden;
+}
+
+.notRelativ {
+    position: initial!important;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 130px 500px 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+}
+
+.login input {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.productList {
+    padding-bottom: 50px;
+}
+
+header {
+    grid-area: header;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    height: 105px;
+    background-color: var(--green);
+}
+
+.header-title{
+    margin-top: 10px;
+}
+
+main {
+    grid-area: main;
+    /* padding-top: 40px; */
+
+    padding-bottom: 5px;
+    background-color: white;
+}
+
+aside {
+    grid-area: aside;
+}
+
+footer {
+    font-size: small;
+    grid-area: footer;
+    text-align: center;
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    height: 30px;
+    background-color: var(--green);
+    padding: 5px;
+}
