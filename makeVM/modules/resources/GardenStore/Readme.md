@@ -1,5 +1,14 @@
 # Garden Store
 
+## Beschreibung des Settings
+
+Der Gardenstore ist eine vulnerable Webseite, die auf einem React-Frontend mit einem Node-Backend läuft.
+Der Angreifer erstellt sich einen Account auf der Webseite über den Register-Button. 
+Über diesen Account kann er sich anmelden und einen Kommentar auf einer der Produktseiten mit Schadcode hinterlassen. 
+Im selben Moment meldet sich automatisch (mit puppeteer) der User Neville auf der Anwendung an. 
+Der Angreifer kann nun via netcat auf seinem Rechner den Session-Cookie von Neville abfangen. 
+Der Cookie kann dann über ein Browser-Addon z.B. Cookie-Editor verwendet werden, um sich als Neville auf der Webseite einzuloggen, um dann sensible Daten zu erspähen. 
+
 ## Verwendung
 
 1. Um das Modul GardenStore zu installieren, muss in der modules.txt die
