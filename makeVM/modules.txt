@@ -1,8 +1,7 @@
 ssh.sh
-docker-security-flaws.sh
+
 #lemp.sh
 #dre.sh
-
 
 # log poisoning module 
 # only enable ssh.sh & init_log_poison.sh
@@ -11,6 +10,30 @@ docker-security-flaws.sh
 #only enable ssh.sh & init_log_poison.sh
 #init_log_poison.sh
 
+
+# General stuff
+#lemp.sh
 #docker.sh
 #phpmyadmin.sh
-#1a-akademie.sh
+
+# Diamond Real Estate
+#dre.sh
+
+# Log Poisoning
+# Needs nothing from General stuff
+# init_log_poison.sh
+
+# 1A-Akademie
+# Enable docker and phpmyadmin under General stuff
+# 1a-akademie.sh
+
+# Garden store
+# Enable lemp under General stuff
+#garden-store.sh
+
+# Privilege escalation
+# Needs nothing from General stuff
+# privilege_escalation.sh
+
+#Docker Security
+#docker-security-flaws.sh

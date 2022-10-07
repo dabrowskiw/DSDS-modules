@@ -1,0 +1,9 @@
+Base64 is a group of binary to text encoding schemes. Base64 is common in contexts, where binary data
+can not be transmitted easily or save. Base64 encodes 3 bytes of a byte stream which is represented by
+a number between 0 and 63, which afterwards is represented by a ASCII-character. Padding is used, if
+the number of bytes in the data is not divisible by 3 and often represented by one or more ‘=’ in the
+end. There are many variants belonging to the base64 family so the different encodings are sometimes
+not easy to detect and identify. 
+Sometimes base64 has more rights than a normal user. Due to its usages, this might be necessary but it
+also represents a valid attacking vector. 
+Hint: https://gtfobins.github.io/ 

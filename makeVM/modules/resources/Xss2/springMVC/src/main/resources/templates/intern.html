@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Intern</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="row col-12 d-flex flex-row">
+    <div class="col-1"></div>
+    <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+        <div class="card-body">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Intern Area</h1>
+                <p sec:authorize="hasRole('user')" class="lead mb-0">you are currently an user</p>
+                <p sec:authorize="hasRole('admin')" class="lead mb-0">you are currently an admin</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="row col-12 d-flex flex-row my-4 ">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <div class="card bg-white shadow rounded-0 border-0 mx-1 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2021/05/04/18/35/list-6229425_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto">Comment Section</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a  th:href="@{/intern/commentReview}" class="btn btn-primary rounded-0 float-end my-auto">Comment Section</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card bg-white shadow rounded-0 border-0 mx-1 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2018/06/28/03/50/folder-3503133_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto">Container Storage</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a th:href="@{/intern/storage}" class="btn btn-primary rounded-0 float-end my-auto">Container Storage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+</body>
+</html>

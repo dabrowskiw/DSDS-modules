@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exhibits</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="row col-12 d-flex flex-row my-3">
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class="card rounded-0 border-0 shadow mx-1 d-flex flex-row ">
+            <img class="card-img-top rounded-circle m-1" height="200" width="200" src="https://www.tagesspiegel.de/images/heprodimagesfotos82620160323neumann_498_1_20160322121122249-jpg/13355748/3-format43.jpg" alt="..." />
+            <div class="card-body">
+                <div class="small text-muted">January 1, 2022</div>
+                <h2 class="card-title h4">John von Neumann</h2>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                <a class="btn btn-primary rounded-0 my-auto" th:href="@{/exhibits/john_von_neumann}">Read more</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card rounded-0 border-0 shadow mx-1 d-flex flex-row ">
+            <img class="card-img-top rounded-circle m-1" height="200" width="200" src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Noam_Chomsky_portrait_2017_retouched.png" alt="..." />
+            <div class="card-body">
+                <div class="small text-muted">January 1, 2022</div>
+                <h2 class="card-title h4">Noam Chomsky</h2>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                <a class="btn btn-primary rounded-0 my-auto" th:href="@{/exhibits/noam_chomsky}">Read more</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="row col-12 d-flex flex-row my-3">
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class="card rounded-0 border-0 shadow  mx-1 d-flex flex-row ">
+            <img class="card-img-top rounded-circle m-1" height="200" width="200" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg" alt="..." />
+            <div class="card-body">
+                <div class="small text-muted">January 1, 2022</div>
+                <h2 class="card-title h4">Marc Zuckerberg</h2>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                <a class="btn btn-primary rounded-0 my-auto" th:href="@{/exhibits/marc_zuckerberg}">Read more</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card rounded-0 border-0 shadow mx-1 d-flex flex-row ">
+            <img class="card-img-top rounded-circle m-1" height="200" width="200" src="https://cdn.stylepark.com/articles/2011/steve-jobs-1955-2011/l2_v326043_958_600_567-1.jpg?mtime=20160927095129&focal=none" alt="..." />
+            <div class="card-body">
+                <div class="small text-muted">January 1, 2022</div>
+                <h2 class="card-title h4">Steve Jobs</h2>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                <a class="btn btn-primary rounded-0 my-auto" th:href="@{/exhibits/steve_jobs}">Read more</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

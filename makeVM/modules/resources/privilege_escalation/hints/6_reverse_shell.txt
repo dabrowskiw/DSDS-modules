@@ -1,0 +1,6 @@
+A reverse shell is a shell, which is opened on the attacked system and takes input from a source the
+attacker controls. The shell can then be used to perform any actions on the attacked system. There are
+many ways how a reverse shell can be set up, here you find a list of examples, how they can be
+designed in different languages:
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+Another helpful tool for creating reverse shells is msfvenom.
