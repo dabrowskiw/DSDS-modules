@@ -1,7 +1,7 @@
 # Docker-Security-Flaws 
 
 ## Installation
-This module shows two of many possible misconfiguration in Docker environments that could lead to security-related vulnerabilities.
+This module shows two of many possible misconfigurations in Docker environments that could lead to security-related vulnerabilities.
 To use it, the `ssh.sh` script, as well as the `docker-security-flaws.sh` script must be included in `modules.txt`. After running the makeVM.sh script, the vulnerable docker setup is ready to use.
 
 ## Writeup
@@ -17,7 +17,7 @@ There are two ways to exploit the vm.
 
 ### 2) Exploit VM via investigating image layers 
 
-Since it is possible to load images from the registry, we can further investigate those. The workstation image contains ssh credentials for the vm. 
+Since it is possible to load images from the registry, we can investigate those further. The workstation image contains ssh credentials for the vm because the credentials where used during image creation. 
 
 ```
 #!/bin/bash
@@ -33,7 +33,7 @@ for i in ./*/; do
     tar -xf layer.tar
     if [ -e root/ws.env ]; then
         cat root/ws.env
-        exit 0
+        break
     fi
     cd ..
 
