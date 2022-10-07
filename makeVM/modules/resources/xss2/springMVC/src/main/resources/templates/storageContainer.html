@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+    <link rel="stylesheet" href="http://localhost:8080/webjars/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="row col-12 d-flex flex-row">
+    <div class="col-1"></div>
+    <div class="card py-5 bg-white shadow rounded-0 border-0 col-10  my-2">
+        <div class="card-body">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Storage Container Area</h1>
+                <div class="d-flex flex-row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <p class="lead mb-0">The container you can find here are only accessible to their owners.</p>
+                        <p class="lead mb-0">If you need some Information you think might be found inside a certain container
+                            you can post the link to that container <a th:href="@{/intern/storage/container_forum}">here</a> and in time the owner will see what information in this
+                            container he/she is willing to share with you.</p>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<!--/*@thymesVar id="containerList" type="java.util.ArrayList"*/-->
+<!--/*@thymesVar id="container" type="com.hackenanvms.springmvc.storageContainer.Container"*/-->
+<div th:each="container : ${containerList}">
+    <div class="row col-12 d-flex flex-row">
+        <div class="col-4"></div>
+        <div class="card bg-white shadow rounded-0 border-0 col-4 my-2 px-1">
+            <div class="card-body">
+                <div class=" d-flex flex-row col-12  align-middle">
+                    <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2018/06/28/03/50/folder-3503133_960_720.png" alt="...">
+                    <!--/*@thymesVar id="containerName" type="java.lang.String"*/-->
+                    <h3 class="fw-bolder mx-auto my-auto" th:text="${container.containerName}">Container 1</h3>
+                    <!--/*@thymesVar id="containerId" type="java.util.UUID"*/-->
+                    <a  th:href="@{/intern/storage/container(id=${container.containerId},name=${container.containerName})}" class="btn btn-primary rounded-0 float-end my-auto">Access Container</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+</body>
+</html>
