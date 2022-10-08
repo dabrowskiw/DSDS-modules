@@ -11,4 +11,4 @@ ssh -p 2200 root@127.0.0.1 "dpkg --add-architecture i386; apt update; apt instal
 ssh -p 2200 root@127.0.0.1 "mkdir -p /var/www"
 ssh -p 2200 root@127.0.0.1 "gcc -m32 -z execstack -no-pie -fno-stack-protector /home/mario/webserver_access.c"
 ssh -p 2200 root@127.0.0.1 "echo 0 | sudo tee /proc/sys/kernel/randomize_va_space"
-ssh -p 2200 root@127.0.0.1 ""
+ssh -p 2200 root@127.0.0.1 "ichmod a+x /home/mario/a.out; chmod u+s /home/mario/a.out"
